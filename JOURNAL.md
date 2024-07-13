@@ -2,6 +2,14 @@
 
 This is a quick journal on how I develop this website. It will be used for documentation for both tools used and thought process.
 
+- [Journal](#journal)
+  - [13 July](#13-july)
+    - [Starting from the beginning (again)](#starting-from-the-beginning-again)
+    - [Mr. Ranedeer](#mr-ranedeer)
+    - [DevTools](#devtools)
+    - [Structure of HTML](#structure-of-html)
+      - [`<head>` Element Uses](#head-element-uses)
+
 ## 13 July
 
 ### Starting from the beginning (again)
@@ -20,3 +28,29 @@ Asking questions helps a lot. I have already learned that you can in fact write 
 ### DevTools
 
 Mr Ranedeer gave me an example of using Elements, Console and Sources in the webbrowser's DevTools. There are more tools, but I think only those 3 should be enough for my static website for now.
+
+### Structure of HTML
+
+I've learned that `<!DOCTYPE html>` declares HTML version, but all browsers assume the "unspecified version" as I would like to call it refers to HTML5.
+
+The `<html>` element can specify a language using the lang attribute. This is mainly used for accessibility screen readers, search engine indexing, and browsers spell-checking. To name a few.
+
+You can't display things horisontally by using only HTML, CSS is required for that by using either: inline, flex or grid.
+
+#### `<head>` Element Uses
+
+- Title: `<title>My Webpage</title>`
+- Character Set: `<meta charset="UTF-8">`
+- Viewport Settings: `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+- CSS Links: `<link rel="stylesheet" href="styles.css">`
+- JavaScript Links: `<script src="script.js"></script>`
+- Meta Tags for SEO: `<meta name="description" content="This is a sample webpage">`
+- Favicons: `<link rel="icon" href="favicon.ico">`
+- Social Media Metadata: Open Graph tags for Facebook, Twitter cards, etc.  
+Open Graph tags (prefixed with og:) are used by social media platforms to generate rich link previews.
+
+```html
+<meta property="og:title" content="My Webpage">
+<meta property="og:description" content="This is a sample webpage">
+<meta property="og:image" content="image.jpg">
+```
