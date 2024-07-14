@@ -9,13 +9,15 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [DevTools](#devtools)
     - [Structure of HTML](#structure-of-html)
       - [`<head>` Element Uses](#head-element-uses)
+  - [14 July](#14-july)
+    - [Playin around](#playin-around)
 
 ## 13 July
 
 ### Starting from the beginning (again)
 
 I have restarted my repository to the minimum through the "learning" branch. This may brake the [pages](.github\workflows\pages.yml) workflow to deploy.
-I had setup next.js before this entry. That setup is now removed. I have never build a website before and have always struggled using tools such as node and Jekyll to build websites. The goal of this proejct is to understand the basics of front-end development. I don't need tools for that, except HTML, CSS and JS. In the future I should take time to learn React.
+I had setup next.js before this entry. That setup is now removed. I have never built a website before and have always struggled using tools such as node and Jekyll to build websites. The goal of this proejct is to understand the basics of front-end development. I don't need tools for that, except HTML, CSS and JS. In the future I should take time to learn React.
 
 I have installed Live Server to my VS Code. I don't know if I need it. It will host my website locally for me to edit.
 
@@ -54,3 +56,11 @@ Open Graph tags (prefixed with og:) are used by social media platforms to genera
 <meta property="og:description" content="This is a sample webpage">
 <meta property="og:image" content="image.jpg">
 ```
+
+## 14 July
+
+### Playin around
+
+I have added the index.html file that I played around with yestrerday and added a favicon of my logo and a styles.css to play around with today. The ZuliusRoolfLogo.svg is my own work with the use of my own Font that I plan to release in the future.
+
+While I'm commiting my work so far, I wanted to take the opportunity and see if I can update to GitHub Pages along side with it. According to this [StackOverflow post](https://stackoverflow.com/a/56911185) I'm supposed to add a file named .nojekyll for a website that does not use Jekyll. Not sure if it actually matters.
