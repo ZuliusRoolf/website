@@ -1,51 +1,16 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
 
-h1 {
-    color: blue;
-    text-align: center;
-}
-
-p {
-    color: black;
-    padding: 20px;
+.portfolio-item {
     border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
 }
-
-a {
-    color: red;
+.portfolio-item h2 {
+    margin: 0;
 }
-
-a:hover {
-    color: green;
+.portfolio-item p {
+    margin: 5px 0;
 }
-a:active {
-    color: rgb(204, 255, 0);
-}
-
-div {
-    padding: 20px;
-    border: 10px solid black;
-    margin: 30px;
-}
-.block {
-    display: block;
-}
-.inline {
-    display: inline;
-}
-.inline-block {
-    display: inline-block;
-}
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
-}
-.grid-item {
-    background-color: lightgrey;
-    padding: 20px;
-    text-align: center;
+.portfolio-item ul {
+    list-style-type: none;
+    padding: 0;
 }

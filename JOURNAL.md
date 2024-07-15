@@ -17,6 +17,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [CSS](#css)
     - [JavaScript](#javascript)
       - [DOM Modification](#dom-modification)
+    - [Some small things I've learned](#some-small-things-ive-learned)
+    - [Reflection](#reflection)
 
 ## 13 July
 
@@ -76,9 +78,9 @@ While I'm committing my work so far, I wanted to take the opportunity and see if
 ### Today's To-Do List
 
 - [x] Setup GitHub actions to work with static builds
-- [ ] Reach step 1.4 in the website curriculum
+- [x] Reach step 1.4 in the website curriculum
 - [ ] Reach step 1.16 in the website curriculum
-- [ ] Get answers on how to use Markdown to then convert into HTML
+- [X] Get answers on how to use Markdown to then convert into HTML
 
 ### GitHub Pages using GitHub Actions
 
@@ -132,3 +134,21 @@ for (let i = 0; i < elements.length; i++) {
     elements[i].classList.remove("oldClass");
 }
 ```
+
+### Some small things I've learned
+
+When you add an alt text for an image in HTML, like this `<img src="image.jpg" alt="Description of image">`, I never realized the alt text is displayed after the "broken image file" icon. This explains all the times I visited a website, and it couldn't properly load, I got "broken image file" icons sometimes with and sometimes without text.
+
+I learned that it is very easy to change color for SVG files, considering that it is only a style attribute change for fill. So I inverted the colors for my [favicon](website/favicon.svg) file.
+
+My initial idea was to use Markdown for my portfolio. In case my website would be down then I could just showcase my GitHub repository. However, because I am using only static content to build everything from scratch, I can't use libraries to convert Markdown to HTML. I can of course install them locally, or run them on GitHub Actions, but then I will troubleshoot that and the website on my local machine won't refelct what will be published. I could resolve this using Docker, but there are so many tools to make things easier when the simplest solution is to just use JSON to convert into JavaScript Object to then insert into HTML/DOM.
+
+Three JSON files will be used to represent my content on the website. Biography, Portfolio and Experiences. I don't know if there will be a performance issue, but my idea is to host all images and videos on the GitHub repository. The plan is to host less than 15 seconds video per portfolio item on github, keeping it under 2 MB per item if possible.
+
+- **Biography:** Portrait | Name | Title, workplace | Links to social media | About me text
+- **Portfolio:** Title | Video link | Descriptive title, year, company?, collaborators?, reason why I did the project
+- **Experiences:** Year | Start date?, End date? | Description | Image link of company
+
+### Reflection
+
+I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching step 1.16 or even finishing the corriculum which ends at 1.20 will be my goal tomorrow. Maybe a bit optimistic considering I will without a doubt work on my website alongside the learning corriculum Mr. Ranedeer has provided me. Will see tomorrow. I'm happy with today's effort on all the subjects I've learned.

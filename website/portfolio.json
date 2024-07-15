@@ -1,0 +1,19 @@
+{
+    "portfolio": [
+      {
+        "title": "Project 1",
+        "date": "January 2024",
+        "description": "This is a description of Project 1.",
+        "technologies": ["HTML", "CSS", "JavaScript"],
+        "link": "http://example.com"
+      },
+      {
+        "title": "Project 2",
+        "date": "February 2024",
+        "description": "This is a description of Project 2.",
+        "technologies": ["React", "Node.js"],
+        "link": "http://example.com"
+      }
+    ]
+  }
+  

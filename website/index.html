@@ -3,20 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Zulius Roolf</title>
     <link rel="icon" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .highlight {
-            background-color: yellow;
-        }
-    </style>
 </head>
 <body>
-    <h1 id="title">Hello, World!</h1>
-    <p class="content">This is a paragraph.</p>
-    <button onclick="changeContent()">Change Content</button>
-    <button onclick="toggleHighlight()">Toggle Highlight</button>
-    <script src="script.js"></script>
+    <h1>My Portfolio</h1>
+    <div id="portfolio"></div>
+
+    <script>
+        // Fetch the JSON data
+        fetch('portfolio.json')
+            .then(response => response.json())
+            .then(data => {
+                const portfolioContainer = document.getElementById('portfolio');
+
+                // Iterate over the portfolio items and create HTML elements
+                data.portfolio.forEach(item => {
+                    const portfolioItem = document.createElement('div');
+                    portfolioItem.classList.add('portfolio-item');
+
+                    const title = document.createElement('h2');
+                    title.textContent = item.title;
+                    portfolioItem.appendChild(title);
+
+                    const date = document.createElement('p');
+                    date.textContent = `Date: ${item.date}`;
+                    portfolioItem.appendChild(date);
+
+                    const description = document.createElement('p');
+                    description.textContent = item.description;
+                    portfolioItem.appendChild(description);
+
+                    const technologies = document.createElement('ul');
+                    item.technologies.forEach(tech => {
+                        const techItem = document.createElement('li');
+                        techItem.textContent = tech;
+                        technologies.appendChild(techItem);
+                    });
+                    portfolioItem.appendChild(technologies);
+
+                    const link = document.createElement('a');
+                    link.href = item.link;
+                    link.textContent = 'View Project';
+                    portfolioItem.appendChild(link);
+
+                    portfolioContainer.appendChild(portfolioItem);
+                });
+            })
+            .catch(error => console.error('Error fetching the JSON data:', error));
+    </script>
 </body>
 </html>
