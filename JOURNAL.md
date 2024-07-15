@@ -3,15 +3,15 @@
 This is a quick journal on how I develop this website. It will be used for documentation for both tools used and thought process.
 
 - [Journal](#journal)
-  - [13 July](#13-july)
+  - [July 13](#july-13)
     - [Starting from the beginning (again)](#starting-from-the-beginning-again)
     - [Mr. Ranedeer](#mr-ranedeer)
     - [DevTools](#devtools)
     - [Structure of HTML](#structure-of-html)
       - [`<head>` Element Uses](#head-element-uses)
-  - [14 July](#14-july)
+  - [July 14](#july-14)
     - [Playing around](#playing-around)
-  - [15 July](#15-july)
+  - [July 15](#july-15)
     - [Today's To-Do List](#todays-to-do-list)
     - [GitHub Pages using GitHub Actions](#github-pages-using-github-actions)
     - [CSS](#css)
@@ -20,7 +20,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Some small things I've learned](#some-small-things-ive-learned)
     - [Reflection](#reflection)
 
-## 13 July
+## July 13
 
 ### Starting from the beginning (again)
 
@@ -65,7 +65,7 @@ Open Graph tags (prefixed with `og:`) are used by social media platforms to gene
 <meta property="og:image" content="image.jpg">
 ```
 
-## 14 July
+## July 14
 
 ### Playing around
 
@@ -73,7 +73,7 @@ I have added the index.html file that I played around with yesterday and added a
 
 While I'm committing my work so far, I wanted to take the opportunity and see if I can update to GitHub Pages alongside with it. According to this [Stack Overflow post](https://stackoverflow.com/a/56911185) I'm supposed to add a file named `.nojekyll` for a website that does not use Jekyll. Not sure if it actually matters.
 
-## 15 July
+## July 15
 
 ### Today's To-Do List
 
