@@ -18,6 +18,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [JavaScript](#javascript)
       - [DOM Modification](#dom-modification)
     - [Some small things I've learned](#some-small-things-ive-learned)
+      - [JSON Content Structure](#json-content-structure)
     - [Reflection](#reflection)
 
 ## July 13
@@ -144,6 +145,8 @@ I learned that it is very easy to change color for SVG files, considering that i
 My initial idea was to use Markdown for my portfolio. In case my website would be down then I could just showcase my GitHub repository. However, because I am using only static content to build everything from scratch, I can't use libraries to convert Markdown to HTML. I can of course install them locally, or run them on GitHub Actions, but then I will troubleshoot that and the website on my local machine won't refelct what will be published. I could resolve this using Docker, but there are so many tools to make things easier when the simplest solution is to just use JSON to convert into JavaScript Object to then insert into HTML/DOM.
 
 Three JSON files will be used to represent my content on the website. Biography, Portfolio and Experiences. I don't know if there will be a performance issue, but my idea is to host all images and videos on the GitHub repository. The plan is to host less than 15 seconds video per portfolio item on github, keeping it under 2 MB per item if possible.
+
+#### JSON Content Structure
 
 - **Biography:** Portrait | Name | Title, workplace | Links to social media | About me text
 - **Portfolio:** Title | Video link | Descriptive title, year, company?, collaborators?, reason why I did the project
