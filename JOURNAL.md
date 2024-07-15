@@ -11,6 +11,8 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [`<head>` Element Uses](#head-element-uses)
   - [14 July](#14-july)
     - [Playin around](#playin-around)
+  - [15 July](#15-july)
+    - [Today's ToDo List](#todays-todo-list)
 
 ## 13 July
 
@@ -64,3 +66,12 @@ Open Graph tags (prefixed with og:) are used by social media platforms to genera
 I have added the index.html file that I played around with yestrerday and added a favicon of my logo and a styles.css to play around with today. The ZuliusRoolfLogo.svg is my own work with the use of my own Font that I plan to release in the future.
 
 While I'm commiting my work so far, I wanted to take the opportunity and see if I can update to GitHub Pages along side with it. According to this [StackOverflow post](https://stackoverflow.com/a/56911185) I'm supposed to add a file named .nojekyll for a website that does not use Jekyll. Not sure if it actually matters.
+
+## 15 July
+
+### Today's ToDo List
+
+- [ ] Setup github actions to work with static builds
+- [ ] Reach step 1.4 in the website curriculum
+- [ ] Reach step 1.16 in the website curriculum
+- [ ] Get answers on how to use markdown to then convert into html
