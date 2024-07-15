@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    color: black;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+a {
+    color: red;
+}
+
+a:hover {
+    color: green;
+}
+a:active {
+    color: rgb(204, 255, 0);
+}
+
+div {
+    padding: 20px;
+    border: 10px solid black;
+    margin: 30px;
+}
+.block {
+    display: block;
+}
+.inline {
+    display: inline;
+}
+.inline-block {
+    display: inline-block;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+}
+.grid-item {
+    background-color: lightgrey;
+    padding: 20px;
+    text-align: center;
+}
