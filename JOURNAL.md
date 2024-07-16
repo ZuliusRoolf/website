@@ -20,6 +20,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Some small things I've learned](#some-small-things-ive-learned)
       - [JSON Content Structure](#json-content-structure)
     - [Reflection](#reflection)
+  - [July 16](#july-16)
+    - [Today's agenda](#todays-agenda)
 
 ## July 13
 
@@ -155,3 +157,15 @@ Three JSON files will be used to represent my content on the website. Biography,
 ### Reflection
 
 I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching step 1.16 or even finishing the corriculum which ends at 1.20 will be my goal tomorrow. Maybe a bit optimistic considering I will without a doubt work on my website alongside the learning corriculum Mr. Ranedeer has provided me. Will see tomorrow. I'm happy with today's effort on all the subjects I've learned.
+
+## July 16
+
+### Today's agenda
+
+Completely forgot I had laundry and cleaning planned today in the afternoon. Hence, only half a workday is available to me.
+To change up the plan I could write an HTML template to load JSON data into. Then I have content to work with even if the JSON converter is not set up properly.
+
+- [ ] Template for Biography
+- [ ] Template for Portfolio
+- [ ] Reach step 1.10 in the website curriculum (if possible)
+
