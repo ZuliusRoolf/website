@@ -24,6 +24,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Today's agenda](#todays-agenda)
     - [Biography Template](#biography-template)
       - [Graphical Assets are Difficult](#graphical-assets-are-difficult)
+    - [Git Cherry Pick Tangent](#git-cherry-pick-tangent)
 
 ## July 13
 
@@ -189,3 +190,9 @@ The solution I came up with is to take the defined icon path in the JSON, open t
 
 The proposed solution has not been implemented yet. Did not have enough time until my laundry was due.  
 Anyway, I am also a bit torn over the biography description as it can easily overwhelm the visitor. [Seyit Yilmaz](https://www.seyityilmaz.com/) designed his portfolio to be as clean as possible, using the principle of "show, don't tell". I feel a bit like an over-explainer, so perhaps I should avoid information as much as possible. I could potentially show more information if the user clicked "About" or a "Show more..." button, so that the very least it is hidden when you first visit the site. That sounds like a good idea.
+
+### Git Cherry Pick Tangent
+
+I got annoyed that my current profile picture in the HTML template is just my logo. The logo is good now, but I want a professional photo when the website gets deployed. An image has already been uploaded to the git, on commit 9a0ce500 specifically. I wondered how to go back in history and get the `cv-picture.jpg` back without re-uploading.
+
+Today I found out that you can cherry-pick commits into your branch and just get the changes. This is a very nice feature of git I never knew existed nor how it could be done. I will keep this in mind when creating commits, as every commit should be a complete feature so that you can remove and add features easily. Very cool.
