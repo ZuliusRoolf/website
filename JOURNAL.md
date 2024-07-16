@@ -22,6 +22,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Reflection](#reflection)
   - [July 16](#july-16)
     - [Today's agenda](#todays-agenda)
+    - [Biography Template](#biography-template)
+      - [Graphical Assets are Difficult](#graphical-assets-are-difficult)
 
 ## July 13
 
@@ -165,7 +167,25 @@ I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching 
 Completely forgot I had laundry and cleaning planned today in the afternoon. Hence, only half a workday is available to me.
 To change up the plan I could write an HTML template to load JSON data into. Then I have content to work with even if the JSON converter is not set up properly.
 
-- [ ] Template for Biography
+- [x] Template for Biography
 - [ ] Template for Portfolio
 - [ ] Reach step 1.10 in the website curriculum (if possible)
 
+### Biography Template
+
+I first focused on structuring up the three columns: Portfolio, Biography and Timeline. For now only Portfolio and Biography will be used. I already had a portfolio template up, so my priority was to set up a biography template.
+
+My goal is to make the content modular, mostly for me to learn but if anyone wants to take inspiration then feel free to use my system.
+
+The JSON should be able to change profile picture, name, profession, company/place, social links and a description. I do need some template in case the JavaScript breaks. It would be bad if someone visits the site and can not see anything because the JavaScript failed to load the information.
+
+Whenever JavaScript failure would happen, I think using this repository as a social link would be fitting. Acting a bit like a backup.
+
+#### Graphical Assets are Difficult
+
+Inserting an icon for a social media company is extremely easy but also difficult. Because I am trying to achieve modularity by using a JSON, I cannot use external resources like [Font Awesome icons](https://fontawesome.com/start) that require a special syntax in an HTML element. I would much rather prefer to have the icons locally and load them as images instead with a path. The issue occurs when icons are SVG files which are not really supported by the `<img>` element. It can load, but it is not stylable by CSS afterwards.
+
+The solution I came up with is to take the defined icon path in the JSON, open the SVG file and then copy its contents to the appropriate HTML element.
+
+The proposed solution has not been implemented yet. Did not have enough time until my laundry was due.  
+Anyway, I am also a bit torn over the biography description as it can easily overwhelm the visitor. [Seyit Yilmaz](https://www.seyityilmaz.com/) designed his portfolio to be as clean as possible, using the principle of "show, don't tell". I feel a bit like an over-explainer, so perhaps I should avoid information as much as possible. I could potentially show more information if the user clicked "About" or a "Show more..." button, so that the very least it is hidden when you first visit the site. That sounds like a good idea.
