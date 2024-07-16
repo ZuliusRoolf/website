@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zulius Roolf</title>
-    <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zulius Roolf</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
   <script src="script.js"></script>
 </head>
-<body>
-    <h1>My Portfolio</h1>
-    <div id="portfolio"></div>
 
-    <script>
+<body>
+  <div class="container">
+
+    <!-- Biography -->
+    <div class="column" id="biography">
+    </div>
+
+    <!-- Portfolio -->
+    <div class="column" id="portfolio">
+      <h1>My Portfolio</h1>
+      <div id="portfolio"></div>
+
+      <script>
         fetchPortfolio();
-    </script>
+      </script>
+    </div>
+
+    <!-- Timeline -->
+    <div class="column" id="timeline">
+
+    </div>
+  </div>
+
+
+
 </body>
+
 </html>

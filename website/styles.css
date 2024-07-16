@@ -1,16 +1,35 @@
-
 .portfolio-item {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px 0;
 }
+
 .portfolio-item h2 {
     margin: 0;
 }
+
 .portfolio-item p {
     margin: 5px 0;
 }
+
 .portfolio-item ul {
     list-style-type: none;
     padding: 0;
+}
+
+.container {
+    display: flex;
+}
+
+#portfolio {
+    order: 1;
+}
+
+
+#biography {
+    order: 2;
+}
+
+#timeline {
+    order: 3;
 }
