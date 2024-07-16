@@ -90,14 +90,14 @@ While I'm committing my work so far, I wanted to take the opportunity and see if
 Finally, did it!  
 GitHub Actions now successfully publish a static website to [zulius.me](https://zulius.me) correctly.
 
-I find it fascinating that it is so difficult to find resources on this kind of matter. If I search for "GitHub pages HTML action" on Google I get [peaceiris' action](https://github.com/peaceiris/actions-gh-pages) for github pages. That is not the one I am using. I use the official static website action provided by GitHub, but I can't find a link for it as they are only accessable through `github.com/<user>/<repository>/actions/new`.
+I find it fascinating that it is so difficult to find resources on this kind of matter. If I search for "GitHub pages HTML action" on Google I get [peaceiris' action](https://github.com/peaceiris/actions-gh-pages) for GitHub pages. That is not the one I am using. I use the official static website action provided by GitHub, but I can't find a link for it as they are only accessible through `github.com/<user>/<repository>/actions/new`.
 
 I also took the opportunity to add a grammatical linter for my markdown files. Because, I noticed some grammatical errors and wished to get them corrected for me instead of manually skimming through.  
 <https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex>
 
 ### CSS
 
-I can already tell by the deceptible huge amount of functionality CSS brings with Attribute and Pseudo-Classes Selectors that it will be very easy to confuse how CSS works.
+I can already tell by the deceptively huge amount of functionality CSS brings with Attribute and Pseudo-Classes Selectors that it will be very easy to confuse how CSS works.
 
 Overall I think classes is the way to go when it comes to CSS, it is not often you want a singular element for style using ID Selector.
 
@@ -107,7 +107,7 @@ I found out that IDs of HTML elements is more used for scripts rather than CSS. 
 
 The difference between `var` and `let` is subtle. What I understand so is `let` a more restricted `var`, if it is in a block it will be restricted while `var` would keep a value after a block ends (except for functions). I should probably just use var to make it simple.
 
-Comparison Operators have been a bit confusing for me as JavaScript has triple `===` operator. I now finally understand what it means as the triple `===` is strict and is a regular double `==` in many other languages. The difference is that double `==` in JavaScript means the language automatically performs type conversion. In other words I can see if the integer `5` is equal to the string `"5"`, e.g. `5 == "5";` results in `true`. What I should keep in mind is that this applies to `0 == false` as well, meaning bolean is not represented as an int like the C languages does.
+Comparison Operators have been a bit confusing for me as JavaScript has triple `===` operator. I now finally understand what it means as the triple `===` is strict and is a regular double `==` in many other languages. The difference is that double `==` in JavaScript means the language automatically performs type conversion. In other words I can see if the integer `5` is equal to the string `"5"`, e.g. `5 == "5";` results in `true`. What I should keep in mind is that this applies to `0 == false` as well, meaning Boolean is not represented as an int like the C languages does.
 
 Arrays are more linked list types. `pop()` & `push()` and `shift()` & `unshift()` removes and adds elements from the back and front respectively.
 
@@ -115,7 +115,7 @@ Objects are python dictionaries, they work the same, support both period and str
 
 #### DOM Modification
 
-You can retrive and edit HTML and CSS elements using these following fucntions:
+You can retrieve and edit HTML and CSS elements using these following functions:
 
 ```js
 let element = document.getElementById("myId");
@@ -144,9 +144,9 @@ When you add an alt text for an image in HTML, like this `<img src="image.jpg" a
 
 I learned that it is very easy to change color for SVG files, considering that it is only a style attribute change for fill. So I inverted the colors for my [favicon](website/favicon.svg) file.
 
-My initial idea was to use Markdown for my portfolio. In case my website would be down then I could just showcase my GitHub repository. However, because I am using only static content to build everything from scratch, I can't use libraries to convert Markdown to HTML. I can of course install them locally, or run them on GitHub Actions, but then I will troubleshoot that and the website on my local machine won't refelct what will be published. I could resolve this using Docker, but there are so many tools to make things easier when the simplest solution is to just use JSON to convert into JavaScript Object to then insert into HTML/DOM.
+My initial idea was to use Markdown for my portfolio. In case my website would be down then I could just showcase my GitHub repository. However, because I am using only static content to build everything from scratch, I can't use libraries to convert Markdown to HTML. I can of course install them locally, or run them on GitHub Actions, but then I will troubleshoot that and the website on my local machine won't reflect what will be published. I could resolve this using Docker, but there are so many tools to make things easier when the simplest solution is to just use JSON to convert into JavaScript Object to then insert into HTML/DOM.
 
-Three JSON files will be used to represent my content on the website. Biography, Portfolio and Experiences. I don't know if there will be a performance issue, but my idea is to host all images and videos on the GitHub repository. The plan is to host less than 15 seconds video per portfolio item on github, keeping it under 2 MB per item if possible.
+Three JSON files will be used to represent my content on the website. Biography, Portfolio and Experiences. I don't know if there will be a performance issue, but my idea is to host all images and videos on the GitHub repository. The plan is to host less than 15 seconds video per portfolio item on GitHub, keeping it under 2 MB per item if possible.
 
 #### JSON Content Structure
 
@@ -156,7 +156,7 @@ Three JSON files will be used to represent my content on the website. Biography,
 
 ### Reflection
 
-I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching step 1.16 or even finishing the corriculum which ends at 1.20 will be my goal tomorrow. Maybe a bit optimistic considering I will without a doubt work on my website alongside the learning corriculum Mr. Ranedeer has provided me. Will see tomorrow. I'm happy with today's effort on all the subjects I've learned.
+I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching step 1.16 or even finishing the curriculum which ends at 1.20 will be my goal tomorrow. Maybe a bit optimistic considering I will without a doubt work on my website alongside the learning curriculum Mr. Ranedeer has provided me. Will see tomorrow. I'm happy with today's effort on all the subjects I've learned.
 
 ## July 16
 
