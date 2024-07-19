@@ -12,7 +12,6 @@ This is a quick journal on how I develop this website. It will be used for docum
   - [July 14](#july-14)
     - [Playing around](#playing-around)
   - [July 15](#july-15)
-    - [Today's To-Do List](#todays-to-do-list)
     - [GitHub Pages using GitHub Actions](#github-pages-using-github-actions)
     - [CSS](#css)
     - [JavaScript](#javascript)
@@ -21,10 +20,10 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [JSON Content Structure](#json-content-structure)
     - [Reflection](#reflection)
   - [July 16](#july-16)
-    - [Today's agenda](#todays-agenda)
     - [Biography Template](#biography-template)
       - [Graphical Assets are Difficult](#graphical-assets-are-difficult)
     - [Git Cherry Pick Tangent](#git-cherry-pick-tangent)
+  - [July 19](#july-19)
 
 ## July 13
 
@@ -80,8 +79,6 @@ I have added the index.html file that I played around with yesterday and added a
 While I'm committing my work so far, I wanted to take the opportunity and see if I can update to GitHub Pages alongside with it. According to this [Stack Overflow post](https://stackoverflow.com/a/56911185) I'm supposed to add a file named `.nojekyll` for a website that does not use Jekyll. Not sure if it actually matters.
 
 ## July 15
-
-### Today's To-Do List
 
 - [x] Setup GitHub actions to work with static builds
 - [x] Reach step 1.4 in the website curriculum
@@ -163,12 +160,10 @@ I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching 
 
 ## July 16
 
-### Today's agenda
-
 Completely forgot I had laundry and cleaning planned today in the afternoon. Hence, only half a workday is available to me.
 To change up the plan I could write an HTML template to load JSON data into. Then I have content to work with even if the JSON converter is not set up properly.
 
-- [x] Template for Biography
+- [X] Template for Biography
 - [ ] Template for Portfolio
 - [ ] Reach step 1.10 in the website curriculum (if possible)
 
@@ -196,3 +191,11 @@ Anyway, I am also a bit torn over the biography description as it can easily ove
 I got annoyed that my current profile picture in the HTML template is just my logo. The logo is good now, but I want a professional photo when the website gets deployed. An image has already been uploaded to the git, on commit 9a0ce500 specifically. I wondered how to go back in history and get the `cv-picture.jpg` back without re-uploading.
 
 Today I found out that you can cherry-pick commits into your branch and just get the changes. This is a very nice feature of git I never knew existed nor how it could be done. I will keep this in mind when creating commits, as every commit should be a complete feature so that you can remove and add features easily. Very cool.
+
+## July 19
+
+- [x] Cleanup Biography Template
+- [ ] Portfolio Template
+- [ ] JavaScript convert JSON to HTML
+- [ ] Upload 2 videos to portfolio (hopefully)
+- [ ] Reach step 1.10 in Mr. Ranedeer website curriculum

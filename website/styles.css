@@ -41,6 +41,13 @@
     order: 3;
 }
 
+#biography .profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
 #biography .profile-links a {
     background-color: #007bff;
     /* Background color of the button */
@@ -65,4 +72,8 @@
     background: #149ddd;
     color: #fff;
     text-decoration: none;
+}
+
+#biography .profile-information {
+    max-width: 300px;
 }

@@ -1,6 +1,6 @@
 function fetchPortfolio() {
     // Fetch the JSON data
-    fetch('portfolio.json')
+    fetch('content/portfolio.json')
     .then(response => response.json())
     .then(data => {
         const portfolioContainer = document.getElementById('portfolio');
