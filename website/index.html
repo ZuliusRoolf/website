@@ -17,7 +17,7 @@
     <div class="column" id="biography">
       <div class="biography-container">
         <div class="profile-picture">
-          <img src="favicon.svg" alt="Profile Picture">
+          <img src="favicon.svg" alt="Profile Picture" height="128">
         </div>
         <div class="profile-introduction">
           <span id="name">Zulius Roolf</span>,
@@ -27,8 +27,8 @@
           <span id="company">BTH</span>
         </div>
         <div class="profile-links">
-          <a class="column" href="https://github.com/ZuliusRoolf/website">
-            <img src="content\icons\github.svg" alt="GitHub">
+          <a class="column" href="https://github.com/ZuliusRoolf">
+            <img src="content\icons\github.svg" alt="GitHub" height="64">
           </a>
         </div>
         <div class="profile-information">
@@ -41,8 +41,45 @@
 
     <!-- Portfolio -->
     <div class="column" id="portfolio">
-      <h1>My Portfolio</h1>
-      <div id="portfolio"></div>
+      <div class="collection-list">
+        <div role="list">
+          <div role="listitem" class="portfolio-item">
+            <div class="portfolio-title-card navbutton">
+              <div class="title">Portfolio Website</div>
+              <div class="year">2024</div>
+            </div>
+            <div class="portfolio-information-card">
+              <div class="video">
+                <video>
+                  <source src="content/portfolio-website.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="information-island">
+                <img src="content/icons/github.svg" height="16">
+                <text class="company">GitHub
+                  <span class="if-collaborators">· with</span>
+                  <span class="collaborators">John Doe</span>
+                </text>
+              </div>
+              <div class="information">
+                <div class="descriptive-title" style="font-weight: bold;">Creating Static Website from Scratch</div>
+                <div class="reason">Always had issues with web development.
+                  I've tried React, Django, Vite, Node, Next, and anytime I try to build anything I get bugs I don't
+                  understand.
+                  Then attemting to debug code I don't understand is getting me nowhere.
+                  To hopefully resolve this I decided to learn the basics and build a website with just HTML, CSS, and
+                  JavaScript.
+                </div>
+                <a class="project-redirect" href="https://github.com/ZuliusRoolf/website">
+                  View Project on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <script>
         fetchPortfolio();

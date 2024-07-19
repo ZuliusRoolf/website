@@ -24,6 +24,7 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [Graphical Assets are Difficult](#graphical-assets-are-difficult)
     - [Git Cherry Pick Tangent](#git-cherry-pick-tangent)
   - [July 19](#july-19)
+    - [Portfolio UI](#portfolio-ui)
 
 ## July 13
 
@@ -195,7 +196,18 @@ Today I found out that you can cherry-pick commits into your branch and just get
 ## July 19
 
 - [x] Cleanup Biography Template
-- [ ] Portfolio Template
+- [x] Portfolio Template
 - [ ] JavaScript convert JSON to HTML
 - [ ] Upload 2 videos to portfolio (hopefully)
 - [ ] Reach step 1.10 in Mr. Ranedeer website curriculum
+
+### Portfolio UI
+
+I am not too sure how to make the portfolio UI. I thought about a way to maybe make clickable links to redirect to the source code. The mobile UI always ruins my ideas though, unfortunately. At the same time; I also need to get myself together that this is a showcase of my work.
+
+The reason I am so worried about clickable links is to be able to showcase the entire project. One example is my high school graduation documentary. It is already a video to begin with, so I could just embed the entire YouTube video instead.
+
+A solution could be that you can in fact click on the portfolio items and they "open up" or rather persist after the mouse stopped hovering. This would also be easy to integrate into mobile view because they already click on the items.
+
+An extension to the idea would be to show the descriptive text only when the user clicks on the portfolio item. Hover will still be in effect for the other portfolio items, but the selected portfolio item will persist. Essentially it will replace the Biography section until the user clicks 'x' in the upper right corner.
+
