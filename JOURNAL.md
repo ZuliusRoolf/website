@@ -25,6 +25,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Git Cherry Pick Tangent](#git-cherry-pick-tangent)
   - [July 19](#july-19)
     - [Portfolio UI](#portfolio-ui)
+    - [JSON creation](#json-creation)
 
 ## July 13
 
@@ -211,3 +212,6 @@ A solution could be that you can in fact click on the portfolio items and they "
 
 An extension to the idea would be to show the descriptive text only when the user clicks on the portfolio item. Hover will still be in effect for the other portfolio items, but the selected portfolio item will persist. Essentially it will replace the Biography section until the user clicks 'x' in the upper right corner.
 
+### JSON creation
+
+I made [JSON content structure](#json-content-structure) on the 15 of July. I'll use that to make templates for both Biography and Portfolio.
