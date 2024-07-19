@@ -12,7 +12,6 @@ This is a quick journal on how I develop this website. It will be used for docum
   - [July 14](#july-14)
     - [Playing around](#playing-around)
   - [July 15](#july-15)
-    - [Today's To-Do List](#todays-to-do-list)
     - [GitHub Pages using GitHub Actions](#github-pages-using-github-actions)
     - [CSS](#css)
     - [JavaScript](#javascript)
@@ -20,6 +19,13 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Some small things I've learned](#some-small-things-ive-learned)
       - [JSON Content Structure](#json-content-structure)
     - [Reflection](#reflection)
+  - [July 16](#july-16)
+    - [Biography Template](#biography-template)
+      - [Graphical Assets are Difficult](#graphical-assets-are-difficult)
+    - [Git Cherry Pick Tangent](#git-cherry-pick-tangent)
+  - [July 19](#july-19)
+    - [Portfolio UI](#portfolio-ui)
+    - [JSON creation](#json-creation)
 
 ## July 13
 
@@ -76,8 +82,6 @@ While I'm committing my work so far, I wanted to take the opportunity and see if
 
 ## July 15
 
-### Today's To-Do List
-
 - [x] Setup GitHub actions to work with static builds
 - [x] Reach step 1.4 in the website curriculum
 - [ ] Reach step 1.16 in the website curriculum
@@ -88,14 +92,14 @@ While I'm committing my work so far, I wanted to take the opportunity and see if
 Finally, did it!  
 GitHub Actions now successfully publish a static website to [zulius.me](https://zulius.me) correctly.
 
-I find it fascinating that it is so difficult to find resources on this kind of matter. If I search for "GitHub pages HTML action" on Google I get [peaceiris' action](https://github.com/peaceiris/actions-gh-pages) for github pages. That is not the one I am using. I use the official static website action provided by GitHub, but I can't find a link for it as they are only accessable through `github.com/<user>/<repository>/actions/new`.
+I find it fascinating that it is so difficult to find resources on this kind of matter. If I search for "GitHub pages HTML action" on Google I get [peaceiris' action](https://github.com/peaceiris/actions-gh-pages) for GitHub pages. That is not the one I am using. I use the official static website action provided by GitHub, but I can't find a link for it as they are only accessible through `github.com/<user>/<repository>/actions/new`.
 
 I also took the opportunity to add a grammatical linter for my markdown files. Because, I noticed some grammatical errors and wished to get them corrected for me instead of manually skimming through.  
 <https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex>
 
 ### CSS
 
-I can already tell by the deceptible huge amount of functionality CSS brings with Attribute and Pseudo-Classes Selectors that it will be very easy to confuse how CSS works.
+I can already tell by the deceptively huge amount of functionality CSS brings with Attribute and Pseudo-Classes Selectors that it will be very easy to confuse how CSS works.
 
 Overall I think classes is the way to go when it comes to CSS, it is not often you want a singular element for style using ID Selector.
 
@@ -105,7 +109,7 @@ I found out that IDs of HTML elements is more used for scripts rather than CSS. 
 
 The difference between `var` and `let` is subtle. What I understand so is `let` a more restricted `var`, if it is in a block it will be restricted while `var` would keep a value after a block ends (except for functions). I should probably just use var to make it simple.
 
-Comparison Operators have been a bit confusing for me as JavaScript has triple `===` operator. I now finally understand what it means as the triple `===` is strict and is a regular double `==` in many other languages. The difference is that double `==` in JavaScript means the language automatically performs type conversion. In other words I can see if the integer `5` is equal to the string `"5"`, e.g. `5 == "5";` results in `true`. What I should keep in mind is that this applies to `0 == false` as well, meaning bolean is not represented as an int like the C languages does.
+Comparison Operators have been a bit confusing for me as JavaScript has triple `===` operator. I now finally understand what it means as the triple `===` is strict and is a regular double `==` in many other languages. The difference is that double `==` in JavaScript means the language automatically performs type conversion. In other words I can see if the integer `5` is equal to the string `"5"`, e.g. `5 == "5";` results in `true`. What I should keep in mind is that this applies to `0 == false` as well, meaning Boolean is not represented as an int like the C languages does.
 
 Arrays are more linked list types. `pop()` & `push()` and `shift()` & `unshift()` removes and adds elements from the back and front respectively.
 
@@ -113,7 +117,7 @@ Objects are python dictionaries, they work the same, support both period and str
 
 #### DOM Modification
 
-You can retrive and edit HTML and CSS elements using these following fucntions:
+You can retrieve and edit HTML and CSS elements using these following functions:
 
 ```js
 let element = document.getElementById("myId");
@@ -142,9 +146,9 @@ When you add an alt text for an image in HTML, like this `<img src="image.jpg" a
 
 I learned that it is very easy to change color for SVG files, considering that it is only a style attribute change for fill. So I inverted the colors for my [favicon](website/favicon.svg) file.
 
-My initial idea was to use Markdown for my portfolio. In case my website would be down then I could just showcase my GitHub repository. However, because I am using only static content to build everything from scratch, I can't use libraries to convert Markdown to HTML. I can of course install them locally, or run them on GitHub Actions, but then I will troubleshoot that and the website on my local machine won't refelct what will be published. I could resolve this using Docker, but there are so many tools to make things easier when the simplest solution is to just use JSON to convert into JavaScript Object to then insert into HTML/DOM.
+My initial idea was to use Markdown for my portfolio. In case my website would be down then I could just showcase my GitHub repository. However, because I am using only static content to build everything from scratch, I can't use libraries to convert Markdown to HTML. I can of course install them locally, or run them on GitHub Actions, but then I will troubleshoot that and the website on my local machine won't reflect what will be published. I could resolve this using Docker, but there are so many tools to make things easier when the simplest solution is to just use JSON to convert into JavaScript Object to then insert into HTML/DOM.
 
-Three JSON files will be used to represent my content on the website. Biography, Portfolio and Experiences. I don't know if there will be a performance issue, but my idea is to host all images and videos on the GitHub repository. The plan is to host less than 15 seconds video per portfolio item on github, keeping it under 2 MB per item if possible.
+Three JSON files will be used to represent my content on the website. Biography, Portfolio and Experiences. I don't know if there will be a performance issue, but my idea is to host all images and videos on the GitHub repository. The plan is to host less than 15 seconds video per portfolio item on GitHub, keeping it under 2 MB per item if possible.
 
 #### JSON Content Structure
 
@@ -154,4 +158,60 @@ Three JSON files will be used to represent my content on the website. Biography,
 
 ### Reflection
 
-I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching step 1.16 or even finishing the corriculum which ends at 1.20 will be my goal tomorrow. Maybe a bit optimistic considering I will without a doubt work on my website alongside the learning corriculum Mr. Ranedeer has provided me. Will see tomorrow. I'm happy with today's effort on all the subjects I've learned.
+I was not able to reach step 1.16 in the curriculum, only to step 1.4. Reaching step 1.16 or even finishing the curriculum which ends at 1.20 will be my goal tomorrow. Maybe a bit optimistic considering I will without a doubt work on my website alongside the learning curriculum Mr. Ranedeer has provided me. Will see tomorrow. I'm happy with today's effort on all the subjects I've learned.
+
+## July 16
+
+Completely forgot I had laundry and cleaning planned today in the afternoon. Hence, only half a workday is available to me.
+To change up the plan I could write an HTML template to load JSON data into. Then I have content to work with even if the JSON converter is not set up properly.
+
+- [X] Template for Biography
+- [ ] Template for Portfolio
+- [ ] Reach step 1.10 in the website curriculum (if possible)
+
+### Biography Template
+
+I first focused on structuring up the three columns: Portfolio, Biography and Timeline. For now only Portfolio and Biography will be used. I already had a portfolio template up, so my priority was to set up a biography template.
+
+My goal is to make the content modular, mostly for me to learn but if anyone wants to take inspiration then feel free to use my system.
+
+The JSON should be able to change profile picture, name, profession, company/place, social links and a description. I do need some template in case the JavaScript breaks. It would be bad if someone visits the site and can not see anything because the JavaScript failed to load the information.
+
+Whenever JavaScript failure would happen, I think using this repository as a social link would be fitting. Acting a bit like a backup.
+
+#### Graphical Assets are Difficult
+
+Inserting an icon for a social media company is extremely easy but also difficult. Because I am trying to achieve modularity by using a JSON, I cannot use external resources like [Font Awesome icons](https://fontawesome.com/start) that require a special syntax in an HTML element. I would much rather prefer to have the icons locally and load them as images instead with a path. The issue occurs when icons are SVG files which are not really supported by the `<img>` element. It can load, but it is not stylable by CSS afterwards.
+
+The solution I came up with is to take the defined icon path in the JSON, open the SVG file and then copy its contents to the appropriate HTML element.
+
+The proposed solution has not been implemented yet. Did not have enough time until my laundry was due.  
+Anyway, I am also a bit torn over the biography description as it can easily overwhelm the visitor. [Seyit Yilmaz](https://www.seyityilmaz.com/) designed his portfolio to be as clean as possible, using the principle of "show, don't tell". I feel a bit like an over-explainer, so perhaps I should avoid information as much as possible. I could potentially show more information if the user clicked "About" or a "Show more..." button, so that the very least it is hidden when you first visit the site. That sounds like a good idea.
+
+### Git Cherry Pick Tangent
+
+I got annoyed that my current profile picture in the HTML template is just my logo. The logo is good now, but I want a professional photo when the website gets deployed. An image has already been uploaded to the git, on commit 9a0ce500 specifically. I wondered how to go back in history and get the `cv-picture.jpg` back without re-uploading.
+
+Today I found out that you can cherry-pick commits into your branch and just get the changes. This is a very nice feature of git I never knew existed nor how it could be done. I will keep this in mind when creating commits, as every commit should be a complete feature so that you can remove and add features easily. Very cool.
+
+## July 19
+
+- [x] Cleanup Biography Template
+- [x] Portfolio Template
+- [ ] JavaScript convert JSON to HTML
+- [ ] Upload 2 videos to portfolio (hopefully)
+- [ ] Reach step 1.10 in Mr. Ranedeer website curriculum
+
+### Portfolio UI
+
+I am not too sure how to make the portfolio UI. I thought about a way to maybe make clickable links to redirect to the source code. The mobile UI always ruins my ideas though, unfortunately. At the same time; I also need to get myself together that this is a showcase of my work.
+
+The reason I am so worried about clickable links is to be able to showcase the entire project. One example is my high school graduation documentary. It is already a video to begin with, so I could just embed the entire YouTube video instead.
+
+A solution could be that you can in fact click on the portfolio items and they "open up" or rather persist after the mouse stopped hovering. This would also be easy to integrate into mobile view because they already click on the items.
+
+An extension to the idea would be to show the descriptive text only when the user clicks on the portfolio item. Hover will still be in effect for the other portfolio items, but the selected portfolio item will persist. Essentially it will replace the Biography section until the user clicks 'x' in the upper right corner.
+
+### JSON creation
+
+I made [JSON content structure](#json-content-structure) on the 15 of July. I'll use that to make templates for both Biography and Portfolio.

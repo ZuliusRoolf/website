@@ -1,16 +1,80 @@
-
 .portfolio-item {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px 0;
+    max-width: 300px;
 }
+
 .portfolio-item h2 {
     margin: 0;
 }
+
 .portfolio-item p {
     margin: 5px 0;
 }
+
 .portfolio-item ul {
     list-style-type: none;
     padding: 0;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    object-fit: contain;
+}
+
+.container {
+    display: flex;
+}
+
+#portfolio {
+    order: 1;
+}
+
+
+#biography {
+    order: 2;
+}
+
+#timeline {
+    order: 3;
+}
+
+#biography .profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#biography .profile-links a {
+    background-color: #007bff;
+    /* Background color of the button */
+    fill: #ffffff;
+    /* Color of the SVG icon */
+    border: none;
+    border-radius: 50%;
+    /* Makes the button circular */
+    width: 60px;
+    /* Adjust size as needed */
+    height: 60px;
+    /* Adjust size as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* Adds space around the SVG */
+    cursor: pointer;
+}
+
+#biography .profile-links a:hover {
+    background: #149ddd;
+    color: #fff;
+    text-decoration: none;
+}
+
+#biography .profile-information {
+    max-width: 300px;
 }
