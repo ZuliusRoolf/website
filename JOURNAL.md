@@ -26,6 +26,8 @@ This is a quick journal on how I develop this website. It will be used for docum
   - [July 19](#july-19)
     - [Portfolio UI](#portfolio-ui)
     - [JSON creation](#json-creation)
+  - [July 27](#july-27)
+    - [Train work](#train-work)
 
 ## July 13
 
@@ -215,3 +217,16 @@ An extension to the idea would be to show the descriptive text only when the use
 ### JSON creation
 
 I made [JSON content structure](#json-content-structure) on the 15 of July. I'll use that to make templates for both Biography and Portfolio.
+
+## July 27
+
+- [ ] Translate portfolio HTML into JSON structure
+- [ ] Javascript convert JSON to HTML
+- [ ] Recap Mr. Ranedeer lessons
+- [ ] Reach step 1.10 in Mr. Ranedeer website curriculum
+
+### Train work
+
+Today I am sitting on the train towards back home. I took a minute to regather my thoughts of what my next step is. Confused over what I meant with portfolio template, as I assumed it referred to JSON and not HTML, I have updated it accordingly.
+
+This is a minor detail, but I also updated the tab spacing to be 2 instead of 4 in the JSON files. This is to save some space and make it look a little prettier when reading. Installed this JSON extention to help format the documents: [JSON Tools](https://marketplace.visualstudio.com/items?itemName=eriklynd.json-tools)
