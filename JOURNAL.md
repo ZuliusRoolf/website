@@ -33,6 +33,7 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [Descendant vs. Child Selectors](#descendant-vs-child-selectors)
       - [Flexbox and Grid](#flexbox-and-grid)
     - [Design Considerations](#design-considerations)
+    - [JSON to HTML in Biography](#json-to-html-in-biography)
 
 ## July 13
 
@@ -226,9 +227,9 @@ I made [JSON content structure](#json-content-structure) on the 15 of July. I'll
 ## July 27
 
 - [x] Translate portfolio HTML into JSON structure
-- [ ] Javascript convert JSON to HTML
+- [x] Javascript convert JSON to HTML
   - [x] Portfolio
-  - [ ] Biography
+  - [x] Biography
 - [x] Recap Mr. Ranedeer lessons
 - [ ] Reach step 1.10 in Mr. Ranedeer website curriculum
 
@@ -272,3 +273,10 @@ Learning about CSS made me think about what the best way to layout the website. 
 Also need to think about how to handle a square screen. Will three columns still suffice or should one be hidden? If yes, how should it be accessable?  
 One solution could be to have an arrow that opens the timeline column or shift the entire view towards the timeline, hiding the portfolio until the left arrow is pressed.  
 All of these solutions are extra steps to a simple design, making it more complex. For now, especially considering I only have two columns at the moment, I will implement the flexbox for now with media queries.
+
+### JSON to HTML in Biography
+
+I only did portfolio converter earlier today. Now I will attempt to use chatGPT to make a biography converter.
+
+That went surprisingly easy...  
+ChatGPT just took the HTML template as a string and inserted replacable values to then insert JSON into. I changed some class names as well, nothing major. On a sidenote, I have begun liking two space indentation more than four, so I switched the `script.js` to be that as well.
