@@ -1,24 +1,24 @@
 {
-    "portrait": "URL_to_portrait_image",
-    "name": "Zulius Roolf",
-    "title": "Software Engineer Student",
-    "workplace": "BTH",
-    "links": [
-        {
-            "name": "LinkedIn",
-            "link": "https://www.linkedin.com/in/johndoe",
-            "icon": "linkedin"
-        },
-        {
-            "name": "Twitter",
-            "link": "https://twitter.com/johndoe",
-            "icon": "twitter"
-        },
-        {
-            "name": "GitHub",
-            "link": "https://github.com/ZuliusRoolf",
-            "icon": "content/icons/github.svg"
-        }
-    ],
-    "aboutMeText": "I am a Jack of all trades with strong proficency in the art of software development. This website has been created to track and showcase the different projects I have worked on over the years. I am always looking for new opportunities to learn and grow as a developer."
+  "portrait": "URL_to_portrait_image",
+  "name": "Zulius Roolf",
+  "title": "Software Engineer Student",
+  "workplace": "BTH",
+  "links": [
+    {
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/in/johndoe",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/johndoe",
+      "icon": "twitter"
+    },
+    {
+      "name": "GitHub",
+      "link": "https://github.com/ZuliusRoolf",
+      "icon": "content/icons/github.svg"
+    }
+  ],
+  "aboutMeText": "I am a Jack of all trades with strong proficency in the art of software development. This website has been created to track and showcase the different projects I have worked on over the years. I am always looking for new opportunities to learn and grow as a developer."
 }
