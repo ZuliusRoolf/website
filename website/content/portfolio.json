@@ -2,24 +2,29 @@
   "portfolio": [
     {
       "title": "Project 1",
-      "date": "January 2024",
-      "description": "This is a description of Project 1.",
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "link": "http://example.com"
+      "year": "2024",
+      "month": "January",
+      "videoLink": "URL_to_video",
+      "companyLogo": "content/icons/github.svg",
+      "companyName": "GitHub",
+      "collaborators": "John Doe",
+      "descriptiveTitle": "A project that does something",
+      "reason": "This project was created to solve a problem.",
+      "projectHostName": "GitHub",
+      "projectLink": "http://github.com"
     },
     {
       "title": "Project 2",
-      "date": "February 2024",
-      "description": "This is a description of Project 2.",
-      "technologies": [
-        "React",
-        "Node.js"
-      ],
-      "link": "http://example.com"
+      "year": "2025",
+      "month": "February",
+      "videoLink": "URL_to_video",
+      "companyLogo": "content/icons/github.svg",
+      "companyName": "GitHub",
+      "collaborators": "",
+      "descriptiveTitle": "A project that does something",
+      "reason": "This project was created to solve a problem.",
+      "projectHostName": "GitHub",
+      "projectLink": "http://github.com"
     }
   ]
 }
