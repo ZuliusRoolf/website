@@ -222,7 +222,9 @@ I made [JSON content structure](#json-content-structure) on the 15 of July. I'll
 ## July 27
 
 - [x] Translate portfolio HTML into JSON structure
-- [x] Javascript convert JSON to HTML
+- [ ] Javascript convert JSON to HTML
+  - [x] Portfolio
+  - [ ] Biography
 - [ ] Recap Mr. Ranedeer lessons
 - [ ] Reach step 1.10 in Mr. Ranedeer website curriculum
 
