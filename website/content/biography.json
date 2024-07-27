@@ -7,12 +7,12 @@
     {
       "name": "LinkedIn",
       "link": "https://www.linkedin.com/in/johndoe",
-      "icon": "linkedin"
+      "icon": "content/icons/linkedin.svg"
     },
     {
       "name": "Twitter",
       "link": "https://twitter.com/johndoe",
-      "icon": "twitter"
+      "icon": "content/icons/twitter.svg"
     },
     {
       "name": "GitHub",
