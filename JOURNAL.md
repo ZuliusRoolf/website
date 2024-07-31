@@ -34,6 +34,10 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [Flexbox and Grid](#flexbox-and-grid)
     - [Design Considerations](#design-considerations)
     - [JSON to HTML in Biography](#json-to-html-in-biography)
+  - [July 31](#july-31)
+    - [Learning as much as I can](#learning-as-much-as-i-can)
+      - [JavaScript Asynchronous Functions](#javascript-asynchronous-functions)
+      - [JavaScript Event Handling and Listeners](#javascript-event-handling-and-listeners)
 
 ## July 13
 
@@ -280,4 +284,60 @@ I only did portfolio converter earlier today. Now I will attempt to use chatGPT 
 
 That went surprisingly easy...  
 ChatGPT just took the HTML template as a string and inserted replaceable values to then insert JSON into. I changed some class names as well, nothing major. On a sidenote, I have begun liking two space indentation more than four, so I switched the `script.js` to be that as well.
-ChatGPT just took the HTML template as a string and inserted replacable values to then insert JSON into. I changed some class names as well, nothing major. On a sidenote, I have begun liking two space indentation more than four, so I switched the `script.js` to be that as well.
+
+## July 31
+
+### Learning as much as I can
+
+I have done pretty good progress on the website so far. Perhaps I will change the design a bit in the future, but for now the template is good. Today then I will focus on learning as much as possible with Mr. Ranedeer! A future lecture is about how to structure up a website project, which I have been winging so far. Learn as you go or go as you learn :)
+
+I am on *1.6 Advanced JavaScript Concepts* which is now I realized Mr. Ranedeer is hallucinating the curriculum 😂  
+1.6 was supposed to be more about CSS in the original, but I guess we are changing things up. Good to know that hallucinations are still a flaw even in a more strict definition. Makes me wonder how the GPT is coded to behave and organize information.
+
+#### JavaScript Asynchronous Functions
+
+- `.then()`
+- `.catch()`
+- `.finally()`
+
+This is confusing, but I kind of see how it is utilized. It is all about parallelization like I knew before, but it uses promises to work with. You can use *Promise() object* to then add *.then()* to process that particular request. You can even return a new promise to create a chain of "synchronous" function calls. Please NOTE that the code below is not functional, it is mainly a way for me to remember the concept.
+
+```js
+Promise(FetchURL)
+  .then(response1 => {
+    display(response1);
+    return new Promise(FetchURL);
+    })
+  .then(response2 => {
+    display(response2);
+  })
+  .catch(error => {
+    display(error);
+  })
+```
+
+Another way to use asynchronous functions to display at the same time instead is to use `Promises.all()` which checks through all promises first and if all passes then proceeds to process the responses.
+
+```js
+response1 = new Promise(FetchURL)
+response2 = new Promise(FetchURL)
+Promise.all([response1, response2])
+  .then(responses => {
+    responses.forEach(response => {
+      display(response);
+    })
+    })
+  .catch(error => {
+    display(error);
+  })
+```
+
+#### JavaScript Event Handling and Listeners
+
+An interesting functionality of JavaScript. I haven't used event listeners, but I can imagine them being useful to track everything about the user. Mr. Ranedeer proposes to use event listener to make sure forms are properly formatted before submitting. No clue how valid this is in standard practice.
+
+There are three `useCapture` (`Capturing`, `Target` and `Bubbling`) which define if the listener should capture child elements, only the specific target, or bubble up to capture parent elements...
+
+```js
+element.addEventListener(event, function, useCapture);
+```
