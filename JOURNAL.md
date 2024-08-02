@@ -38,6 +38,12 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Learning as much as I can](#learning-as-much-as-i-can)
       - [JavaScript Asynchronous Functions](#javascript-asynchronous-functions)
       - [JavaScript Event Handling and Listeners](#javascript-event-handling-and-listeners)
+  - [August 02](#august-02)
+    - [Learning even more](#learning-even-more)
+      - [Neat tricks I found analyzing chatGPT's To-Do List sample page](#neat-tricks-i-found-analyzing-chatgpts-to-do-list-sample-page)
+      - [Best practices](#best-practices)
+      - [The last lesson](#the-last-lesson)
+    - [HTML templates and JSON pre-fetching](#html-templates-and-json-pre-fetching)
 
 ## July 13
 
@@ -340,4 +346,186 @@ There are three `useCapture` (`Capturing`, `Target` and `Bubbling`) which define
 
 ```js
 element.addEventListener(event, function, useCapture);
+```
+
+## August 02
+
+### Learning even more
+
+According to Mr. Ranedeer there are only three lectures left.  
+I would like to have an additional lecture on **JavaScript and CSS Interactions** and **Web Development Best Practices**. I think they could be useful. They were part of the main curriculum but not anymore.
+
+1. Creating a Simple Web Application
+2. Debugging and Testing
+3. Deployment
+
+Today I'll solely focus on learning two more lectures from Mr. Ranedeer and be done with my day. I'll write down interesting notes if there are any.
+
+#### Neat tricks I found analyzing chatGPT's To-Do List sample page
+
+The JavaScript uses an event listener to see if `DOMContentLoaded` before running any code, this is to make the logic more robust in case the script is loaded earlier in the HTML file. My immediate idea is to use this to load the script in the beginning of the HTML file and prefetch the JSON data to be used immediately after DOM content has been loaded. Maybe bad practice, but it seems possible to make.
+
+I also really like the JS structure. Define global variables in the beginning, define them and then add a bunch of functions afterwards. This is typical code practice, but I just forgot from imagining web development to be messy.
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('toDoForm');
+  const taskInput = document.getElementById('taskInput');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    addTask(taskInput.value);
+    taskInput.value = '';
+  });
+
+  function x(){}
+  function y(){}
+  function etc(){}
+})
+```
+
+Analyzing the HTML and CSS structure made me realize that HTML already has an included list tag of `<ul>` I could use instead of `<div>` with a "rows" class. Both works of course, but it could be neat to use the proper HTML element to make CSS styling less cluttered or more readable.
+
+#### Best practices
+
+Nothing much here. A lot of general advice like make a prototype in Figma before coding. The only JavaScript tip was to use modern libraries like React or Vue. I am avoiding them in the first place, so the practice doesn't apply to this particular project. The tips are of course good, but I was looking for more code and file structure specific tips. This website is based on [Seyit Yilmaz website](https://www.seyityilmaz.com/) which is very minimalist and niche. A portfolio website doesn't need much maintainability nor optimization as long as it is lightweight and easy to edit the content.
+
+The best practices Mr. Ranedeer recommends are to use semantic HTML tags like `<header>`, `<nav>`, etc. All HTML elements can be found at [Mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) to know which elements may be deprecated.
+
+CSS benefits from BEM methodology or using preprocessors like SASS or LESS. This benefits maintainability, it could be worth a look at for my learning.  
+I immediately took a look and preprocessors is too much for this project. They are basically compilers that transform an easier CSS format into a full CSS style file. This enables variables, nesting and mix-ins to much easier change CSS styling.  
+BEM methodology on the other hand is very simple, at least on the surface. BEM stands for **B**lock, **E**lement, **M**odifier. The names refer to the different roles CSS styles can apply. Below you can see we have a `menu` block with a `menu--active` modifier. Inside the block you have a `menu__item` element which has its own `selected` modifier.
+
+```css
+<div class="menu menu--active">
+    <div class="menu__item menu__item--selected"></div>
+</div>
+```
+
+#### The last lesson
+
+Debugging and testing was simple or doesn't apply to this project much, and deployment is already done with GitHub Pages. So there is nothing more to learn according to the curriculum. There is of course **JavaScript and CSS Interactions** left which I asked about.
+
+The result I got was another rabbit hole one could go through. In essence JavaScript can change CSS styling and also animate using `setInterval` or `requestAnimationFrame`. Through this I also learned that CSS also support transitions like transform/translate. Animation is a complex mathematical wonder, and if I want fancy transitions between opening up projects or the *about* link I can do that, but that will be a lecture some other time.
+
+### HTML templates and JSON pre-fetching
+
+I got curious if there were any better way of getting a template from the HTML file and populate it with content afterwards. There is [template element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) in HTML that can be used.
+
+I looked into the template element, it does have its use cases, but I can just make a "template" of any element using `element.cloneNode(true)`. Making template just a way to create a "hidden" HTML element.
+
+Going to my next curiosity of the possibility to pre-fetch the JSON files before the DOM loads. It is possible, but it complicated the readability of the code and is probably meaningless considering how quick JavaScript can fetch a literal local file. It could be viable when it is actually hosted on the internet. If the user has 100 milliseconds in ping then the JSON will load 100 ms later. That is how I imagine it works the very least. Could experiment on deployment environment in future update.
+
+Another way I found to pre-fetch is to include it as a `<link>` in the HTML `<header>` element. I think that should be enough.
+
+Here is HTML and JavaScript code that builds a project showcase site using an element as a template and pre-fetching the JSON.
+
+`index.html`
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase</title>
+    <style>
+        .project-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .project-item img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <link rel="preload" href="projects.json" as="fetch" type="application/json" crossorigin="anonymous">
+</head>
+<body>
+    <h1>My Projects</h1>
+
+    <!-- Fallback content -->
+    <div id="projects-container">
+        <div class="project-item" id="default-project">
+            <img src="default.jpg" alt="Default Project">
+            <h2>Default Project</h2>
+            <p>This is a fallback project in case the fetch fails or JavaScript is disabled.</p>
+            <a href="#">View Project</a>
+        </div>
+    </div>
+
+</body>
+</html>
+```
+
+`script.js`
+
+```JavaScript
+let projectData = null;
+
+// Fetch JSON data immediately
+fetch('projects.json')
+    .then(response => response.json())
+    .then(data => {
+        projectData = data.projects; // Store the fetched data
+    })
+    .catch(error => {
+        console.error('Error fetching project data:', error);
+    });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const projectsContainer = document.getElementById('projects-container');
+    const defaultProject = document.getElementById('default-project');
+
+    // Function to populate projects
+    function populateProjects(projects) {
+        projectsContainer.innerHTML = ''; // Clear the fallback content
+
+        projects.forEach(project => {
+          const clone = defaultProject.cloneNode(true);
+          clone.querySelector('img').src = project.image;
+          clone.querySelector('img').alt = project.title;
+          clone.querySelector('h2').textContent = project.title;
+          clone.querySelector('p').textContent = project.description;
+          clone.querySelector('a').href = project.link;
+          projectsContainer.appendChild(clone);
+        });
+    }
+
+    // Check if the data has already been fetched
+    if (projectData) {
+        populateProjects(projectData);
+    } else {
+        // If data is not yet fetched, wait for it
+        const intervalId = setInterval(() => {
+            if (projectData) {
+                populateProjects(projectData);
+                clearInterval(intervalId); // Clear the interval once data is populated
+            }
+        }, 100); // Check every 100ms
+    }
+});
+```
+
+`projects.json`
+
+```JSON
+{
+    "projects": [
+        {
+            "image": "project1.jpg",
+            "title": "Project 10",
+            "description": "This is the first project.",
+            "link": "http://example.com/project1"
+        },
+        {
+            "image": "project2.jpg",
+            "title": "Project 2",
+            "description": "This is the second project.",
+            "link": "http://example.com/project2"
+        }
+    ]
+}
 ```
