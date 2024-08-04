@@ -44,6 +44,8 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [Best practices](#best-practices)
       - [The last lesson](#the-last-lesson)
     - [HTML templates and JSON pre-fetching](#html-templates-and-json-pre-fetching)
+  - [August 04](#august-04)
+    - [Applying everything I've learned from August 02](#applying-everything-ive-learned-from-august-02)
 
 ## July 13
 
@@ -529,3 +531,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
 }
 ```
+
+## August 04
+
+- [ ] Change HTML to be more of a template
+- [ ] Change JavaScript to use updated template
+- [x] Prefetch JSON files
+- [ ] Update style classes to follow BEM
+
+### Applying everything I've learned from [August 02](#august-02)
+
+First and foremost is to add HTML code to prefetch JSON files for the `script.js` to load. According to the [JSON Content Structure](#json-content-structure) there is supposed to be three files, so I'll preemptively add [`experiences.json`](/website/content/experiences.json) to the `content` folder. This might not be necessary, considering I could write a script that inserts all JSON values into HTML before deployment. On the other hand I have learned a lot about fetching resources and the inner workings of websites by doing it this way.
