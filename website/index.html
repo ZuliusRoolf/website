@@ -4,49 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zulius Roolf</title>
-  <link rel="icon" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link rel="preload" href="content/biography.json" as="fetch" type="application/json" crossorigin="anonymous">
   <link rel="preload" href="content/portfolio.json" as="fetch" type="application/json" crossorigin="anonymous">
   <link rel="preload" href="content/experience.json" as="fetch" type="application/json" crossorigin="anonymous">
-  <script src="script.js"></script>
+
+  <title>My Portfolio</title>
+  <link rel="icon" href="favicon.svg">
 </head>
 
 <body>
-  <div class="container">
+  <div class="main">
 
     <!-- Biography -->
-    <div class="column" id="biography">
-      <div class="biography-container">
-        <div class="profile-picture">
-          <img src="favicon.svg" alt="Profile Picture" height="128">
+    <div class="main__column">
+      <div class="biography" id="biography-template">
+        <div class="biography__picture">
+          <img src="" alt="Profile Picture" height="128">
         </div>
-        <div class="profile-introduction">
-          <span id="name">Zulius Roolf</span>,
+        <div class="biography__introduction introduction">
+          <span class="introduction__name">Zulius Roolf</span>,
           <br>
-          <span id="profession">software engineer student</span>
-          at
-          <span id="company">BTH</span>
+          <span class="introduction__profession">software engineer student</span>
+          <span id="if__introduction__company">
+            at
+            <a class="introduction__company" href="https://www.bth.se/eng/">BTH</a>
+          </span>
         </div>
-        <div class="profile-links">
-          <a class="link-column" href="https://github.com/">
-            <img src="content\icons\github.svg" alt="GitHub" height="64">
-          </a>
-          <a class="link-column" href="https://apple.com/">
-            <img src="content\icons\apple.svg" alt="Apple" height="64">
-          </a>
+        <div class="biography__links">
+          <a class="biography__link" href="#" id="if__biography__about">About</a>
+          <a class="biography__link" href="https://github.com/ZuliusRoolf">GitHub</a>
         </div>
-        <div class="profile-information">
-          Hello! <br> Seems like JavaScript was unable to load the content of this website.
-          The information is stored in a <a href="content/biography.json">JSON file</a> for the JavaScript to load.
-          You can either refresh or click the GitHub icon above to see the source code.
+        <div class="biography__about">
+          Hello! <br> Seems like JavaScript was unable to load the content of this website. <br>
+          The information is stored in JSON files located <a href="content/">here</a> for the JavaScript to load. <br>
+          You can either refresh to try again or click <a href="https://github.com/ZuliusRoolf/website">here</a> to see the source code.
         </div>
       </div>
     </div>
 
     <!-- Portfolio -->
-    <div class="column" id="portfolio">
+    <div class="main__column" id="portfolio">
       <div class="collection-list">
         <div role="list">
           <div role="listitem" class="portfolio-item">
@@ -86,22 +84,15 @@
           </div>
         </div>
       </div>
-
-
-      <script>
-        fetchBiography();
-        fetchPortfolio();
-      </script>
     </div>
 
-    <!-- Timeline -->
-    <div class="column" id="timeline">
-
+    <!-- Experience -->
+    <div class="main__column" id="experience">
     </div>
   </div>
 
 
-
+  <script src="script.js"></script>
 </body>
 
 </html>
