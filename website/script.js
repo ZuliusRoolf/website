@@ -26,15 +26,15 @@ function populateBiography() {
       else template.querySelector('#if__introduction__workplace').remove();
 
       //Links
-      const templateLinks = template.querySelectorAll('.biography__link');
+      const templateLinks = template.querySelectorAll('.biography__social__link');
       for (let i = 1; i < templateLinks.length; i++) templateLinks[i].remove();
       biography.links.forEach(biographyLink => {
         const templateLink = templateLinks[0].cloneNode(true);
         templateLink.removeAttribute('id');
         templateLink.href = biographyLink.link;
         templateLink.textContent = biographyLink.name;
-        template.querySelector('.biography__links').appendChild(templateLink);
-        template.querySelector('.biography__links').appendChild(document.createTextNode(' '));
+        template.querySelector('.biography__social').appendChild(templateLink);
+        template.querySelector('.biography__social').appendChild(document.createTextNode(' '));
       });
 
       //About
