@@ -44,6 +44,12 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [Best practices](#best-practices)
       - [The last lesson](#the-last-lesson)
     - [HTML templates and JSON pre-fetching](#html-templates-and-json-pre-fetching)
+  - [August 04](#august-04)
+    - [Applying everything I've learned from August 02](#applying-everything-ive-learned-from-august-02)
+      - [HTML Biography Template](#html-biography-template)
+      - [HTML Portfolio Template](#html-portfolio-template)
+  - [August 05](#august-05)
+    - [JSON Conversion](#json-conversion)
 
 ## July 13
 
@@ -529,3 +535,43 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
 }
 ```
+
+## August 04
+
+- [x] Change HTML to be more of a template
+- [ ] Change JavaScript to use updated template
+- [x] Prefetch JSON files
+- [x] Update style classes to follow BEM
+
+### Applying everything I've learned from [August 02](#august-02)
+
+First and foremost is to add HTML code to prefetch JSON files for the `script.js` to load. According to the [JSON Content Structure](#json-content-structure) there is supposed to be three files, so I'll preemptively add [`experiences.json`](/website/content/experience.json) to the `content` folder. This might not be necessary, considering I could write a script that inserts all JSON values into HTML before deployment. On the other hand I have learned a lot about fetching resources and the inner workings of websites by doing it this way.
+
+Doing a quick google search on CV examples to verify my terminology The standard title for experiences is "*work history*" or "*work experience*". Some exceptions of course, one said something like "*previous employment*".  
+I wanted to call mine timeline, as that is more of what it should represent. It includes education, work experiences and achievements. The term "*history*" would fit much better than experiences or timeline as previously suggested. However, "*experience*" is more professional sounding and I personally connect that term to a CV context.  
+I'll keep the experience term but make it singular. Right now the JSON was referred to [`experiences.json`](/website/content/experience.json) instead of simply [`experience.json`](/website/content/experience.json).
+
+#### HTML Biography Template
+
+I've completed the biography to become more of a template as well as changed classes to follow [BEM methodology](https://getbem.com/). I had to rethink some stuff, but in the end it is much more structured now, and I can read the HTML without being confused now.
+
+Trying to get if statements into HTML was not an easy task. Of course HTML doesn't have if statements, but I wanted an easy way to identify which elements should be removed if the JSON is missing information. For example, the company you're working at. Right now the HTML is pre-formatted with "*profession* at *company*". But what if you are unemployed? Unemployment is more of a profession than a company, so the company needs to be removed, and so does the "at" which ties the company and profession together.
+
+My solution is to use ID of whatever class that is supposed to be deleted if irrelevant. A tricky one is the "About" link whenever there is no "about text" to be display. As the "About" link is the first in the biography__links it is supposed to be the template for all other biography links, but those can't have IDs as they won't be unique.  
+Perhaps another solution will rise when I process the template in JavaScript, but for now it is still a bit of a hassle.
+
+#### HTML Portfolio Template
+
+Now the portfolio template is done! It was much harder to give names to as everything is a `project__<insert name>` relation, but I got some good names at the end. I marked the "[Update style classes to follow BEM](#august-04)" as done even though there is no style classes that are updated. The intention was to update class names in HTML to make CSS the next step in development. Don't think I have enough time for JavaScript today, unfortunately. Will aim to fix it tomorrow :)
+
+## August 05
+
+- [x] Change JavaScript to use updated template
+
+### JSON Conversion
+
+Started to convert biography JSON into HTML using JavaScript. I feel the about and links section can be made better, but it should work for now. The full conversion is not complete, I think the portfolio is easier, so I'll aim to finish it this evening.
+
+Portfolio conversion was much easier. Mostly because I don't have a bullshit "about" link that points to a later HTML element which are dependent to create more links. I am not that clever. There is probably a much smarter way of doing it, but it works, and I am not going to complain. The next on the agenda is to style everything with CSS.
+
+On a similar note, there is not much JavaScript to be written as well, only when the "about" is clicked and animations I guess.

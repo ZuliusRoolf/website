@@ -4,101 +4,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zulius Roolf</title>
-  <link rel="icon" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js"></script>
+  <link rel="preload" href="content/biography.json" as="fetch" type="application/json" crossorigin="anonymous">
+  <link rel="preload" href="content/portfolio.json" as="fetch" type="application/json" crossorigin="anonymous">
+  <link rel="preload" href="content/experience.json" as="fetch" type="application/json" crossorigin="anonymous">
+
+  <title>My Portfolio</title>
+  <link rel="icon" href="favicon.svg">
 </head>
 
 <body>
-  <div class="container">
+  <div class="main">
 
     <!-- Biography -->
-    <div class="column" id="biography">
-      <div class="biography-container">
-        <div class="profile-picture">
-          <img src="favicon.svg" alt="Profile Picture" height="128">
+    <div class="main__column">
+      <div class="biography" id="biography__template">
+        <div class="biography__picture">
+          <img src="" alt="Profile Picture" height="128">
         </div>
-        <div class="profile-introduction">
-          <span id="name">Zulius Roolf</span>,
+        <div class="biography__introduction introduction">
+          <span class="introduction__name">Zulius Roolf</span>,
           <br>
-          <span id="profession">software engineer student</span>
-          at
-          <span id="company">BTH</span>
+          <span class="introduction__profession">software engineer student</span>
+          <span id="if__introduction__workplace">
+            at
+            <a class="introduction__workplace" href="https://www.bth.se/eng/">BTH</a>
+          </span>
         </div>
-        <div class="profile-links">
-          <a class="link-column" href="https://github.com/">
-            <img src="content\icons\github.svg" alt="GitHub" height="64">
-          </a>
-          <a class="link-column" href="https://apple.com/">
-            <img src="content\icons\apple.svg" alt="Apple" height="64">
-          </a>
+        <div class="biography__links">
+          <a class="biography__link" href="#" id="if__biography__about">About</a>
+          <a class="biography__link" href="https://github.com/ZuliusRoolf">GitHub</a>
         </div>
-        <div class="profile-information">
-          Hello! <br> Seems like JavaScript was unable to load the content of this website.
-          The information is stored in a <a href="content/biography.json">JSON file</a> for the JavaScript to load.
-          You can either refresh or click the GitHub icon above to see the source code.
+        <div class="biography__about">
+          Hello! <br> Seems like JavaScript was unable to load the content of this website. <br>
+          The information is stored in JSON files located <a href="content/">here</a> for the JavaScript to load. <br>
+          You can either refresh to try again or click <a href="https://github.com/ZuliusRoolf/website">here</a> to see
+          the source code.
         </div>
       </div>
     </div>
 
     <!-- Portfolio -->
-    <div class="column" id="portfolio">
-      <div class="collection-list">
-        <div role="list">
-          <div role="listitem" class="portfolio-item">
-            <div class="portfolio-title navbutton">
-              <div class="title">Portfolio Website</div>
-              <div class="year">2024</div>
+    <div class="main__column" id="portfolio">
+      <div class="portfolio">
+        <div class="portfolio__project project" id="portfolio__project__template">
+          <div class="project__button">
+            <div class="project__button__title">Portfolio Website</div>
+            <div class="project__button__year">2024</div>
+          </div>
+          <div class="project__detail detail">
+            <div class="detail__video">
+              <video>
+                <source src="content/portfolio-website.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
-            <div class="portfolio-content">
-              <div class="video">
-                <video>
-                  <source src="content/portfolio-website.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+            <div class="detail__contribution contribution">
+              <img class="contribution__company__logo" src="content/icons/github.svg" height="16">
+              <text class="contribution__company">GitHub</text>
+              <span id="if__contribution__collaborators">· with
+                <span class="contribution__collaborators">John Doe</span>
+              </span>
+            </div>
+            <div class="detail__description">
+              <div class="detail__description__title" style="font-weight: bold;">Creating Static Website from Scratch
               </div>
-              <div class="island">
-                <img src="content/icons/github.svg" height="16">
-                <text class="company">
-                  GitHub
-                  <span class="if-collaborators">· with</span>
-                  <span class="collaborators">John Doe</span>
-                </text>
-              </div>
-              <div class="text">
-                <div class="descriptive-title" style="font-weight: bold;">Creating Static Website from Scratch</div>
-                <div class="reason">Always had issues with web development.
-                  I've tried React, Django, Vite, Node, Next, and anytime I try to build anything I get bugs I don't
-                  understand.
-                  Then attemting to debug code I don't understand is getting me nowhere.
-                  To hopefully resolve this I decided to learn the basics and build a website with just HTML, CSS, and
-                  JavaScript.
-                </div>
-                <a class="project-redirect" href="https://github.com/ZuliusRoolf/website">
-                  View Project on GitHub
-                </a>
+              <div class="detail__description__text">Always had issues with web development.
+                I've tried React, Django, Vite, Node, Next, and anytime I try to build anything I get bugs I don't
+                understand.
+                Then attemting to debug code I don't understand is getting me nowhere.
+                To hopefully resolve this I decided to learn the basics and build a website with just HTML, CSS, and
+                JavaScript.
               </div>
             </div>
+            <a class="detail__redirect" href="https://github.com/ZuliusRoolf/website">
+              View Project on <span class="detail__source">GitHub</span>
+            </a>
           </div>
         </div>
+
       </div>
-
-
-      <script>
-        fetchBiography();
-        fetchPortfolio();
-      </script>
     </div>
 
-    <!-- Timeline -->
-    <div class="column" id="timeline">
-
+    <!-- Experience -->
+    <div class="main__column" id="experience">
     </div>
   </div>
 
 
-
+  <script src="script.js"></script>
 </body>
 
 </html>
