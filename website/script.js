@@ -1,3 +1,48 @@
+// Run code after the DOM has loaded
+document.addEventListener('DOMContentLoaded', () => {
+  populateBiography();
+});
+
+function populateBiography() {
+  fetch('content/biography.json')
+    .then(response => response.json())
+    .then(data => {
+      const biography = data;
+      const template = document.getElementById('biography__template');
+      document.title = biography.name;
+
+      template.querySelector('.biography__picture').querySelector('img').src = biography.portrait;
+      template.querySelector('.introduction__name').textContent = biography.name;
+      template.querySelector('.introduction__profession').textContent = biography.profession.toLowerCase();
+
+      if (biography.workplace !== '') {
+        template.querySelector('.introduction__workplace').textContent = biography.workplace;
+        template.querySelector('.introduction__workplace').href = biography.workplaceLink;
+      }
+      else template.querySelector('#if__introduction__workplace').remove();
+
+      const templateLinks = template.querySelectorAll('.biography__link');
+      templateLinks[1].remove();
+      biography.links.forEach(biographyLink => {
+        const templateLink = templateLinks[0].cloneNode(true);
+        templateLink.removeAttribute('id');
+        templateLink.href = biographyLink.link;
+        templateLink.textContent = biographyLink.name;
+        template.querySelector('.biography__links').appendChild(templateLink);
+        template.querySelector('.biography__links').appendChild(document.createTextNode(' '));
+      });
+
+      if (biography.about !== '') {
+        template.querySelector('.biography__about').textContent = biography.about;
+      }
+      else template.querySelector('#if__biography__about').remove();
+
+
+    });
+};
+
+
+
 function fetchPortfolio() {
   // Fetch the JSON data
   fetch('content/portfolio.json')

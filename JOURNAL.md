@@ -48,6 +48,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Applying everything I've learned from August 02](#applying-everything-ive-learned-from-august-02)
       - [HTML Biography Template](#html-biography-template)
       - [HTML Portfolio Template](#html-portfolio-template)
+  - [August 05](#august-05)
+    - [JSON Convertion](#json-convertion)
 
 ## July 13
 
@@ -561,3 +563,11 @@ Perhaps another solution will rise when I process the template in JavaScript, bu
 #### HTML Portfolio Template
 
 Now the portfolio template is done! It was much harder to give names to as everything is a `project__<insert name>` relation, but I got some good names at the end. I marked the "[Update style classes to follow BEM](#august-04)" as done even though there is no style classes that are updated. The intention was to update class names in HTML to make CSS the next step in development. Don't think I have enough time for JavaScript today, unfortunately. Will aim to fix it tomorrow :)
+
+## August 05
+
+- [ ] Change JavaScript to use updated template
+
+### JSON Convertion
+
+Started to convert biography JSON into HTML using JavaScript. I feel the about and links section can be made better, but it should work for now. The full convertion is not complete, I think the portfolio is easier so I'll aim to finish it this evening.
