@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   populateBiography();
   populatePortfolio();
+  populateExperience();
 });
 
 function populateBiography() {
@@ -73,6 +74,14 @@ function populatePortfolio() {
         parent.appendChild(template);
       });
       projectTemplate.remove();
+    });
+};
+
+function populateExperience() {
+  fetch('content/experience.json')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Experience coming soon! :)');
     });
 };
 
