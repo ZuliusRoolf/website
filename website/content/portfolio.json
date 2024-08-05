@@ -7,11 +7,11 @@
       "video": "URL_to_video",
       "companyLogo": "content/icons/github.svg",
       "companyName": "GitHub",
-      "collaborators": "John Doe",
+      "collaborators": "Mr. Ranedeer",
       "descriptiveTitle": "A project that does something",
       "reason": "This project was created to solve a problem.",
-      "projectHostName": "GitHub",
-      "projectLink": "http://github.com"
+      "sourceName": "GitHub",
+      "sourceLink": "http://github.com"
     },
     {
       "title": "Project 2",
@@ -23,8 +23,8 @@
       "collaborators": "",
       "descriptiveTitle": "A project that does something",
       "reason": "This project was created to solve a problem.",
-      "projectHostName": "GitHub",
-      "projectLink": "http://github.com"
+      "sourceName": "GitHub",
+      "sourceLink": "http://github.com"
     }
   ]
 }

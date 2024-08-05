@@ -49,7 +49,7 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [HTML Biography Template](#html-biography-template)
       - [HTML Portfolio Template](#html-portfolio-template)
   - [August 05](#august-05)
-    - [JSON Convertion](#json-convertion)
+    - [JSON Conversion](#json-conversion)
 
 ## July 13
 
@@ -566,8 +566,12 @@ Now the portfolio template is done! It was much harder to give names to as every
 
 ## August 05
 
-- [ ] Change JavaScript to use updated template
+- [x] Change JavaScript to use updated template
 
-### JSON Convertion
+### JSON Conversion
 
-Started to convert biography JSON into HTML using JavaScript. I feel the about and links section can be made better, but it should work for now. The full convertion is not complete, I think the portfolio is easier so I'll aim to finish it this evening.
+Started to convert biography JSON into HTML using JavaScript. I feel the about and links section can be made better, but it should work for now. The full conversion is not complete, I think the portfolio is easier, so I'll aim to finish it this evening.
+
+Portfolio conversion was much easier. Mostly because I don't have a bullshit "about" link that points to a later HTML element which are dependent to create more links. I am not that clever. There is probably a much smarter way of doing it, but it works, and I am not going to complain. The next on the agenda is to style everything with CSS.
+
+On a similar note, there is not much JavaScript to be written as well, only when the "about" is clicked and animations I guess.
