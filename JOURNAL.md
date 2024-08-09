@@ -50,6 +50,10 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [HTML Portfolio Template](#html-portfolio-template)
   - [August 05](#august-05)
     - [JSON Conversion](#json-conversion)
+  - [August 09](#august-09)
+    - [CSS Layout](#css-layout)
+    - [Styling Tricks](#styling-tricks)
+    - [Exploring CSS](#exploring-css)
 
 ## July 13
 
@@ -575,3 +579,34 @@ Started to convert biography JSON into HTML using JavaScript. I feel the about a
 Portfolio conversion was much easier. Mostly because I don't have a bullshit "about" link that points to a later HTML element which are dependent to create more links. I am not that clever. There is probably a much smarter way of doing it, but it works, and I am not going to complain. The next on the agenda is to style everything with CSS.
 
 On a similar note, there is not much JavaScript to be written as well, only when the "about" is clicked and animations I guess.
+
+## August 09
+
+- [x] Create CSS frames of elements
+- [x] Write UI layout
+- [] Code logic for toggling “about” and “project button”
+
+### CSS Layout
+
+The goal today is to make a CSS layout so that the portfolio, biography and experience is in their own respected columns. The hidden elements, such as project details and the "about" information shall be hidden until it is selected. The layout should support mobile view using media query.
+
+The idea for displaying projects is that you have an "on hover" effect where only the video and contribution is displayed. If the user clicks on the project then it will stick (visually replace the biography column) and display additional text about the project. On mobile, you will simply click the project button as there is no hover effect. There should be an "x" button on the top right for both pc and mobile when a project is selected.
+
+### Styling Tricks
+
+YouTube's recommendations came in clutch with videos from [Coding2GO](https://www.youtube.com/@coding2go). Mainly [`CSS PRO Tips & Tricks`](https://youtu.be/PL3Odw-k8W4) and [`Learn CSS Flexbox in 20 Minutes`](https://youtu.be/wsTv9y931o8) will be used for today's agenda. There is a couple of points in the first video that may be useful.
+
+- [`Levitating effect`](https://youtu.be/PL3Odw-k8W4?t=19) (button shadows)
+- [`Checkboxes instead of event listeners`](https://youtu.be/PL3Odw-k8W4?t=70) (for toggleable buttons)
+- [`Use min() and max() to define size`](https://youtu.be/PL3Odw-k8W4?t=110) (or [`clamp()`](https://youtu.be/PL3Odw-k8W4?t=160))
+- [`Make material look like glass`](https://youtu.be/PL3Odw-k8W4?t=170)
+- [`Dark mode option`](https://youtu.be/PL3Odw-k8W4?t=284)
+- [`Gradient Text`](https://youtu.be/PL3Odw-k8W4?t=309)
+
+### Exploring CSS
+
+Figured out how to use flex-boxes to emulate [Seyit Yilmaz's website](https://www.seyityilmaz.com/). In the beginning I tried to use padding to make sure the projects were properly pushed away from the left edge and pushed the biography away to the right. This was not necessary as just using a 40% width on the column and a flex attribute on the column's children meant it achieved better flexibility.
+
+I got to utilize the entire height of the viewport, apparently you need to give `<body>` a `height: 100vh` in CSS. Now the columns display its children in the middle of the page.
+
+I got to use media query to define a PC view. I thought about separating them into two queries, but that seems unnecessary.

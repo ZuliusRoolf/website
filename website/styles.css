@@ -1,80 +1,59 @@
-.portfolio-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    max-width: 300px;
-}
-
-.portfolio-item h2 {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
+    height: 100vh;
 }
 
-.portfolio-item p {
-    margin: 5px 0;
-}
-
-.portfolio-item ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.icon {
-    width: 100%;
+.main {
     height: 100%;
-    align-self: center;
-    object-fit: contain;
-}
-
-.container {
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-#portfolio {
-    order: 1;
+.main__column {
+    border: 2px solid #ccc;
+    flex-shrink: 0;
 }
 
+/* PC Viewport */
+@media (min-width: 768px) {
+    .main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
 
-#biography {
-    order: 2;
+    #portfolio {
+        order: 0;
+        min-width: 40%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #biography {
+        order: 1;
+        width: 18em;
+    }
+    
+    #experience {
+        order: 2;
+    }
 }
 
-#timeline {
-    order: 3;
-}
-
-#biography .profile-links {
+.project__button {
+    border: 2px solid #000;
+    padding: 1em;
+    margin: 1em;
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-#biography .profile-links a {
-    background-color: #007bff;
-    /* Background color of the button */
-    fill: #ffffff;
-    /* Color of the SVG icon */
-    border: none;
-    border-radius: 50%;
-    /* Makes the button circular */
-    width: 60px;
-    /* Adjust size as needed */
-    height: 60px;
-    /* Adjust size as needed */
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    /* Adds space around the SVG */
-    cursor: pointer;
+    column-gap: 1em;
 }
 
-#biography .profile-links a:hover {
-    background: #149ddd;
-    color: #fff;
-    text-decoration: none;
-}
 
-#biography .profile-information {
-    max-width: 300px;
+/* Information that is not displayed on main page */
+
+.--hidden {
+    display: none;
 }

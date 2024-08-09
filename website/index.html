@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preload" href="content/biography.json" as="fetch" type="application/json" crossorigin="anonymous">
   <link rel="preload" href="content/portfolio.json" as="fetch" type="application/json" crossorigin="anonymous">
-  <link rel="preload" href="content/experience.json" as="fetch" type="application/json" crossorigin="anonymous">
+  <!-- <link rel="preload" href="content/experience.json" as="fetch" type="application/json" crossorigin="anonymous"> -->
 
   <title>My Portfolio</title>
   <link rel="icon" href="favicon.svg">
@@ -17,7 +17,7 @@
   <div class="main">
 
     <!-- Biography -->
-    <div class="main__column">
+    <div class="main__column" id="biography">
       <div class="biography" id="biography__template">
         <div class="biography__picture">
           <img src="" alt="Profile Picture" height="128">
@@ -35,7 +35,7 @@
           <a class="biography__social__link" href="#" id="if__biography__about">About</a>
           <a class="biography__social__link" href="https://github.com/ZuliusRoolf">GitHub</a>
         </div>
-        <div class="biography__about">
+        <div class="biography__about --hidden">
           Hello! <br> Seems like JavaScript was unable to load the content of this website. <br>
           The information is stored in JSON files located <a href="content/">here</a> for the JavaScript to load. <br>
           You can either refresh to try again or click <a href="https://github.com/ZuliusRoolf/website">here</a> to see
@@ -52,10 +52,10 @@
             <div class="project__button__title">Portfolio Website</div>
             <div class="project__button__year">2024</div>
           </div>
-          <div class="project__detail detail">
+          <div class="project__detail detail --hidden">
             <div class="detail__video">
               <video>
-                <source src="content/portfolio-website.mp4" type="video/mp4">
+                <source src="" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Experience -->
-    <div class="main__column" id="experience">
+    <div class="main__column --hidden" id="experience">
     </div>
   </div>
 
