@@ -54,6 +54,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [CSS Layout](#css-layout)
     - [Styling Tricks](#styling-tricks)
     - [Exploring CSS](#exploring-css)
+    - [Design considerations](#design-considerations-1)
 
 ## July 13
 
@@ -584,7 +585,7 @@ On a similar note, there is not much JavaScript to be written as well, only when
 
 - [x] Create CSS frames of elements
 - [x] Write UI layout
-- [] Code logic for toggling “about” and “project button”
+- [x] Code logic for toggling “about” ~~and “project button”~~
 
 ### CSS Layout
 
@@ -610,3 +611,13 @@ Figured out how to use flex-boxes to emulate [Seyit Yilmaz's website](https://ww
 I got to utilize the entire height of the viewport, apparently you need to give `<body>` a `height: 100vh` in CSS. Now the columns display its children in the middle of the page.
 
 I got to use media query to define a PC view. I thought about separating them into two queries, but that seems unnecessary.
+
+Learned a little on how to use JavaScript to toggle hidden elements. It is not difficult if the element is pre-defined, but I got stuck on making the `project__button`s to function. I think it applies event listeners to the template project and not on the JSON loaded projects. I tried to fix this, but clearly I have worked too long and got nowhere, hence the strike-through on [today's agenda](#august-09).
+
+Lastly, I got the opportunity to learn a little about the different measurements CSS uses and changed the about loading function to include line breaks.
+
+### Design considerations
+
+Displaying a profile picture is difficult as the original website from [Seyit Yilmaz](https://www.seyityilmaz.com/) is supposed to be minimalistic. It is only first clicking on "about" the user gets redirected to a proper CV with picture and experience. I agree on the minimalist design to only show the necessary information. My face doesn't matter that much, the point is the portfolio. However, I do wish to provide my profile picture if the user asks about it. Clicking "about" would be considered such an event, so perhaps I will only display my picture alongside the about me text. On a mobile viewport both picture and about text will be displayed either way.
+
+Another idea could be to make my picture grayscale and only when clicking "about" will make the picture return to true colors. Alternatively, just put the picture together with the about text, I do feel this will look bad and unlogical.

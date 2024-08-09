@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
   populateExperience();
 });
 
+document.getElementById('if__biography__about').addEventListener('click', (event) => {
+  event.preventDefault();
+  const about = document.getElementsByClassName('biography__about')[0];
+  let hidden = about.classList.toggle('--hidden');
+  document.getElementById('if__biography__about').style.fontWeight = hidden ? '' : 'bold';
+});
+
 function populateBiography() {
   fetch('content/biography.json')
     .then(response => response.json())
@@ -39,7 +46,7 @@ function populateBiography() {
 
       //About
       if (biography.about !== '') {
-        template.querySelector('.biography__about').textContent = biography.about;
+        template.querySelector('.biography__about').innerHTML = biography.about.replace(/\n/g, '<br>');
       }
       else {
         template.querySelector('#if__biography__about').remove();
