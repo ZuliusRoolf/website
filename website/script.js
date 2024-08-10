@@ -24,6 +24,8 @@ document.getElementById('if__biography__about').addEventListener('click', (event
   const about = document.getElementsByClassName('biography__about')[0];
   // let hidden = about.classList.toggle('--hidden');
   toggleFade(about);
+  const picture = document.getElementsByClassName('biography__picture')[0];
+  picture.classList.toggle('--hidden');
   document.getElementById('if__biography__about').style.fontWeight = hidden ? '' : 'bold';
 });
 

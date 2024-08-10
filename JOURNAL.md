@@ -628,10 +628,10 @@ Another idea could be to make my picture grayscale and only when clicking "about
 
 ## August 10
 
-- [x] Project button clickable/hoverable
+- [x] Project button clickable/~~hoverable~~
 - [ ] ~~“About” be hidden in mobile view~~
 - [ ] Profile picture has a picture
-- [ ] Display pf pic when “about” is selected
+- [x] Display pf pic when “about” is selected
 - [ ] Add fade transition if possible (CSS)
 
 ### Clickable button items
