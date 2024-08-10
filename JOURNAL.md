@@ -636,4 +636,11 @@ Another idea could be to make my picture grayscale and only when clicking "about
 
 I made it, it wasn't too hard after some fresh debugging. The document in the javascript doesn't update apparently, so document is a snapshot of what I can work with, not edit it as we go. There are functions that lets you edit the document continueosly, but the fix for this is to add the event lister inside the populatePortfolio function.
 
-I will experiemnt if there is a better way of editing, perhaps global variables is the way to go.
+I will experiemnt if there is a better way of editing, perhaps global variables is the way to go.  
+Update on the experiment, global variable was a bit tricky to implement considering you want them inside the `DOMContentLoaded` event listener, which by definition can't make them global. Then when I have the global variable and move the `addEventListenerToPortfolio();` from the `populatePortfolio` function to the `DOMContentLoaded` event listener, it doesn't work. Some more research is definetely needed.
+
+There needs to be 4 event listeners, three on each button and one outside the buttons. 
+- If a button is selected, it will remove the previous selection and apply the new selection. 
+- If user selects the same button, it should be toggled to be unselected. 
+- If the user hovers their mouse over a button, it will hide the selected information and display the hovered element instead.
+- If the hover is enabled and mouse leaves the area, then the video will be hidden and the previous selected state will be displayed.

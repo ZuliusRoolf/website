@@ -1,5 +1,7 @@
 // Run code after the DOM has loaded
+let portfolio;
 document.addEventListener('DOMContentLoaded', () => {
+  portfolio = document.getElementsByClassName('portfolio')[0];
   populateBiography();
   populatePortfolio();
   populateExperience();
@@ -12,10 +14,30 @@ document.getElementById('if__biography__about').addEventListener('click', (event
   document.getElementById('if__biography__about').style.fontWeight = hidden ? '' : 'bold';
 });
 
-function togglePortfolioDetail(project) {
-  const detail = project.querySelector('.detail');
-  let hidden = detail.classList.toggle('--hidden');
-  project.querySelector('.project__button').style.fontWeight = hidden ? '' : 'bold';
+function togglePortfolioDetail(i) {
+  projects = portfolio.getElementsByClassName('portfolio__project');
+  for (let j = 0; j < projects.length; j++) {
+    const detail = projects[j].querySelector('.detail');
+    if (j !== i) {
+      // Close all other project details
+      detail.classList.add('--hidden');
+    }
+    else if (detail.classList.toggle('--hidden')) {
+      // Close slected project if already open
+      console.log('Closing ' + j);
+    }
+    else {
+      // Open selected project
+      console.log('Opening ' + j);
+    }
+  }
+}
+
+function addEventListenerToPortfolio() {
+  const projects = portfolio.getElementsByClassName('portfolio__project');
+  for (let i = 0; i < projects.length; i++) {
+    projects[i].addEventListener('click', () => togglePortfolioDetail(i));
+  }
 }
 
 function populateBiography() {
@@ -65,7 +87,6 @@ function populatePortfolio() {
   fetch('content/portfolio.json')
     .then(response => response.json())
     .then(data => {
-      const parent = document.getElementsByClassName('portfolio')[0];
       const projectTemplate = document.getElementById('portfolio__project__template');
 
       //Portfolio Projects
@@ -84,12 +105,10 @@ function populatePortfolio() {
         template.querySelector('.detail__description__text').textContent = project.reason;
         template.querySelector('.detail__redirect').href = project.sourceLink;
         template.querySelector('.detail__source').textContent = project.sourceName;
-
-        template.addEventListener('click', () => togglePortfolioDetail(template));
-
-        parent.appendChild(template);
+        portfolio.appendChild(template);
       });
       projectTemplate.remove();
+      addEventListenerToPortfolio();
     });
 };
 
@@ -97,6 +116,6 @@ function populateExperience() {
   fetch('content/experience.json')
     .then(response => response.json())
     .then(data => {
-      console.log('Experience coming soon! :)');
+
     });
 };
