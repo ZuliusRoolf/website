@@ -57,6 +57,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Design considerations](#design-considerations-1)
   - [August 10](#august-10)
     - [Clickable button items](#clickable-button-items)
+    - [Hiding "About" in mobile view](#hiding-about-in-mobile-view)
 
 ## July 13
 
@@ -627,7 +628,7 @@ Another idea could be to make my picture grayscale and only when clicking "about
 ## August 10
 
 - [x] Project button clickable/hoverable
-- [ ] “About” be hidden in mobile view
+- [ ] ~~“About” be hidden in mobile view~~
 - [ ] Profile picture has a picture
 - [ ] Display pf pic when “about” is selected
 - [ ] Add fade transition if possible (CSS)
@@ -644,3 +645,7 @@ There needs to be 4 event listeners, three on each button and one outside the bu
 - If user selects the same button, it should be toggled to be unselected. 
 - If the user hovers their mouse over a button, it will hide the selected information and display the hovered element instead.
 - If the hover is enabled and mouse leaves the area, then the video will be hidden and the previous selected state will be displayed.
+
+### Hiding "About" in mobile view
+
+I tried to hide the "About" link whith media query. I scratched the idea because I need to use some JavaScript to detect so that it automatically hides the information if the viewport gets changed. Discussing this matter with a collegue also made me realize that it is a very small issue that complicates things a ton to implement. Just keep the about link in mobile view too.
