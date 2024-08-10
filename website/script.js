@@ -12,6 +12,12 @@ document.getElementById('if__biography__about').addEventListener('click', (event
   document.getElementById('if__biography__about').style.fontWeight = hidden ? '' : 'bold';
 });
 
+function togglePortfolioDetail(project) {
+  const detail = project.querySelector('.detail');
+  let hidden = detail.classList.toggle('--hidden');
+  project.querySelector('.project__button').style.fontWeight = hidden ? '' : 'bold';
+}
+
 function populateBiography() {
   fetch('content/biography.json')
     .then(response => response.json())
@@ -78,6 +84,9 @@ function populatePortfolio() {
         template.querySelector('.detail__description__text').textContent = project.reason;
         template.querySelector('.detail__redirect').href = project.sourceLink;
         template.querySelector('.detail__source').textContent = project.sourceName;
+
+        template.addEventListener('click', () => togglePortfolioDetail(template));
+
         parent.appendChild(template);
       });
       projectTemplate.remove();

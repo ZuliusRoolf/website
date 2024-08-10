@@ -55,6 +55,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Styling Tricks](#styling-tricks)
     - [Exploring CSS](#exploring-css)
     - [Design considerations](#design-considerations-1)
+  - [August 10](#august-10)
+    - [Clickable button items](#clickable-button-items)
 
 ## July 13
 
@@ -621,3 +623,17 @@ Lastly, I got the opportunity to learn a little about the different measurements
 Displaying a profile picture is difficult as the original website from [Seyit Yilmaz](https://www.seyityilmaz.com/) is supposed to be minimalistic. It is only first clicking on "about" the user gets redirected to a proper CV with picture and experience. I agree on the minimalist design to only show the necessary information. My face doesn't matter that much, the point is the portfolio. However, I do wish to provide my profile picture if the user asks about it. Clicking "about" would be considered such an event, so perhaps I will only display my picture alongside the about me text. On a mobile viewport both picture and about text will be displayed either way.
 
 Another idea could be to make my picture grayscale and only when clicking "about" will make the picture return to true colors. Alternatively, just put the picture together with the about text, I do feel this will look bad and unlogical.
+
+## August 10
+
+- [x] Project button clickable/hoverable
+- [ ] “About” be hidden in mobile view
+- [ ] Profile picture has a picture
+- [ ] Display pf pic when “about” is selected
+- [ ] Add fade transition if possible (CSS)
+
+### Clickable button items
+
+I made it, it wasn't too hard after some fresh debugging. The document in the javascript doesn't update apparently, so document is a snapshot of what I can work with, not edit it as we go. There are functions that lets you edit the document continueosly, but the fix for this is to add the event lister inside the populatePortfolio function.
+
+I will experiemnt if there is a better way of editing, perhaps global variables is the way to go.
