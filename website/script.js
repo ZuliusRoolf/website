@@ -6,11 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
   populatePortfolio();
   populateExperience();
 });
-
+function toggleFade(element) {
+  if (element.classList.contains('show')) {
+    element.classList.remove('show');
+    element.addEventListener('transitionend', () => {
+      element.classList.add('--hidden');
+    }, { once: true });
+  } else {
+    element.classList.remove('--hidden');
+    requestAnimationFrame(() => {
+      element.classList.add('show');
+    });
+  }
+}
 document.getElementById('if__biography__about').addEventListener('click', (event) => {
   event.preventDefault();
   const about = document.getElementsByClassName('biography__about')[0];
-  let hidden = about.classList.toggle('--hidden');
+  // let hidden = about.classList.toggle('--hidden');
+  toggleFade(about);
   document.getElementById('if__biography__about').style.fontWeight = hidden ? '' : 'bold';
 });
 

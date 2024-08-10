@@ -58,6 +58,7 @@ This is a quick journal on how I develop this website. It will be used for docum
   - [August 10](#august-10)
     - [Clickable button items](#clickable-button-items)
     - [Hiding "About" in mobile view](#hiding-about-in-mobile-view)
+    - [Fade CSS animation](#fade-css-animation)
 
 ## July 13
 
@@ -649,3 +650,7 @@ There needs to be 4 event listeners, three on each button and one outside the bu
 ### Hiding "About" in mobile view
 
 I tried to hide the "About" link whith media query. I scratched the idea because I need to use some JavaScript to detect so that it automatically hides the information if the viewport gets changed. Discussing this matter with a collegue also made me realize that it is a very small issue that complicates things a ton to implement. Just keep the about link in mobile view too.
+
+### Fade CSS animation
+
+This was an attempt to add fade animation to the about text. It only works when closing, there is some issue with `display: none` as it can't animate from that state. I'll do some more research in this area as a fading and even a "pop" effect from the original would look good.
