@@ -59,6 +59,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Clickable button items](#clickable-button-items)
     - [Hiding "About" in mobile view](#hiding-about-in-mobile-view)
     - [Fade CSS animation](#fade-css-animation)
+  - [September 2](#september-2)
+    - [Relearning](#relearning)
 
 ## July 13
 
@@ -636,21 +638,35 @@ Another idea could be to make my picture grayscale and only when clicking "about
 
 ### Clickable button items
 
-I made it, it wasn't too hard after some fresh debugging. The document in the javascript doesn't update apparently, so document is a snapshot of what I can work with, not edit it as we go. There are functions that lets you edit the document continueosly, but the fix for this is to add the event lister inside the populatePortfolio function.
+I made it, it wasn't too hard after some fresh debugging. The document in the JavaScript doesn't update apparently, so document is a snapshot of what I can work with, not edit it as we go. There are functions that let you edit the document continuously, but the fix for this is to add the event listener inside the `populatePortfolio` function.
 
-I will experiemnt if there is a better way of editing, perhaps global variables is the way to go.  
-Update on the experiment, global variable was a bit tricky to implement considering you want them inside the `DOMContentLoaded` event listener, which by definition can't make them global. Then when I have the global variable and move the `addEventListenerToPortfolio();` from the `populatePortfolio` function to the `DOMContentLoaded` event listener, it doesn't work. Some more research is definetely needed.
+I will experiment if there is a better way of editing, perhaps global variables is the way to go.  
+Update on the experiment, global variable was a bit tricky to implement considering you want them inside the `DOMContentLoaded` event listener, which by definition can't make them global. Then, when I have the global variable and move the `addEventListenerToPortfolio();` from the `populatePortfolio` function to the `DOMContentLoaded` event listener, it doesn't work. Some more research is definitely needed.
 
-There needs to be 4 event listeners, three on each button and one outside the buttons. 
-- If a button is selected, it will remove the previous selection and apply the new selection. 
-- If user selects the same button, it should be toggled to be unselected. 
+There needs to be 4 event listeners, three on each button and one outside the buttons.
+
+- If a button is selected, it will remove the previous selection and apply the new selection.
+- If user selects the same button, it should be toggled to be unselected.
 - If the user hovers their mouse over a button, it will hide the selected information and display the hovered element instead.
-- If the hover is enabled and mouse leaves the area, then the video will be hidden and the previous selected state will be displayed.
+- If the hover is enabled and mouse leaves the area, then the video will be hidden, and the previous selected state will be displayed.
 
 ### Hiding "About" in mobile view
 
-I tried to hide the "About" link whith media query. I scratched the idea because I need to use some JavaScript to detect so that it automatically hides the information if the viewport gets changed. Discussing this matter with a collegue also made me realize that it is a very small issue that complicates things a ton to implement. Just keep the about link in mobile view too.
+I tried to hide the "About" link with media query. I scratched the idea because I need to use some JavaScript to detect so that it automatically hides the information if the viewport gets changed. Discussing this matter with a colleague also made me realize that it is a very small issue that complicates things a ton to implement. Just keep the about link in mobile view too.
 
 ### Fade CSS animation
 
 This was an attempt to add fade animation to the about text. It only works when closing, there is some issue with `display: none` as it can't animate from that state. I'll do some more research in this area as a fading and even a "pop" effect from the original would look good.
+
+## September 2
+
+There has been some time since I last worked on the website. Today I will spend time reading the last log entries and research about two features I wish to have.
+
+- [X] Read journal to recap.
+- [ ] Learn how to scale CSS elements (Replace `display: none`) or how to smoothly hide elements.
+- [ ] Learn how to place CSS elements on top of each other (stacking on the Z axis)
+- [ ] Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.
+
+### Relearning
+
+Reading the Journal I realized that functions can be created within the `DOMContentLoaded` event listener. It would fix the difficulties I had on [August 9th when Exploring CSS](#exploring-css) and [August 10, Clickable button items](#clickable-button-items) from adding event listeners to the portfolio projects in a separate function.
