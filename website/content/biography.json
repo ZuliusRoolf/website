@@ -1,5 +1,5 @@
 {
-  "portrait": "URL_to_portrait_image",
+  "portrait": "content/photos/portrait_template.png",
   "name": "Zulius Roolf",
   "profession": "Software Engineer Student",
   "workplace": "BTH",
