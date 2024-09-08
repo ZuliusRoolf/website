@@ -6,28 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   populatePortfolio();
   populateExperience();
 });
-function toggleFade(element) {
-  if (element.classList.contains('show')) {
-    element.classList.remove('show');
-    element.addEventListener('transitionend', () => {
-      element.classList.add('--hidden');
-    }, { once: true });
-  } else {
-    element.classList.remove('--hidden');
-    requestAnimationFrame(() => {
-      element.classList.add('show');
-    });
-  }
-}
-document.getElementById('if__biography__about').addEventListener('click', (event) => {
-  event.preventDefault();
-  const about = document.getElementsByClassName('biography__about')[0];
-  // let hidden = about.classList.toggle('--hidden');
-  toggleFade(about);
-  const picture = document.getElementsByClassName('biography__picture')[0];
-  picture.classList.toggle('--hidden');
-  document.getElementById('if__biography__about').style.fontWeight = hidden ? '' : 'bold';
-});
 
 function togglePortfolioDetail(i) {
   projects = portfolio.getElementsByClassName('portfolio__project');
@@ -35,9 +13,9 @@ function togglePortfolioDetail(i) {
     const detail = projects[j].querySelector('.detail');
     if (j !== i) {
       // Close all other project details
-      detail.classList.add('--hidden');
+      detail.classList.add('--null');
     }
-    else if (detail.classList.toggle('--hidden')) {
+    else if (detail.classList.toggle('--null')) {
       // Close slected project if already open
       console.log('Closing ' + j);
     }
@@ -134,3 +112,20 @@ function populateExperience() {
 
     });
 };
+
+document.getElementById('if__biography__about').addEventListener('click', function() {
+  const hiddenText = document.querySelector('.biography__about');
+  const hiddenPicture = document.querySelector('.biography__picture');
+
+  if (hiddenText.style.maxHeight) {
+      hiddenText.style.maxHeight = null;
+      hiddenPicture.style.maxHeight = null;
+      hiddenText.classList.remove('biography__about--show');
+      hiddenPicture.classList.remove('biography__picture--show');
+  } else {
+      hiddenText.style.maxHeight = hiddenText.scrollHeight + "px";
+      hiddenPicture.style.maxHeight = hiddenPicture.scrollHeight + "px";
+      hiddenText.classList.add('biography__about--show');
+      hiddenPicture.classList.add('biography__picture--show');
+  }
+});

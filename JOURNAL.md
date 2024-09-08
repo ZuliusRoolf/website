@@ -59,8 +59,10 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Clickable button items](#clickable-button-items)
     - [Hiding "About" in mobile view](#hiding-about-in-mobile-view)
     - [Fade CSS animation](#fade-css-animation)
-  - [September 2](#september-2)
+  - [September 02](#september-02)
     - [Relearning](#relearning)
+  - [September 08](#september-08)
+    - [CSS `display: none` Replacement](#css-display-none-replacement)
 
 ## July 13
 
@@ -658,7 +660,7 @@ I tried to hide the "About" link with media query. I scratched the idea because 
 
 This was an attempt to add fade animation to the about text. It only works when closing, there is some issue with `display: none` as it can't animate from that state. I'll do some more research in this area as a fading and even a "pop" effect from the original would look good.
 
-## September 2
+## September 02
 
 There has been some time since I last worked on the website. Today I will spend time reading the last log entries and research about two features I wish to have.
 
@@ -670,3 +672,13 @@ There has been some time since I last worked on the website. Today I will spend 
 ### Relearning
 
 Reading the Journal I realized that functions can be created within the `DOMContentLoaded` event listener. It would fix the difficulties I had on [August 9th when Exploring CSS](#exploring-css) and [August 10, Clickable button items](#clickable-button-items) from adding event listeners to the portfolio projects in a separate function.
+
+## September 08
+
+- [x] Learn how to scale CSS elements (Replace `display: none`) or how to smoothly hide elements.
+- [ ] Learn how to place CSS elements on top of each other (stacking on the Z axis)
+- [ ] Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.
+
+### CSS `display: none` Replacement
+
+The `About` link in the bio now smoothly introduces the picture and gets smoothly hidden away when clicked again. In mobile view the information is shown automatically and the `About` button is disabled. The project buttons are still instant, but that will be replaced with placing CSS elements on top.

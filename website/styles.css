@@ -54,14 +54,55 @@ body {
 
 /* Information that is not displayed on main page */
 
-.--hidden {
+.--null {
     display: none;
 }
-.fade {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+
+/* Biography About Button */
+#if__biography__about {
+    display: none;
 }
 
-.fade.show {
+.biography__picture {
     opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed */
+    height: 18em;
+}
+
+.biography__about {
+    opacity: 1;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+
+@media (min-width: 768px) {
+    .biography__about {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, max-height 0.5s ease;
+    }
+    
+    .biography__about--show {
+        opacity: 1;
+    }
+    
+    .biography__picture {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, max-height 0.5s ease;
+    }
+    
+    .biography__picture--show {
+        opacity: 1;
+    }
+    
+    #if__biography__about {
+        transition: transform 0.5s ease;
+        display: inline-block;
+    }
 }
