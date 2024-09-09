@@ -113,7 +113,8 @@ function populateExperience() {
     });
 };
 
-document.getElementById('if__biography__about').addEventListener('click', function() {
+document.getElementById('if__biography__about').addEventListener('click', function(event) {
+  event.preventDefault();
   const hiddenText = document.querySelector('.biography__about');
   const hiddenPicture = document.querySelector('.biography__picture');
 
