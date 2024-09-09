@@ -1,10 +1,10 @@
 {
   "portfolio": [
     {
-      "title": "Project 1",
-      "year": "2024",
+      "title": "Left Turn",
+      "year": "2420",
       "month": "January",
-      "video": "URL_to_video",
+      "video": "https://cdn.discordapp.com/attachments/544578984646672389/1260663077796577340/turn_left_here.mp4?ex=66dfe63b&is=66de94bb&hm=8cf1ee0541611f83ff16407a48d4e5e5d4781ad662611ad0f4e446d4332466a4&",
       "companyLogo": "content/icons/github.svg",
       "companyName": "GitHub",
       "collaborators": "Mr. Ranedeer",
@@ -14,23 +14,23 @@
       "sourceLink": "http://github.com"
     },
     {
-      "title": "Project 1",
-      "year": "2024",
+      "title": "Pokemon",
+      "year": "2069",
       "month": "January",
-      "video": "URL_to_video",
+      "video": "https://cdn.discordapp.com/attachments/840359719226310686/1267873986986115153/devilish_schemes.mp4?ex=66e06caa&is=66df1b2a&hm=5a588a55896490ea09939f47a7d6c410a5fac22b9c41a1ad39eccf20defa6f1d&",
       "companyLogo": "content/icons/github.svg",
       "companyName": "GitHub",
-      "collaborators": "Mr. Ranedeer",
+      "collaborators": "",
       "descriptiveTitle": "A project that does something",
       "reason": "This project was created to solve a problem.",
       "sourceName": "GitHub",
       "sourceLink": "http://github.com"
     },
     {
-      "title": "Project 1",
-      "year": "2024",
+      "title": "Carrots",
+      "year": "Skill Issue",
       "month": "January",
-      "video": "URL_to_video",
+      "video": "https://cdn.discordapp.com/attachments/544578984646672389/1263500847392755846/anxiety.mov?ex=66e055dc&is=66df045c&hm=d778ad62a7c6550cd7b65c35269be000211a61577a17ae6e1f2a0a2391a334a6&",
       "companyLogo": "content/icons/github.svg",
       "companyName": "GitHub",
       "collaborators": "Mr. Ranedeer",
