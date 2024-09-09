@@ -50,6 +50,21 @@ This is a quick journal on how I develop this website. It will be used for docum
       - [HTML Portfolio Template](#html-portfolio-template)
   - [August 05](#august-05)
     - [JSON Conversion](#json-conversion)
+  - [August 09](#august-09)
+    - [CSS Layout](#css-layout)
+    - [Styling Tricks](#styling-tricks)
+    - [Exploring CSS](#exploring-css)
+    - [Design considerations](#design-considerations-1)
+  - [August 10](#august-10)
+    - [Clickable button items](#clickable-button-items)
+    - [Hiding "About" in mobile view](#hiding-about-in-mobile-view)
+    - [Fade CSS animation](#fade-css-animation)
+  - [September 02](#september-02)
+    - [Relearning](#relearning)
+  - [September 08](#september-08)
+    - [CSS `display: none` Replacement](#css-display-none-replacement)
+  - [September 9](#september-9)
+    - [Layout Positioning](#layout-positioning)
 
 ## July 13
 
@@ -575,3 +590,105 @@ Started to convert biography JSON into HTML using JavaScript. I feel the about a
 Portfolio conversion was much easier. Mostly because I don't have a bullshit "about" link that points to a later HTML element which are dependent to create more links. I am not that clever. There is probably a much smarter way of doing it, but it works, and I am not going to complain. The next on the agenda is to style everything with CSS.
 
 On a similar note, there is not much JavaScript to be written as well, only when the "about" is clicked and animations I guess.
+
+## August 09
+
+- [x] Create CSS frames of elements
+- [x] Write UI layout
+- [x] Code logic for toggling “about” ~~and “project button”~~
+
+### CSS Layout
+
+The goal today is to make a CSS layout so that the portfolio, biography and experience is in their own respected columns. The hidden elements, such as project details and the "about" information shall be hidden until it is selected. The layout should support mobile view using media query.
+
+The idea for displaying projects is that you have an "on hover" effect where only the video and contribution is displayed. If the user clicks on the project then it will stick (visually replace the biography column) and display additional text about the project. On mobile, you will simply click the project button as there is no hover effect. There should be an "x" button on the top right for both pc and mobile when a project is selected.
+
+### Styling Tricks
+
+YouTube's recommendations came in clutch with videos from [Coding2GO](https://www.youtube.com/@coding2go). Mainly [`CSS PRO Tips & Tricks`](https://youtu.be/PL3Odw-k8W4) and [`Learn CSS Flexbox in 20 Minutes`](https://youtu.be/wsTv9y931o8) will be used for today's agenda. There is a couple of points in the first video that may be useful.
+
+- [`Levitating effect`](https://youtu.be/PL3Odw-k8W4?t=19) (button shadows)
+- [`Checkboxes instead of event listeners`](https://youtu.be/PL3Odw-k8W4?t=70) (for toggleable buttons)
+- [`Use min() and max() to define size`](https://youtu.be/PL3Odw-k8W4?t=110) (or [`clamp()`](https://youtu.be/PL3Odw-k8W4?t=160))
+- [`Make material look like glass`](https://youtu.be/PL3Odw-k8W4?t=170)
+- [`Dark mode option`](https://youtu.be/PL3Odw-k8W4?t=284)
+- [`Gradient Text`](https://youtu.be/PL3Odw-k8W4?t=309)
+
+### Exploring CSS
+
+Figured out how to use flex-boxes to emulate [Seyit Yilmaz's website](https://www.seyityilmaz.com/). In the beginning I tried to use padding to make sure the projects were properly pushed away from the left edge and pushed the biography away to the right. This was not necessary as just using a 40% width on the column and a flex attribute on the column's children meant it achieved better flexibility.
+
+I got to utilize the entire height of the viewport, apparently you need to give `<body>` a `height: 100vh` in CSS. Now the columns display its children in the middle of the page.
+
+I got to use media query to define a PC view. I thought about separating them into two queries, but that seems unnecessary.
+
+Learned a little on how to use JavaScript to toggle hidden elements. It is not difficult if the element is pre-defined, but I got stuck on making the `project__button`s to function. I think it applies event listeners to the template project and not on the JSON loaded projects. I tried to fix this, but clearly I have worked too long and got nowhere, hence the strike-through on [today's agenda](#august-09).
+
+Lastly, I got the opportunity to learn a little about the different measurements CSS uses and changed the about loading function to include line breaks.
+
+### Design considerations
+
+Displaying a profile picture is difficult as the original website from [Seyit Yilmaz](https://www.seyityilmaz.com/) is supposed to be minimalistic. It is only first clicking on "about" the user gets redirected to a proper CV with picture and experience. I agree on the minimalist design to only show the necessary information. My face doesn't matter that much, the point is the portfolio. However, I do wish to provide my profile picture if the user asks about it. Clicking "about" would be considered such an event, so perhaps I will only display my picture alongside the about me text. On a mobile viewport both picture and about text will be displayed either way.
+
+Another idea could be to make my picture grayscale and only when clicking "about" will make the picture return to true colors. Alternatively, just put the picture together with the about text, I do feel this will look bad and unlogical.
+
+## August 10
+
+- [x] Project button clickable/~~hoverable~~
+- [ ] ~~“About” be hidden in mobile view~~
+- [ ] Profile picture has a picture
+- [x] Display pf pic when “about” is selected
+- [ ] Add fade transition if possible (CSS)
+
+### Clickable button items
+
+I made it, it wasn't too hard after some fresh debugging. The document in the JavaScript doesn't update apparently, so document is a snapshot of what I can work with, not edit it as we go. There are functions that let you edit the document continuously, but the fix for this is to add the event listener inside the `populatePortfolio` function.
+
+I will experiment if there is a better way of editing, perhaps global variables is the way to go.  
+Update on the experiment, global variable was a bit tricky to implement considering you want them inside the `DOMContentLoaded` event listener, which by definition can't make them global. Then, when I have the global variable and move the `addEventListenerToPortfolio();` from the `populatePortfolio` function to the `DOMContentLoaded` event listener, it doesn't work. Some more research is definitely needed.
+
+There needs to be 4 event listeners, three on each button and one outside the buttons.
+
+- If a button is selected, it will remove the previous selection and apply the new selection.
+- If user selects the same button, it should be toggled to be unselected.
+- If the user hovers their mouse over a button, it will hide the selected information and display the hovered element instead.
+- If the hover is enabled and mouse leaves the area, then the video will be hidden, and the previous selected state will be displayed.
+
+### Hiding "About" in mobile view
+
+I tried to hide the "About" link with media query. I scratched the idea because I need to use some JavaScript to detect so that it automatically hides the information if the viewport gets changed. Discussing this matter with a colleague also made me realize that it is a very small issue that complicates things a ton to implement. Just keep the about link in mobile view too.
+
+### Fade CSS animation
+
+This was an attempt to add fade animation to the about text. It only works when closing, there is some issue with `display: none` as it can't animate from that state. I'll do some more research in this area as a fading and even a "pop" effect from the original would look good.
+
+## September 02
+
+There has been some time since I last worked on the website. Today I will spend time reading the last log entries and research about two features I wish to have.
+
+- [X] Read journal to recap.
+- [ ] Learn how to scale CSS elements (Replace `display: none`) or how to smoothly hide elements.
+- [ ] Learn how to place CSS elements on top of each other (stacking on the Z axis)
+- [ ] ~~Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.~~
+
+### Relearning
+
+Reading the Journal I realized that functions can be created within the `DOMContentLoaded` event listener. It would fix the difficulties I had on [August 9th when Exploring CSS](#exploring-css) and [August 10, Clickable button items](#clickable-button-items) from adding event listeners to the portfolio projects in a separate function.
+
+## September 08
+
+- [x] Learn how to scale CSS elements (Replace `display: none`) or how to smoothly hide elements.
+- [ ] Learn how to place CSS elements on top of each other (stacking on the Z axis)
+- [ ] ~~Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.~~
+
+### CSS `display: none` Replacement
+
+The `About` link in the bio now smoothly introduces the picture and gets smoothly hidden away when clicked again. In mobile view the information is shown automatically and the `About` button is disabled. The project buttons are still instant, but that will be replaced with placing CSS elements on top.
+
+## September 9
+
+### Layout Positioning
+
+I went a little bit on a tangent today. I was supposed to research the Z axis from yesterday, but the layout was a bit broken from the change of CSS animation. When clicking "About" and scrolled down, the biography info started to be scrollable again, even though it is supposed to be sticky. Confused over this revelation I dig into the sourcecode of [Seyit Yilmaz](https://www.seyityilmaz.com/) and found their solution. I think the solution was to remove the 100% height from main class (as that would limit children to refer 100% height to be 100vh), which is not good as one of the child elements will be longer than viewport. Then define the right column to have `height: 100vh` which applied the `position: sticky` correctly for my use case. I also tried to use chatGPT for solutions, but they only came up with making the left column scrollable, which I don't want as the entire viewport should be scrollable.
+
+The CSS is now good for the animation and content within the columns. There were many minor positional bugs, which are infuriating as they are difficult to debug. The `styles.css` is a bit messy, will need to refactor it at some point. Next will be stacking elements on top, thenb design the project view with video playback.

@@ -1,9 +1,37 @@
 // Run code after the DOM has loaded
+let portfolio;
 document.addEventListener('DOMContentLoaded', () => {
+  portfolio = document.getElementsByClassName('portfolio')[0];
   populateBiography();
   populatePortfolio();
   populateExperience();
 });
+
+function togglePortfolioDetail(i) {
+  projects = portfolio.getElementsByClassName('portfolio__project');
+  for (let j = 0; j < projects.length; j++) {
+    const detail = projects[j].querySelector('.detail');
+    if (j !== i) {
+      // Close all other project details
+      detail.classList.add('--null');
+    }
+    else if (detail.classList.toggle('--null')) {
+      // Close slected project if already open
+      console.log('Closing ' + j);
+    }
+    else {
+      // Open selected project
+      console.log('Opening ' + j);
+    }
+  }
+}
+
+function addEventListenerToPortfolio() {
+  const projects = portfolio.getElementsByClassName('portfolio__project');
+  for (let i = 0; i < projects.length; i++) {
+    projects[i].addEventListener('click', () => togglePortfolioDetail(i));
+  }
+}
 
 function populateBiography() {
   fetch('content/biography.json')
@@ -39,7 +67,7 @@ function populateBiography() {
 
       //About
       if (biography.about !== '') {
-        template.querySelector('.biography__about').textContent = biography.about;
+        template.querySelector('.biography__about').innerHTML = biography.about.replace(/\n/g, '<br>');
       }
       else {
         template.querySelector('#if__biography__about').remove();
@@ -52,7 +80,6 @@ function populatePortfolio() {
   fetch('content/portfolio.json')
     .then(response => response.json())
     .then(data => {
-      const parent = document.getElementsByClassName('portfolio')[0];
       const projectTemplate = document.getElementById('portfolio__project__template');
 
       //Portfolio Projects
@@ -71,9 +98,10 @@ function populatePortfolio() {
         template.querySelector('.detail__description__text').textContent = project.reason;
         template.querySelector('.detail__redirect').href = project.sourceLink;
         template.querySelector('.detail__source').textContent = project.sourceName;
-        parent.appendChild(template);
+        portfolio.appendChild(template);
       });
       projectTemplate.remove();
+      addEventListenerToPortfolio();
     });
 };
 
@@ -81,6 +109,24 @@ function populateExperience() {
   fetch('content/experience.json')
     .then(response => response.json())
     .then(data => {
-      console.log('Experience coming soon! :)');
+
     });
 };
+
+document.getElementById('if__biography__about').addEventListener('click', function(event) {
+  event.preventDefault();
+  const hiddenText = document.querySelector('.biography__about');
+  const hiddenPicture = document.querySelector('.biography__picture');
+
+  if (hiddenText.style.maxHeight) {
+      hiddenText.style.maxHeight = null;
+      hiddenPicture.style.maxHeight = null;
+      hiddenText.classList.remove('biography__about--show');
+      hiddenPicture.classList.remove('biography__picture--show');
+  } else {
+      hiddenText.style.maxHeight = hiddenText.scrollHeight + "px";
+      hiddenPicture.style.maxHeight = hiddenPicture.scrollHeight + "px";
+      hiddenText.classList.add('biography__about--show');
+      hiddenPicture.classList.add('biography__picture--show');
+  }
+});

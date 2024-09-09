@@ -1,80 +1,137 @@
-.portfolio-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    max-width: 300px;
-}
-
-.portfolio-item h2 {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
+    height: 100vh;
 }
 
-.portfolio-item p {
-    margin: 5px 0;
+* {
+    box-sizing: border-box;
 }
 
-.portfolio-item ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.icon {
-    width: 100%;
-    height: 100%;
-    align-self: center;
-    object-fit: contain;
-}
-
-.container {
+.main {
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.main__column {
+    display: flex;
+    height: 100%;
+    border: 2px solid #ccc;
 }
 
 #portfolio {
-    order: 1;
-}
-
-
-#biography {
-    order: 2;
-}
-
-#timeline {
-    order: 3;
-}
-
-#biography .profile-links {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-#biography .profile-links a {
-    background-color: #007bff;
-    /* Background color of the button */
-    fill: #ffffff;
-    /* Color of the SVG icon */
-    border: none;
-    border-radius: 50%;
-    /* Makes the button circular */
-    width: 60px;
-    /* Adjust size as needed */
-    height: 60px;
-    /* Adjust size as needed */
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 10px;
-    /* Adds space around the SVG */
-    cursor: pointer;
 }
 
-#biography .profile-links a:hover {
-    background: #149ddd;
-    color: #fff;
-    text-decoration: none;
+.portfolio {
+    width: 100%; 
 }
 
-#biography .profile-information {
-    max-width: 300px;
+/* PC Viewport */
+@media (min-width: 768px) {
+    .main {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    #portfolio {
+        order: 0;
+        min-width: 40%;
+        justify-content: center;
+    }
+
+    .portfolio {
+        align-self: center;
+        margin-top: 25vh;
+        margin-bottom: 25vh;
+        width: auto;
+    }
+
+    #biography {
+        order: 1;
+        position: sticky;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        height: 100vh;
+        width: 18em;
+        min-width: 40%;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #experience {
+        order: 2;
+    }
+}
+
+.project__button {
+    border: 2px solid #000;
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1em;
+}
+
+
+/* Information that is not displayed on main page */
+
+.--null {
+    display: none;
+}
+
+/* Biography About Button */
+#if__biography__about {
+    display: none;
+}
+
+.biography__picture {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed */
+    height: 18em;
+}
+
+.biography__about {
+    opacity: 1;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+
+@media (min-width: 768px) {
+    .biography__about {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, max-height 0.5s ease;
+    }
+    
+    .biography__about--show {
+        opacity: 1;
+    }
+    
+    .biography__picture {
+        align-items: flex-start;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, max-height 0.5s ease;
+    }
+    
+    .biography__picture--show {
+        opacity: 1;
+    }
+    
+    #if__biography__about {
+        transition: transform 0.5s ease;
+        display: inline-block;
+    }
 }
