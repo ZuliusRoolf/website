@@ -63,6 +63,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Relearning](#relearning)
   - [September 08](#september-08)
     - [CSS `display: none` Replacement](#css-display-none-replacement)
+  - [September 9](#september-9)
+    - [Layout Positioning](#layout-positioning)
 
 ## July 13
 
@@ -667,7 +669,7 @@ There has been some time since I last worked on the website. Today I will spend 
 - [X] Read journal to recap.
 - [ ] Learn how to scale CSS elements (Replace `display: none`) or how to smoothly hide elements.
 - [ ] Learn how to place CSS elements on top of each other (stacking on the Z axis)
-- [ ] Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.
+- [ ] ~~Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.~~
 
 ### Relearning
 
@@ -677,8 +679,16 @@ Reading the Journal I realized that functions can be created within the `DOMCont
 
 - [x] Learn how to scale CSS elements (Replace `display: none`) or how to smoothly hide elements.
 - [ ] Learn how to place CSS elements on top of each other (stacking on the Z axis)
-- [ ] Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.
+- [ ] ~~Research if you can run the JavaScript functions before deployment, using GitHub Actions or otherwise.~~
 
 ### CSS `display: none` Replacement
 
 The `About` link in the bio now smoothly introduces the picture and gets smoothly hidden away when clicked again. In mobile view the information is shown automatically and the `About` button is disabled. The project buttons are still instant, but that will be replaced with placing CSS elements on top.
+
+## September 9
+
+### Layout Positioning
+
+I went a little bit on a tangent today. I was supposed to research the Z axis from yesterday, but the layout was a bit broken from the change of CSS animation. When clicking "About" and scrolled down, the biography info started to be scrollable again, even though it is supposed to be sticky. Confused over this revelation I dig into the sourcecode of [Seyit Yilmaz](https://www.seyityilmaz.com/) and found their solution. I think the solution was to remove the 100% height from main class (as that would limit children to refer 100% height to be 100vh), which is not good as one of the child elements will be longer than viewport. Then define the right column to have `height: 100vh` which applied the `position: sticky` correctly for my use case. I also tried to use chatGPT for solutions, but they only came up with making the left column scrollable, which I don't want as the entire viewport should be scrollable.
+
+The CSS is now good for the animation and content within the columns. There were many minor positional bugs, which are infuriating as they are difficult to debug. The `styles.css` is a bit messy, will need to refactor it at some point. Next will be stacking elements on top, thenb design the project view with video playback.
