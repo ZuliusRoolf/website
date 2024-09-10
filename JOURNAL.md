@@ -65,6 +65,8 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [CSS `display: none` Replacement](#css-display-none-replacement)
   - [September 9](#september-9)
     - [Layout Positioning](#layout-positioning)
+  - [September 10](#september-10)
+    - [Portfolio Column Width Issue](#portfolio-column-width-issue)
 
 ## July 13
 
@@ -692,3 +694,11 @@ The `About` link in the bio now smoothly introduces the picture and gets smoothl
 I went a little bit on a tangent today. I was supposed to research the Z axis from yesterday, but the layout was a bit broken from the change of CSS animation. When clicking "About" and scrolled down, the biography info started to be scrollable again, even though it is supposed to be sticky. Confused over this revelation I dig into the sourcecode of [Seyit Yilmaz](https://www.seyityilmaz.com/) and found their solution. I think the solution was to remove the 100% height from main class (as that would limit children to refer 100% height to be 100vh), which is not good as one of the child elements will be longer than viewport. Then define the right column to have `height: 100vh` which applied the `position: sticky` correctly for my use case. I also tried to use chatGPT for solutions, but they only came up with making the left column scrollable, which I don't want as the entire viewport should be scrollable.
 
 The CSS is now good for the animation and content within the columns. There were many minor positional bugs, which are infuriating as they are difficult to debug. The `styles.css` is a bit messy, will need to refactor it at some point. Next will be stacking elements on top, thenb design the project view with video playback.
+
+## September 10
+
+### Portfolio Column Width Issue
+
+Made good progress on stacking project information. Right now however the project details are in an absolute position, but I think it would benefit if it "replaced" the biography column instead. It would save me the hassle of adding javascript to fix a minor issue. The issue is when a title of a project is too long and becomes "larger" than 40% of viewport width, it will prevent the portfolio column to schrink any further. Right now it is changed to `width: 40%` instead of the prior `min-width: 40%`. This enables the column to shrink further and stacking is better aligned.
+
+I really don't like two text lines in a button. My solution for the long title was to have a descriptive title within the project description. So if possible, I would like to revert it back to single line again.
