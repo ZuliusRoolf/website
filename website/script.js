@@ -13,9 +13,10 @@ function togglePortfolioDetail(i) {
     const detail = projects[j].querySelector('.detail');
     if (j !== i) {
       // Close all other project details
-      detail.classList.add('--null');
+      detail.classList.remove('project__detail--show');
+      continue;
     }
-    else if (detail.classList.toggle('--null')) {
+    if (detail.classList.toggle('project__detail--show') === false) {
       // Close slected project if already open
       console.log('Closing ' + j);
     }
