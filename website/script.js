@@ -11,18 +11,24 @@ function togglePortfolioDetail(i) {
   projects = portfolio.getElementsByClassName('portfolio__project');
   for (let j = 0; j < projects.length; j++) {
     const detail = projects[j].querySelector('.detail');
+    const video = detail.querySelector('.detail__video').querySelector('video');
     if (j !== i) {
       // Close all other project details
       detail.classList.remove('project__detail--show');
+      video.pause();
+      video.currentTime = 0;
       continue;
     }
     if (detail.classList.toggle('project__detail--show') === false) {
       // Close slected project if already open
       console.log('Closing ' + j);
+      video.pause();
+      video.currentTime = 0;
     }
     else {
       // Open selected project
       console.log('Opening ' + j);
+      video.play();
     }
   }
 }
