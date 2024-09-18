@@ -7,36 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   populateExperience();
 });
 
-function togglePortfolioDetail(i) {
-  projects = portfolio.getElementsByClassName('portfolio__project');
-  for (let j = 0; j < projects.length; j++) {
-    const detail = projects[j].querySelector('.detail');
-    const video = detail.querySelector('.detail__video').querySelector('video');
-    if (j !== i) {
-      // Close all other project details
-      detail.classList.remove('project__detail--show');
-      video.pause();
-      video.currentTime = 0;
-      continue;
-    }
-    if (detail.classList.toggle('project__detail--show') === false) {
-      // Close slected project if already open
-      console.log('Closing ' + j);
-      video.pause();
-      video.currentTime = 0;
-    }
-    else {
-      // Open selected project
-      console.log('Opening ' + j);
-      video.play();
-    }
-  }
-}
-
 function addEventListenerToPortfolio() {
   const projects = portfolio.getElementsByClassName('portfolio__project');
   for (let i = 0; i < projects.length; i++) {
-    projects[i].addEventListener('click', () => togglePortfolioDetail(i));
+    const button = projects[i].querySelector('.project__button');
+    button.addEventListener('mouseover', () => hoverProject(i, true));
+    button.addEventListener('mouseout', () => hoverProject(i, false));
+    button.addEventListener('click', () => selectProject(i));
   }
 }
 
@@ -130,7 +107,7 @@ function getWidestIntroductionElement() {
   return nameWidth > professionWidth + workplaceWidth ? nameWidth : professionWidth + workplaceWidth;
 }
 
-document.getElementById('if__biography__about').addEventListener('click', function(event) {
+document.getElementById('if__biography__about').addEventListener('click', function (event) {
   event.preventDefault();
   const hiddenText = document.querySelector('.biography__about');
   const hiddenPicture = document.querySelector('.biography__picture');
@@ -140,14 +117,107 @@ document.getElementById('if__biography__about').addEventListener('click', functi
   imgElement.style.width = imgHeight;
 
   if (hiddenText.style.maxHeight) {
-      hiddenText.style.maxHeight = null;
-      hiddenPicture.style.maxHeight = null;
-      hiddenText.classList.remove('biography__about--show');
-      hiddenPicture.classList.remove('biography__picture--show');
+    hiddenText.style.maxHeight = null;
+    hiddenPicture.style.maxHeight = null;
+    hiddenText.classList.remove('biography__about--show');
+    hiddenPicture.classList.remove('biography__picture--show');
   } else {
-      hiddenText.style.maxHeight = hiddenText.scrollHeight + "px";
-      hiddenPicture.style.maxHeight = hiddenPicture.scrollHeight + "px";
-      hiddenText.classList.add('biography__about--show');
-      hiddenPicture.classList.add('biography__picture--show');
+    hiddenText.style.maxHeight = hiddenText.scrollHeight + "px";
+    hiddenPicture.style.maxHeight = hiddenPicture.scrollHeight + "px";
+    hiddenText.classList.add('biography__about--show');
+    hiddenPicture.classList.add('biography__picture--show');
   }
 });
+
+
+function hideBiography(hide = true) {
+  biography = document.getElementsByClassName('biography')[0];
+  if (hide) biography.classList.remove('biography--show');
+  else biography.classList.add('biography--show');
+}
+
+function selectProject(i) {
+  const projects = portfolio.getElementsByClassName('portfolio__project');
+  for (let j = 0; j < projects.length; j++) {
+    const detail = projects[j].querySelector('.detail');
+    const detailVideo = detail.querySelector('.detail__video');
+    const video = detailVideo.querySelector('video');
+    const detailContribution = detail.querySelector('.detail__contribution');
+    const detailDescription = detail.querySelector('.detail__description');
+    const detailRedirect = detail.querySelector('.detail__redirect');
+    if (j !== i) {
+      // Close all other project details
+      detail.classList.remove('project__detail--selected');
+      detailVideo.classList.remove('detail__video--show');
+      detailContribution.classList.remove('detail__contribution--show');
+      detailDescription.classList.remove('detail__description--show');
+      detailRedirect.classList.remove('detail__redirect--show');
+      video.pause();
+      video.currentTime = 0;
+      continue;
+    }
+    if (detail.classList.toggle('project__detail--selected') === false) {
+      // Close slected project if already open
+      console.log('Deselecting ' + j);
+      detailVideo.classList.remove('detail__video--show');
+      detailContribution.classList.remove('detail__contribution--show');
+      detailDescription.classList.remove('detail__description--show');
+      detailRedirect.classList.remove('detail__redirect--show');
+      hideBiography(false)
+      video.pause();
+      video.currentTime = 0;
+    }
+    else {
+      // Open selected project
+      console.log('Selected ' + j);
+      detailVideo.classList.add('detail__video--show');
+      detailContribution.classList.add('detail__contribution--show');
+      detailDescription.classList.add('detail__description--show');
+      detailRedirect.classList.add('detail__redirect--show');
+      hideBiography(true)
+      video.play();
+    }
+  }
+}
+
+function hoverProject(i, hover) {
+  const projects = portfolio.getElementsByClassName('portfolio__project');
+  let hideBio = false;
+  for (let j = 0; j < projects.length; j++) {
+    const detail = projects[j].querySelector('.detail');
+    const detailVideo = detail.querySelector('.detail__video');
+    const video = detailVideo.querySelector('video');
+    const detailContribution = detail.querySelector('.detail__contribution');
+
+    if (hover) {
+      if (j !== i) {
+        // Close all other project details
+        detail.classList.remove('project__detail--show');
+        video.pause();
+        video.currentTime = 0;
+        continue;
+      }
+      else {
+        hideBiography(true);
+        detail.classList.add('project__detail--show');
+        detailVideo.classList.add('detail__video--show');
+        detailContribution.classList.add('detail__contribution--show');
+        video.play();
+      }
+    }
+    if (hover === false) {
+      detail.classList.add('project__detail--show');
+      if (Array.from(detail.classList).includes('project__detail--selected')) {
+        video.play();
+        hideBio = true;
+        continue;
+      }
+      video.pause();
+      if (Array.from(detail.classList).includes('project__detail--show') === false) video.currentTime = 0;
+
+      detailVideo.classList.remove('detail__video--show');
+      detailContribution.classList.remove('detail__contribution--show');
+      hideBiography(hideBio);
+    }
+  }
+}

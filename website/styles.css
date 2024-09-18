@@ -170,3 +170,50 @@ body {
         width: 40%;
     }
 }
+
+
+.biography {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.biography--show {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.detail__video {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.detail__video--show {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.detail__contribution {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.detail__contribution--show {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.detail__description {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.detail__description--show {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.detail__redirect {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.detail__redirect--show {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
