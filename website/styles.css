@@ -182,38 +182,22 @@ body {
     transition: opacity 0.2s ease;
 }
 
-.detail__video {
+.project__preview {
     opacity: 0;
     transition: opacity 0.2s ease;
 }
-.detail__video--show {
+
+.project__preview--show {
     opacity: 1;
     transition: opacity 0.2s ease;
 }
 
-.detail__contribution {
+.project__selected {
     opacity: 0;
-    transition: opacity 0.2s ease;
-}
-.detail__contribution--show {
-    opacity: 1;
     transition: opacity 0.2s ease;
 }
 
-.detail__description {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-.detail__description--show {
-    opacity: 1;
-    transition: opacity 0.2s ease;
-}
-
-.detail__redirect {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-.detail__redirect--show {
+.project__selected--show {
     opacity: 1;
     transition: opacity 0.2s ease;
 }

@@ -11,8 +11,8 @@ function addEventListenerToPortfolio() {
   const projects = portfolio.getElementsByClassName('portfolio__project');
   for (let i = 0; i < projects.length; i++) {
     const button = projects[i].querySelector('.project__button');
-    button.addEventListener('mouseover', () => hoverProject(i, true));
-    button.addEventListener('mouseout', () => hoverProject(i, false));
+    button.addEventListener('mouseover', (event) => hoverProject(event, i, true));
+    button.addEventListener('mouseout', (event) => hoverProject(event, i, false));
     button.addEventListener('click', () => selectProject(i));
   }
 }
@@ -140,18 +140,14 @@ function selectProject(i) {
   const projects = portfolio.getElementsByClassName('portfolio__project');
   for (let j = 0; j < projects.length; j++) {
     const detail = projects[j].querySelector('.detail');
-    const detailVideo = detail.querySelector('.detail__video');
-    const video = detailVideo.querySelector('video');
-    const detailContribution = detail.querySelector('.detail__contribution');
-    const detailDescription = detail.querySelector('.detail__description');
-    const detailRedirect = detail.querySelector('.detail__redirect');
+    const preview = detail.querySelector('.project__preview');
+    const video = preview.querySelector('.detail__video').querySelector('video');
+    const selected = detail.querySelector('.project__selected');
     if (j !== i) {
       // Close all other project details
       detail.classList.remove('project__detail--selected');
-      detailVideo.classList.remove('detail__video--show');
-      detailContribution.classList.remove('detail__contribution--show');
-      detailDescription.classList.remove('detail__description--show');
-      detailRedirect.classList.remove('detail__redirect--show');
+      preview.classList.remove('project__preview--show');
+      selected.classList.remove('project__selected--show');
       video.pause();
       video.currentTime = 0;
       continue;
@@ -159,10 +155,8 @@ function selectProject(i) {
     if (detail.classList.toggle('project__detail--selected') === false) {
       // Close slected project if already open
       console.log('Deselecting ' + j);
-      detailVideo.classList.remove('detail__video--show');
-      detailContribution.classList.remove('detail__contribution--show');
-      detailDescription.classList.remove('detail__description--show');
-      detailRedirect.classList.remove('detail__redirect--show');
+      preview.classList.remove('project__preview--show');
+      selected.classList.remove('project__selected--show');
       hideBiography(false)
       video.pause();
       video.currentTime = 0;
@@ -170,24 +164,22 @@ function selectProject(i) {
     else {
       // Open selected project
       console.log('Selected ' + j);
-      detailVideo.classList.add('detail__video--show');
-      detailContribution.classList.add('detail__contribution--show');
-      detailDescription.classList.add('detail__description--show');
-      detailRedirect.classList.add('detail__redirect--show');
+      preview.classList.add('project__preview--show');
+      selected.classList.add('project__selected--show');
       hideBiography(true)
       video.play();
     }
   }
 }
 
-function hoverProject(i, hover) {
+function hoverProject(event, i, hover) {
+  event.stopPropagation();
   const projects = portfolio.getElementsByClassName('portfolio__project');
   let hideBio = false;
   for (let j = 0; j < projects.length; j++) {
     const detail = projects[j].querySelector('.detail');
-    const detailVideo = detail.querySelector('.detail__video');
-    const video = detailVideo.querySelector('video');
-    const detailContribution = detail.querySelector('.detail__contribution');
+    const preview = detail.querySelector('.project__preview');
+    const video = preview.querySelector('.detail__video').querySelector('video');
 
     if (hover) {
       if (j !== i) {
@@ -200,8 +192,7 @@ function hoverProject(i, hover) {
       else {
         hideBiography(true);
         detail.classList.add('project__detail--show');
-        detailVideo.classList.add('detail__video--show');
-        detailContribution.classList.add('detail__contribution--show');
+        preview.classList.add('project__preview--show');
         video.play();
       }
     }
@@ -215,8 +206,7 @@ function hoverProject(i, hover) {
       video.pause();
       if (Array.from(detail.classList).includes('project__detail--show') === false) video.currentTime = 0;
 
-      detailVideo.classList.remove('detail__video--show');
-      detailContribution.classList.remove('detail__contribution--show');
+      preview.classList.remove('project__preview--show');
       hideBiography(hideBio);
     }
   }
