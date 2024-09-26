@@ -1,3 +1,4 @@
+/* GLOBAL */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,16 +9,16 @@ body {
     box-sizing: border-box;
 }
 
+/* COLUMN LAYOUT MOBILE */
+
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 
 .main__column {
     display: flex;
     height: 100%;
-    border: 2px solid #ccc;
 }
 
 #portfolio {
@@ -29,7 +30,7 @@ body {
     width: 100%; 
 }
 
-/* PC Viewport */
+/* COLUMN LAYOUT PC */
 @media (min-width: 768px) {
     .main {
         flex-direction: row;
@@ -69,13 +70,7 @@ body {
     }
 }
 
-/* Information that is not displayed on main page */
-
-.--null {
-    display: none;
-}
-
-/* Biography About Button */
+/* BIOGRAPHY MOBILE */
 #if__biography__about {
     display: none;
 }
@@ -94,7 +89,7 @@ body {
     margin-top: 10px; /* Adjust as needed */
 }
 
-
+/* BIOGRAPHY PC */
 @media (min-width: 768px) {
     .biography__about {
         opacity: 0;
@@ -125,7 +120,7 @@ body {
     }
 }
 
-/* Project Display */
+/* PROJECT MOBILE */
 
 .project__button {
     border: 2px solid #000;
@@ -164,6 +159,8 @@ body {
     overflow: hidden;
 }
 
+/* PROJECT PC */
+
 @media (min-width: 768px) {
     .project__detail {
         margin-left: 40vw;
@@ -172,32 +169,23 @@ body {
 }
 
 
+.biography, .project__preview, .project__selected {
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.2s ease, height 0.2s ease;
+}
+
 .biography {
-    opacity: 0;
-    transition: opacity 0.2s ease;
+    height: auto;
 }
 
-.biography--show {
+.biography--show, .project__preview--show, .project__selected--show {
     opacity: 1;
-    transition: opacity 0.2s ease;
+    height: auto;
+    transition: opacity 0.2s ease, height 0.2s ease;
 }
 
-.project__preview {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.project__preview--show {
-    opacity: 1;
-    transition: opacity 0.2s ease;
-}
-
-.project__selected {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.project__selected--show {
-    opacity: 1;
-    transition: opacity 0.2s ease;
+/* TEMPORARY, REMOVE BEFORE PRODUCTION */
+.main__column {
+    border: 2px solid #ccc;
 }

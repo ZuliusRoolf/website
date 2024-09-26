@@ -1,101 +1,110 @@
+
+import { projectsAddEventListeners } from './scripts/handle_projects.js';
+import { populateBiography, populatePortfolio, populateExperience } from './scripts/load_content.js';
+
 // Run code after the DOM has loaded
 let portfolio;
 document.addEventListener('DOMContentLoaded', () => {
   portfolio = document.getElementsByClassName('portfolio')[0];
-  populateBiography();
-  populatePortfolio();
-  populateExperience();
+  populateBiography(document);
+  populatePortfolio(document);
+  // populateExperience(document);
+  projectsAddEventListeners(document);
 });
 
 function addEventListenerToPortfolio() {
   const projects = portfolio.getElementsByClassName('portfolio__project');
-  for (let i = 0; i < projects.length; i++) {
-    const button = projects[i].querySelector('.project__button');
-    button.addEventListener('mouseover', (event) => hoverProject(event, i, true));
-    button.addEventListener('mouseout', (event) => hoverProject(event, i, false));
-    button.addEventListener('click', () => selectProject(i));
+  
+
+
+  var buttonContainer = document.getElementById('portfolio__container');
+  var preview = document.getElementById('portfolio__project__container');
+  var selectedButton = null;
+
+  // Event Delegation: Attach events to the parent container
+  buttonContainer.addEventListener('mouseover', function (event) {
+    if (event.target.classList.contains('project__button')) {
+      var button = event.target;
+      if (selectedButton && selectedButton !== button) {
+        // Temporarily show hovered content
+        preview.style.display = 'block';
+        preview.innerHTML = getButtonContent(button);
+      } else {
+        // Show the hovered content
+        preview.style.display = 'block';
+        preview.textContent = getButtonContent(button) + (selectedButton === button ? ' (Selected)' : '');
+        preview.innerHTML = getButtonContent(button);
+      }
+    }
+  });
+
+  buttonContainer.addEventListener('mouseout', function (event) {
+    if (event.target.classList.contains('project__button')) {
+      if (selectedButton) {
+        // Restore the selected content
+        preview.style.display = 'block';
+        preview.textContent = getButtonContent(selectedButton) + ' (Selected)';
+        preview.innerHTML = getButtonContent(button);
+      } else {
+        // Hide the preview area
+        preview.style.display = 'none';
+      }
+    }
+  });
+
+  buttonContainer.addEventListener('click', function (event) {
+    if (event.target.classList.contains('project__button')) {
+      var button = event.target;
+      if (selectedButton === button) {
+        // Deselect the button
+        button.classList.remove('selected');
+        selectedButton = null;
+        preview.style.display = 'none';
+      } else {
+        // Deselect any previously selected button
+        if (selectedButton) {
+          selectedButton.classList.remove('selected');
+        }
+        // Select the new button
+        button.classList.add('selected');
+        selectedButton = button;
+        // Display the selected content with additional text
+        preview.style.display = 'block';
+        preview.textContent = getButtonContent(button) + ' (Selected)';
+        preview.innerHTML = getButtonContent(button);
+      }
+    }
+  });
+
+  // Function to get the content of a button
+  function getButtonContent(button) {
+    // You can customize this function based on how the content is updated
+    // For example, if the content is inside the button's text
+
+    // get parent of button
+    var parent = button.parentNode;
+    var result = parent.querySelector('.project__detail').cloneNode(true);
+    console.log(result);
+    
+    return result;
+
   }
+
+
+  // Example function to dynamically add a button
+  function addButton(name) {
+    var newButton = document.createElement('div');
+    newButton.classList.add('button');
+    newButton.textContent = name;
+    buttonContainer.appendChild(newButton);
+    // No need to add event listeners individually due to event delegation
+  }
+
+  // Example usage: Dynamically add a button after 2 seconds
+  setTimeout(function () {
+    addButton('Button 4 (Added Later)');
+  }, 2000);
 }
-
-function populateBiography() {
-  fetch('content/biography.json')
-    .then(response => response.json())
-    .then(data => {
-      const biography = data;
-      const template = document.getElementById('biography__template');
-      document.title = biography.name;
-
-      //Picture, Name, Profession
-      template.querySelector('.biography__picture img').src = biography.portrait;
-      template.querySelector('.introduction__name').textContent = biography.name;
-      template.querySelector('.introduction__profession').textContent = biography.profession.toLowerCase();
-
-      //Workplace
-      if (biography.workplace !== '') {
-        template.querySelector('.introduction__workplace').textContent = biography.workplace;
-        template.querySelector('.introduction__workplace').href = biography.workplaceLink;
-      }
-      else template.querySelector('#if__introduction__workplace').remove();
-
-      //Links
-      const templateLinks = template.querySelectorAll('.biography__social__link');
-      for (let i = 1; i < templateLinks.length; i++) templateLinks[i].remove();
-      biography.links.forEach(biographyLink => {
-        const templateLink = templateLinks[0].cloneNode(true);
-        templateLink.removeAttribute('id');
-        templateLink.href = biographyLink.link;
-        templateLink.textContent = biographyLink.name;
-        template.querySelector('.biography__social').appendChild(templateLink);
-        template.querySelector('.biography__social').appendChild(document.createTextNode(' '));
-      });
-
-      //About
-      if (biography.about !== '') {
-        template.querySelector('.biography__about').innerHTML = biography.about.replace(/\n/g, '<br>');
-      }
-      else {
-        template.querySelector('#if__biography__about').remove();
-        template.querySelector('.biography__about').remove();
-      }
-    });
-};
-
-function populatePortfolio() {
-  fetch('content/portfolio.json')
-    .then(response => response.json())
-    .then(data => {
-      const projectTemplate = document.getElementById('portfolio__project__template');
-
-      //Portfolio Projects
-      data.portfolio.forEach(project => {
-        const template = projectTemplate.cloneNode(true);
-        template.removeAttribute('id');
-        template.querySelector('.project__button__title').textContent = project.title;
-        template.querySelector('.project__button__year').textContent = project.year;
-        template.querySelector('.detail__video video source').src = project.video;
-        template.querySelector('.contribution__company__logo').src = project.companyLogo;
-        template.querySelector('.contribution__company').textContent = project.companyName;
-        if (project.collaborators !== '')
-          template.querySelector('.contribution__collaborators').textContent = project.collaborators;
-        else template.querySelector('#if__contribution__collaborators').remove();
-        template.querySelector('.detail__description__title').textContent = project.descriptiveTitle;
-        template.querySelector('.detail__description__text').textContent = project.reason;
-        template.querySelector('.detail__redirect').href = project.sourceLink;
-        template.querySelector('.detail__source').textContent = project.sourceName;
-        portfolio.appendChild(template);
-      });
-      projectTemplate.remove();
-      addEventListenerToPortfolio();
-    });
-};
-
-function populateExperience() {
-  fetch('content/experience.json')
-    .then(response => response.json())
-    .then(data => {
-
-    });
-};
 
 function getWidestIntroductionElement() {
   const name = document.querySelector('.introduction__name');
@@ -112,7 +121,7 @@ document.getElementById('if__biography__about').addEventListener('click', functi
   const hiddenText = document.querySelector('.biography__about');
   const hiddenPicture = document.querySelector('.biography__picture');
   const imgElement = document.querySelector('.biography__picture img');
-  imgHeight = getWidestIntroductionElement() + "px";
+  const imgHeight = getWidestIntroductionElement() + "px";
   imgElement.style.height = imgHeight;
   imgElement.style.width = imgHeight;
 
