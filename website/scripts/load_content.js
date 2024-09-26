@@ -46,27 +46,22 @@ export function populatePortfolio(document) {
     fetch('content/portfolio.json')
         .then(response => response.json())
         .then(data => {
-            const projectTemplate = document.getElementById('portfolio__container');
+            const portfolioContainer = document.getElementById('portfolio__container');
             const projects = document.getElementById('projects');
 
             //Portfolio Projects
             data.portfolio.forEach(project => {
                 var index = projects.childElementCount;
 
-                const button = projectTemplate.querySelector('#project__button0').cloneNode(true);
-                button.setAttribute('id', 'project__button' + index);
+                const button = portfolioContainer.querySelector('#project__button__template').cloneNode(true);
+                button.removeAttribute('id');
                 button.setAttribute('data-template-id', 'project' + index);
                 button.querySelector('.project__button__title').textContent = project.title;
                 button.querySelector('.project__button__year').textContent = project.year;
-                projectTemplate.appendChild(button);
-
+                portfolioContainer.appendChild(button);
 
                 const template = projects.querySelector('#project0').cloneNode(true);
                 template.setAttribute('id', 'project' + index);
-                console.log(button);
-                console.log(projects);
-                projects.appendChild(template);
-                
                 template.querySelector('.project__video video source').src = project.video;
                 template.querySelector('.project__contribution__company__logo').src = project.companyLogo;
                 template.querySelector('.project__contribution__company').textContent = project.companyName;
@@ -79,7 +74,7 @@ export function populatePortfolio(document) {
                 template.querySelector('.project__source').textContent = project.sourceName;
                 projects.appendChild(template);
             });
-            
+            portfolioContainer.querySelector('#project__button__template').style.display = 'none';
         });
 };
 
