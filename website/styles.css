@@ -209,25 +209,26 @@ body {
 .project__container {
     opacity: 0;
     top: -100vh;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.1s ease;
 }
 
 .project__container--show {
     opacity: 1;
     top: 0vh;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.1s ease;
 }
 
 .project__content__selected {
     opacity: 0;
-    height: 0;
-    transition: opacity 0.2s ease, height 0.2s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
 }
 
 .project__content__selected--show {
     opacity: 1;
-    height: auto;
-    transition: opacity 0.2s ease, height 0.2s ease;
+    max-height: 100%;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
 }
 
 /* TEMPORARY, REMOVE BEFORE PRODUCTION */
