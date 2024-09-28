@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <!-- Meta tags and links -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="preload" href="content/biography.json" as="fetch" type="application/json" crossorigin="anonymous">
   <link rel="preload" href="content/portfolio.json" as="fetch" type="application/json" crossorigin="anonymous">
-  <!-- <link rel="preload" href="content/experience.json" as="fetch" type="application/json" crossorigin="anonymous"> -->
-
   <title>My Portfolio</title>
   <link rel="icon" href="favicon.svg">
 </head>
-
 <body>
   <div class="main">
-
     <!-- Biography -->
     <div class="main__column" id="biography">
       <div class="biography biography--show" id="biography__template">
@@ -44,6 +40,8 @@
       </div>
       <div class="project__container" id="portfolio__project__container">
         <img src="content/icons/back_button.svg" loading="lazy" alt="Close button" id="close__project__button" height="48">
+        <!-- Added project content container -->
+        <div id="project__content"></div>
       </div>
     </div>
 
@@ -90,8 +88,6 @@
       </div>
     </div>
   </div>
-
   <script type="module" src="script.js"></script>
 </body>
-
 </html>

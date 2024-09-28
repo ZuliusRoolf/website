@@ -1,14 +1,10 @@
 
 import { projectsAddEventListeners } from './scripts/handle_projects.js';
-import { populateBiography, populatePortfolio, populateExperience } from './scripts/load_content.js';
+import { populateBiography, populatePortfolio } from './scripts/load_content.js';
 
-// Run code after the DOM has loaded
-let portfolio;
 document.addEventListener('DOMContentLoaded', () => {
-  portfolio = document.getElementsByClassName('portfolio')[0];
   populateBiography(document);
   populatePortfolio(document);
-  // populateExperience(document);
   projectsAddEventListeners(document);
 });
 

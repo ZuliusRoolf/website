@@ -78,18 +78,42 @@ export function projectsAddEventListeners(document) {
             var template = document.getElementById(templateId);
             if (template) {
                 // Return a clone of the template content
-                return template.cloneNode(true);
+                var clone = template.cloneNode(true);
+                // Set the data-template-id on the cloned content
+                clone.setAttribute('data-template-id', templateId);
+                return clone;
             }
         }
         return null;
     }
+    
 
     // Function to show the preview
     function showPreview(button, isSelected) {
         var content = getProjectContent(button);
         if (content) {
+            var currentContent = previewContainer.querySelector('.portfolio__project');
+            var currentTemplateId = currentContent ? currentContent.getAttribute('data-template-id') : null;
+            var newTemplateId = content.getAttribute('data-template-id');
+    
+            // Check if the content is already displayed and if the preview is visible
+            if (currentTemplateId === newTemplateId && previewContainer.classList.contains('project__container--show')) {
+                if (isSelected) {
+                    previewContainer.querySelector('.project__content__selected').classList.add('project__content__selected--show');
+                }
+                return;
+            }
+    
+            // Cancel any ongoing hide animations
+            if (hideTransitionEndHandler) {
+                previewContainer.removeEventListener('transitionend', hideTransitionEndHandler);
+                hideTransitionEndHandler = null;
+                previewContainer.classList.remove('project__container--hide');
+            }
+    
             // Clear the preview area
-            hidePreview();
+            previewContainer.innerHTML = '';
+    
             // Append the new content
             previewContainer.appendChild(content);
             previewContainer.classList.add('project__container--show');
@@ -99,11 +123,38 @@ export function projectsAddEventListeners(document) {
             }
         }
     }
+    
+    
+    
 
     // Function to hide the preview
+    var hideTransitionEndHandler = null;
     function hidePreview() {
+        const content = previewContainer.querySelector('.portfolio__project');
+        if (!content) {
+            return;
+        }
+    
+        // Add a class to trigger fade-out animation
         previewContainer.classList.remove('project__container--show');
-        previewContainer.querySelector('.portfolio__project')?.remove();
+        previewContainer.classList.add('project__container--hide');
+        previewContainer.querySelector('.project__content__selected').classList.remove('project__content__selected--show');
+    
+        // Listen for transition end to remove content
+        hideTransitionEndHandler = function () {
+            // Remove the event listener
+            previewContainer.removeEventListener('transitionend', hideTransitionEndHandler);
+            hideTransitionEndHandler = null;
+    
+            // Remove the content
+            content.remove();
+    
+            // Remove the hide class
+            previewContainer.classList.remove('project__container--hide');
+        };
+        previewContainer.addEventListener('transitionend', hideTransitionEndHandler);
     }
+    
+    
 
 }
