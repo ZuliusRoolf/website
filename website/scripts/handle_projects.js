@@ -3,6 +3,7 @@ export function projectsAddEventListeners(document) {
     const portfolioContainer = document.getElementById('portfolio__container');
     const previewContainer = document.getElementById('portfolio__project__container');
     var selectedProject = null;
+    var hoveredProject = null;
 
     portfolioContainer.addEventListener('mouseover', function (event) {
         if (window.innerWidth < 768) {
