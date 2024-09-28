@@ -60,6 +60,18 @@ export function projectsAddEventListeners(document) {
         }
     }, true);
 
+    previewContainer.addEventListener('click', function (event) {
+        if (window.innerWidth >= 768) {
+            return;
+        }
+        if (event.target.closest('.portfolio__project')) {
+            return;
+        }
+        // Deselect the project
+        selectedProject = null;
+        hidePreview();
+    });
+
     // Function to get the template content of a button
     function getProjectContent(button) {
         var templateId = button.getAttribute('data-template-id');
@@ -77,24 +89,21 @@ export function projectsAddEventListeners(document) {
     function showPreview(content, isSelected) {
         if (content) {
             // Clear the preview area
-            previewContainer.innerHTML = '';
+            previewContainer.querySelector('.portfolio__project')?.remove();
             // Append the new content
             previewContainer.appendChild(content);
             // Optionally add "(Selected)" indication
             if (isSelected) {
-                var selectedNote = document.createElement('p');
-                selectedNote.style.fontStyle = 'italic';
-                selectedNote.textContent = '(Selected)';
-                previewContainer.appendChild(selectedNote);
+                previewContainer.querySelector('.project__content__selected').classList.add('project__content__selected--show');
             }
-            previewContainer.style.display = 'block';
+            previewContainer.style.display = '';
         }
     }
 
     // Function to hide the preview
     function hidePreview() {
         previewContainer.style.display = 'none';
-        previewContainer.innerHTML = '';
+        previewContainer.querySelector('.portfolio__project')?.remove();
     }
 
 }
