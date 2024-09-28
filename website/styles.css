@@ -193,6 +193,8 @@ body {
 .video {
     object-fit: contain;
     overflow: hidden;
+    width: 100%;
+    height: auto;
 }
 
 /* PROJECT PC */
@@ -204,18 +206,25 @@ body {
     }
 }
 
+.project__container {
+    opacity: 0;
+    top: -100vh;
+    transition: opacity 0.5s ease;
+}
 
-.biography, .project__preview, .project__content__selected {
+.project__container--show {
+    opacity: 1;
+    top: 0vh;
+    transition: opacity 0.5s ease;
+}
+
+.project__content__selected {
     opacity: 0;
     height: 0;
     transition: opacity 0.2s ease, height 0.2s ease;
 }
 
-.biography {
-    height: auto;
-}
-
-.biography--show, .project__preview--show, .project__content__selected--show {
+.project__content__selected--show {
     opacity: 1;
     height: auto;
     transition: opacity 0.2s ease, height 0.2s ease;

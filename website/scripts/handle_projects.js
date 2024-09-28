@@ -16,10 +16,10 @@ export function projectsAddEventListeners(document) {
 
             if (selectedProject && selectedProject !== button) {
                 // Temporarily show other project
-                showPreview(getProjectContent(button));
+                showPreview(button);
             } else {
                 // Show the hovered content
-                showPreview(getProjectContent(button), selectedProject === button);
+                showPreview(button, selectedProject === button);
             }
         }
     }, true);
@@ -36,7 +36,7 @@ export function projectsAddEventListeners(document) {
 
             if (selectedProject) {
                 // Restore the selected content
-                showPreview(getProjectContent(selectedProject), true);
+                showPreview(selectedProject, true);
             } else {
                 // Hide the preview area
                 hidePreview();
@@ -47,7 +47,6 @@ export function projectsAddEventListeners(document) {
     portfolioContainer.addEventListener('click', function (event) {
         var button = event.target.closest('.project__button');
         if (button) {
-            console.log('Click on button', button);
             if (selectedProject === button) {
                 // Deselect the project
                 selectedProject = null;
@@ -55,7 +54,7 @@ export function projectsAddEventListeners(document) {
             } else {
                 // Select the project
                 selectedProject = button;
-                showPreview(getProjectContent(button), true);
+                showPreview(button, true);
             }
         }
     }, true);
@@ -86,23 +85,24 @@ export function projectsAddEventListeners(document) {
     }
 
     // Function to show the preview
-    function showPreview(content, isSelected) {
+    function showPreview(button, isSelected) {
+        var content = getProjectContent(button);
         if (content) {
             // Clear the preview area
-            previewContainer.querySelector('.portfolio__project')?.remove();
+            hidePreview();
             // Append the new content
             previewContainer.appendChild(content);
-            // Optionally add "(Selected)" indication
+            previewContainer.classList.add('project__container--show');
+            previewContainer.querySelector('.project__content__hover').classList.add('project__content__hover--show');
             if (isSelected) {
                 previewContainer.querySelector('.project__content__selected').classList.add('project__content__selected--show');
             }
-            previewContainer.style.display = '';
         }
     }
 
     // Function to hide the preview
     function hidePreview() {
-        previewContainer.style.display = 'none';
+        previewContainer.classList.remove('project__container--show');
         previewContainer.querySelector('.portfolio__project')?.remove();
     }
 
