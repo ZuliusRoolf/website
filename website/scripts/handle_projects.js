@@ -5,6 +5,9 @@ export function projectsAddEventListeners(document) {
     var selectedProject = null;
 
     portfolioContainer.addEventListener('mouseover', function (event) {
+        if (window.innerWidth < 768) {
+            return;
+        }
         var button = event.target.closest('.project__button');
         if (button) {
             if (button.contains(event.relatedTarget))
@@ -22,6 +25,9 @@ export function projectsAddEventListeners(document) {
     }, true);
 
     portfolioContainer.addEventListener('mouseout', function (event) {
+        if (window.innerWidth < 768) {
+            return;
+        }
         var button = event.target.closest('.project__button');
         if (button) {
             if (button.contains(event.relatedTarget))
