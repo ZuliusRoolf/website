@@ -40,7 +40,7 @@ body {
 
     #portfolio {
         order: 0;
-        width: 40%;
+        min-width: 40%;
         justify-content: center;
     }
 
