@@ -15,8 +15,7 @@ export function projectsAddEventListeners(document) {
             if (button.contains(event.relatedTarget))
                 // Ignore mouse enter on child elements
                 return;
-            var project = getProjectContent(button);
-            showHoveredProject(project);
+            showHoveredProject(button);
         }
     }, true);
 
@@ -29,7 +28,7 @@ export function projectsAddEventListeners(document) {
             if (button.contains(event.relatedTarget))
                 // Ignore mouse leave on child elements
                 return;
-            hideHoveredProject();
+            hideHoveredProject(button);
         }
     }, true);
 
@@ -117,10 +116,56 @@ export function projectsAddEventListeners(document) {
     }
 
     function showHoveredProject(button) {
+        const selector = '.portfolio__project[data-template-id="' + button.getAttribute('data-template-id') + '"]';
+        var project = hoveredContainer.querySelector(selector);
+        // var project = hasHovered(button);
+        if (project !== null) {
+            project.classList.add('enter');
+            project.classList.remove('exit');
+            hoveredContainer.classList.remove('exit');
+            hoveredContainer.classList.add('enter');
+            return;
+        }
+        project = getProjectContent(button);
+        hoveredContainer.appendChild(project);
+        void project.offsetWidth;
+        project.classList.remove('exit');
+        project.classList.add('enter');
+        hoveredContainer.classList.remove('exit');
+        hoveredContainer.classList.add('enter');
         return;
-    }
     
-    function hideHoveredProject(){
-        return;
+    
+    }
+
+    function hideHoveredProject(button){
+        const selector = '.portfolio__project[data-template-id="' + button.getAttribute('data-template-id') + '"]';
+        const project = hoveredContainer.querySelector(selector);
+        
+        if (project === null) {
+            return;
+        }
+        console.log(project);
+        
+        project.classList.remove('enter');
+        project.classList.add('exit');
+        project.addEventListener('transitionend', onTransitionEnd);
+        hoveredContainer.classList.remove('enter');
+        hoveredContainer.classList.add('exit');
+
+        function onTransitionEnd(event) {
+            if (event.propertyName === 'opacity') {
+                project.removeEventListener('transitionend', onTransitionEnd);
+                if (project.classList.contains('exit')) {
+                    if (project.parentNode) {
+                        project.parentNode.removeChild(project);
+                    }
+                }
+                if (hoveredContainer.querySelector('.portfolio__project') === null) {
+                    hoveredContainer.classList.remove('exit');
+                    hoveredContainer.classList.remove('enter');
+                }
+            }
+        }
     }
 }
