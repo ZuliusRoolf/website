@@ -30,11 +30,21 @@ export function projectsAddEventListeners(document) {
         }
     }, true);
 
-    portfolioContainer.addEventListener('pointerdown', function (event) {
+    let isTouch = false;
+    portfolioContainer.addEventListener('touchstart', function (event) {
+        isTouch = true;
         var button = event.target.closest('.project__button');
         if (button) {
+            showTouchSelectedProject(button);
+        }
+    }, { passive: true });
+
+    portfolioContainer.addEventListener('mousedown', function (event) {
+        var button = event.target.closest('.project__button');
+        if (button && !isTouch) {
             showSelectedProject(button);
         }
+        isTouch = false;
     }, true);
 
     selectedContainer.addEventListener('pointerdown', function (event) {
@@ -69,27 +79,26 @@ export function projectsAddEventListeners(document) {
         return container.querySelector(selector);
     }
 
+    function showTouchSelectedProject(button) {
+        const selectedProject = getProjectInstance(button, selectedContainer);
+        if (selectedContainer.querySelector('.portfolio__project')) {
+            hideAllSelectedProjects();
+        }
+        if (selectedProject !== null) {
+            return;
+        }
+        const project = getProjectContent(button);
+        selectedContainer.appendChild(project);
+        void project.offsetWidth;
+        project.classList.add('enter');
+        project.querySelector('.project__content__selected').classList.add('enter');
+        selectedContainer.classList.remove('exit');
+        selectedContainer.classList.add('enter');
+    }
+
     function showSelectedProject(button) {
         const selectedProject = getProjectInstance(button, selectedContainer);
         const hoveredProject = getProjectInstance(button, hoveredContainer);
-
-        // Mobile view (no hover effect)
-        if (hoveredProject === null) {
-            if (selectedContainer.querySelector('.portfolio__project')) {
-                hideAllSelectedProjects();
-            }
-            if (selectedProject !== null) {
-                return;
-            }
-            const project = getProjectContent(button);
-            selectedContainer.appendChild(project);
-            void project.offsetWidth;
-            project.classList.add('enter');
-            project.querySelector('.project__content__selected').classList.add('enter');
-            selectedContainer.classList.remove('exit');
-            selectedContainer.classList.add('enter');
-            return;
-        }
 
 
         // PSEUDO CODE
@@ -101,13 +110,28 @@ export function projectsAddEventListeners(document) {
         // apply animations
 
         // Deselect the project
+        console.log('selectedProject: ' + selectedProject?.getAttribute('data-template-id'));
         if (selectedProject !== null) {
             hideAllSelectedProjects();
+            showHoveredProject(button);
+            console.log('deselecting ' + selectedProject.getAttribute('data-template-id'));
+            
             return;
         }
 
         // Select the project
         if (selectedProject === null) {
+            if (selectedContainer.querySelector('.portfolio__project')) {
+                hideAllSelectedProjects();
+            }
+            const project = getProjectContent(button);
+            selectedContainer.appendChild(project);
+            void project.offsetWidth;
+            project.classList.add('enter');
+            project.querySelector('.project__content__selected').classList.add('enter');
+            selectedContainer.classList.remove('exit');
+            selectedContainer.classList.add('enter');
+            hideHoveredProject(button);
             return;
         }
 
@@ -190,9 +214,8 @@ export function projectsAddEventListeners(document) {
     function showHoveredProject(button) {
         var project = getProjectInstance(button, hoveredContainer);
 
-        if (getProjectInstance(button, selectedContainer) !== null)
+        if (getProjectInstance(button, selectedContainer)?.classList.contains('enter'))
             return;
-        // var project = hasHovered(button);
         if (project !== null) {
             project.classList.add('enter');
             project.classList.remove('exit');
