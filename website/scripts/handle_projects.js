@@ -39,24 +39,13 @@ export function projectsAddEventListeners(document) {
         }
     }, { passive: true });
 
-    portfolioContainer.addEventListener('mousedown', function (event) {
+    portfolioContainer.addEventListener('pointerdown', function (event) {
         var button = event.target.closest('.project__button');
         if (button && !isTouch) {
             showSelectedProject(button);
         }
         isTouch = false;
     }, true);
-
-    selectedContainer.addEventListener('pointerdown', function (event) {
-        if (window.innerWidth >= 768) {
-            return;
-        }
-        if (event.target.closest('.portfolio__project')) {
-            return;
-        }
-        // Deselect the project in mobile view
-        hideAllSelectedProjects();
-    });
 
     // Function to get the template content of a button
     function getProjectContent(button) {
@@ -96,6 +85,27 @@ export function projectsAddEventListeners(document) {
         selectedContainer.classList.add('enter');
     }
 
+    function changeState(element, state, instant = false) {
+        const originalTransition = element.style.transition;
+        if (instant) {
+            element.style.transition = 'none';
+        }
+        if (state === 'enter') {
+            element.classList.remove('exit');
+            element.classList.add('enter');
+        } else if (state === 'exit') {
+            element.classList.remove('enter');
+            element.classList.add('exit');
+        } else if (state === 'hidden') {
+            element.classList.remove('enter');
+            element.classList.remove('exit');
+        }
+        if (instant) {
+            void element.offsetWidth;
+            element.style.transition = originalTransition;
+        }
+    }
+
     function showSelectedProject(button) {
         const selectedProject = getProjectInstance(button, selectedContainer);
         const hoveredProject = getProjectInstance(button, hoveredContainer);
@@ -110,90 +120,65 @@ export function projectsAddEventListeners(document) {
         // apply animations
 
         // Deselect the project
-        console.log('selectedProject: ' + selectedProject?.getAttribute('data-template-id'));
         if (selectedProject !== null) {
-            hideAllSelectedProjects();
-            showHoveredProject(button);
-            console.log('deselecting ' + selectedProject.getAttribute('data-template-id'));
-            
+            changeState(hoveredContainer, 'enter', true);
+            changeState(selectedContainer, 'hidden', true);
+            hoveredContainer.appendChild(selectedProject);
+            void selectedProject.offsetWidth;
+            changeState(selectedProject.querySelector('.project__content__selected'), 'exit');
             return;
         }
 
         // Select the project
         if (selectedProject === null) {
-            if (selectedContainer.querySelector('.portfolio__project')) {
-                hideAllSelectedProjects();
+            if (hoveredProject === null) {
+                log('hovered project is null');
+                return;
             }
-            const project = getProjectContent(button);
-            selectedContainer.appendChild(project);
-            void project.offsetWidth;
-            project.classList.add('enter');
-            project.querySelector('.project__content__selected').classList.add('enter');
-            selectedContainer.classList.remove('exit');
-            selectedContainer.classList.add('enter');
-            hideHoveredProject(button);
+            // Replace the selected project with the hovered project
+            if (selectedContainer.querySelector('.portfolio__project')) {
+                hideAllSelectedProjects(true);
+            }
+            // Move the hovered project to the selected container
+            if (hoveredProject.classList.contains('enter')) {
+                selectedContainer.appendChild(hoveredProject);
+                changeState(selectedContainer, 'enter', true);
+                changeState(hoveredContainer, 'hidden', true);
+            }
+            if (hoveredContainer.querySelector('.portfolio__project') === null) {
+                changeState(hoveredContainer, 'hidden');
+            }
+            changeState(hoveredProject.querySelector('.project__content__selected'), 'enter');
+            void hoveredProject.offsetWidth;
+
             return;
         }
 
-
-
-
-        const selectedProjectList = selectedContainer.querySelectorAll('.portfolio__project');
-        selectedProjectList.forEach(project => {
-            project.classList.remove('enter');
-            project.classList.add('exit');
-            console.log('exit applied on ' + project.getAttribute('data-template-id'));
-
-        });
-
-        console.log(hoveredProject);
-        console.log(selectedProject);
-
-
-
-        if (hoveredProject !== null) {
-            if (selectedProject !== null)
-                selectedContainer.removeChild(selectedProject);
-            selectedContainer.classList.add('enter');
-            selectedContainer.classList.remove('exit');
-            selectedContainer.appendChild(hoveredProject);
-            hoveredContainer.classList.remove('enter');
-            hoveredContainer.classList.remove('exit');
-            // Initilize so that it can utilize animations
-            const projectContent = hoveredProject.querySelector('.project__content__selected');
-            void projectContent.offsetWidth;
-            projectContent.classList.add('enter');
-            projectContent.classList.remove('exit');
-            return;
+        function onTransitionEnd(event) {
+            if (event.propertyName === 'opacity') {
+                event.target.removeEventListener('transitionend', onTransitionEnd);
+                if (hoveredProject.classList.contains('enter')) {
+                    selectedContainer.appendChild(hoveredProject);
+                    void hoveredProject.offsetWidth;
+                    changeState(selectedContainer, 'enter', true);
+                    changeState(hoveredContainer, 'hidden', true);
+                }
+                if (hoveredContainer.querySelector('.portfolio__project') === null) {
+                    changeState(hoveredContainer, 'hidden');
+                }
+            }
         }
-
-        if (selectedProject !== null) {
-            selectedContainer.classList.remove('enter');
-            selectedContainer.classList.add('exit');
-            hoveredContainer.appendChild(selectedProject);
-            hoveredContainer.classList.add('enter');
-            hoveredContainer.classList.remove('exit');
-            // Initilize so that it can utilize animations
-            const projectContent = selectedProject.querySelector('.project__content__selected');
-            void projectContent.offsetWidth;
-            projectContent.classList.add('enter');
-            projectContent.classList.remove('exit');
-        }
-
-
     }
 
     function hideAllSelectedProjects() {
         const projectList = selectedContainer.querySelectorAll('.portfolio__project');
         projectList.forEach(project => {
-            project.classList.remove('enter');
-            project.classList.add('exit');
+            changeState(project, 'exit');
             project.addEventListener('transitionend', onTransitionEnd);
 
         });
 
-        selectedContainer.classList.remove('enter');
-        selectedContainer.classList.add('exit');
+        changeState(selectedContainer, 'exit');
 
         function onTransitionEnd(event) {
             if (event.propertyName === 'opacity') {
@@ -204,8 +189,7 @@ export function projectsAddEventListeners(document) {
                     }
                 }
                 if (selectedContainer.querySelector('.portfolio__project') === null) {
-                    selectedContainer.classList.remove('exit');
-                    selectedContainer.classList.remove('enter');
+                    changeState(selectedContainer, 'hidden');
                 }
             }
         }
@@ -217,19 +201,15 @@ export function projectsAddEventListeners(document) {
         if (getProjectInstance(button, selectedContainer)?.classList.contains('enter'))
             return;
         if (project !== null) {
-            project.classList.add('enter');
-            project.classList.remove('exit');
-            hoveredContainer.classList.remove('exit');
-            hoveredContainer.classList.add('enter');
+            changeState(project, 'enter');
+            changeState(hoveredContainer, 'enter');
             return;
         }
         project = getProjectContent(button);
         hoveredContainer.appendChild(project);
         void project.offsetWidth;
-        project.classList.remove('exit');
-        project.classList.add('enter');
-        hoveredContainer.classList.remove('exit');
-        hoveredContainer.classList.add('enter');
+        changeState(project, 'enter');
+        changeState(hoveredContainer, 'enter');
         return;
 
 
@@ -242,11 +222,9 @@ export function projectsAddEventListeners(document) {
             return;
         }
 
-        project.classList.remove('enter');
-        project.classList.add('exit');
+        changeState(project, 'exit');
         project.addEventListener('transitionend', onTransitionEnd);
-        hoveredContainer.classList.remove('enter');
-        hoveredContainer.classList.add('exit');
+        changeState(hoveredContainer, 'exit');
 
         function onTransitionEnd(event) {
             if (event.propertyName === 'opacity') {
@@ -257,8 +235,7 @@ export function projectsAddEventListeners(document) {
                     }
                 }
                 if (hoveredContainer.querySelector('.portfolio__project') === null) {
-                    hoveredContainer.classList.remove('exit');
-                    hoveredContainer.classList.remove('enter');
+                    changeState(hoveredContainer, 'hidden');
                 }
             }
         }
