@@ -42,6 +42,10 @@ export function projectsAddEventListeners(document) {
 
     portfolioContainer.addEventListener('pointerdown', function (event) {
         var button = event.target.closest('.project__button');
+        if (button && window.innerWidth < 768) {
+            showTouchSelectedProject(button);
+            return;
+        }
         if (button && !isTouch) {
             showSelectedProject(button);
         }
@@ -63,6 +67,17 @@ export function projectsAddEventListeners(document) {
         }
         return null;
     }
+
+    selectedContainer.addEventListener('pointerdown', function (event) {
+        if (window.innerWidth >= 768) {
+            return;
+        }
+        if (event.target.closest('.portfolio__project')) {
+            return;
+        }
+        // Deselect the project in mobile view
+        hideAllSelectedProjects();
+    });
 
     function getProjectInstance(button, container) {
         const selector = '.portfolio__project[data-template-id="' + button.getAttribute('data-template-id') + '"]';
@@ -139,7 +154,7 @@ export function projectsAddEventListeners(document) {
         if (selectedProject === null) {
             // Select the project
             if (hoveredProject === null) {
-                log('hovered project is null');
+                console.log('hovered project is null');
                 return;
             }
             // Replace the selected project with the hovered project
@@ -164,6 +179,15 @@ export function projectsAddEventListeners(document) {
 
     function hideAllSelectedProjects() {
         const projectList = selectedContainer.querySelectorAll('.portfolio__project');
+        if (isTouch || window.innerWidth < 768) {
+
+            projectList.forEach(project => {
+                changeState(project, 'exit');
+                project.addEventListener('transitionend', onTransitionEnd);
+            });
+            changeState(selectedContainer, 'exit');
+            return;
+        }
         projectList.forEach(project => {
             deselectContainer.appendChild(project);
             changeState(deselectContainer, 'enter', true);
@@ -182,8 +206,9 @@ export function projectsAddEventListeners(document) {
                         event.target.parentNode.removeChild(event.target);
                     }
                 }
-                if (deselectContainer.querySelector('.portfolio__project') === null) {
-                    changeState(deselectContainer, 'hidden');
+                let relevantContainer = (isTouch || window.innerWidth < 768) ? selectedContainer : deselectContainer;
+                if (relevantContainer.querySelector('.portfolio__project') === null) {
+                    changeState(relevantContainer, 'hidden');
                 }
             }
         }
