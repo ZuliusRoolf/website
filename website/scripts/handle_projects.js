@@ -222,15 +222,26 @@ export function projectsAddEventListeners(document) {
 
         function onTransitionEnd(event) {
             if (event.propertyName === 'opacity') {
+                clearTimeout(fallbackTimeout);  // Clear the timeout if transition end is detected
                 project.removeEventListener('transitionend', onTransitionEnd);
-                if (project.classList.contains('exit')) {
-                    if (project.parentNode) {
-                        project.parentNode.removeChild(project);
-                    }
+                handleTransitionEnd();
+            }
+        }
+
+        // Fallback timeout to ensure clean-up actions
+        let fallbackTimeout = setTimeout(() => {
+            project.removeEventListener('transitionend', onTransitionEnd);
+            handleTransitionEnd();
+        }, 500);
+
+        function handleTransitionEnd() {
+            if (project.classList.contains('exit')) {
+                if (project.parentNode) {
+                    project.parentNode.removeChild(project);
                 }
-                if (hoveredContainer.querySelector('.portfolio__project') === null) {
-                    changeState(hoveredContainer, 'hidden');
-                }
+            }
+            if (hoveredContainer.querySelector('.portfolio__project') === null) {
+                changeState(hoveredContainer, 'hidden');
             }
         }
     }
