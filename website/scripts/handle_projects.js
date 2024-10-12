@@ -1,7 +1,8 @@
 export function projectsAddEventListeners(document) {
 
     const portfolioContainer = document.getElementById('portfolio__container');
-    const selectedContainer = document.getElementById('project__container');
+    const deselectContainer = document.getElementById('deselect__project__container');
+    const selectedContainer = document.getElementById('select__project__container');
     const hoveredContainer = document.getElementById('hover__project__container');
 
     portfolioContainer.addEventListener('mouseover', function (event) {
@@ -86,6 +87,9 @@ export function projectsAddEventListeners(document) {
     }
 
     function changeState(element, state, instant = false) {
+        if (element === null) {
+            return;
+        }
         const originalTransition = element.style.transition;
         if (instant) {
             element.style.transition = 'none';
@@ -119,8 +123,11 @@ export function projectsAddEventListeners(document) {
         // if deselect then move project from selected to hovered
         // apply animations
 
-        // Deselect the project
+        // Add deselect__project__container to make the animation nicer when switching selection
+        // Experiment if z-index can be used to blur the child elements of the deselected project
+
         if (selectedProject !== null) {
+            // Deselect the project
             changeState(hoveredContainer, 'enter', true);
             changeState(selectedContainer, 'hidden', true);
             hoveredContainer.appendChild(selectedProject);
@@ -129,15 +136,15 @@ export function projectsAddEventListeners(document) {
             return;
         }
 
-        // Select the project
         if (selectedProject === null) {
+            // Select the project
             if (hoveredProject === null) {
                 log('hovered project is null');
                 return;
             }
             // Replace the selected project with the hovered project
             if (selectedContainer.querySelector('.portfolio__project')) {
-                hideAllSelectedProjects(true);
+                hideAllSelectedProjects();
             }
             // Move the hovered project to the selected container
             if (hoveredProject.classList.contains('enter')) {
@@ -153,32 +160,19 @@ export function projectsAddEventListeners(document) {
 
             return;
         }
-
-        function onTransitionEnd(event) {
-            if (event.propertyName === 'opacity') {
-                event.target.removeEventListener('transitionend', onTransitionEnd);
-                if (hoveredProject.classList.contains('enter')) {
-                    selectedContainer.appendChild(hoveredProject);
-                    void hoveredProject.offsetWidth;
-                    changeState(selectedContainer, 'enter', true);
-                    changeState(hoveredContainer, 'hidden', true);
-                }
-                if (hoveredContainer.querySelector('.portfolio__project') === null) {
-                    changeState(hoveredContainer, 'hidden');
-                }
-            }
-        }
     }
 
     function hideAllSelectedProjects() {
         const projectList = selectedContainer.querySelectorAll('.portfolio__project');
         projectList.forEach(project => {
+            deselectContainer.appendChild(project);
+            changeState(deselectContainer, 'enter', true);
+            changeState(deselectContainer, 'exit');
             changeState(project, 'exit');
+            void project.offsetWidth;
             project.addEventListener('transitionend', onTransitionEnd);
 
         });
-
-        changeState(selectedContainer, 'exit');
 
         function onTransitionEnd(event) {
             if (event.propertyName === 'opacity') {
@@ -188,8 +182,8 @@ export function projectsAddEventListeners(document) {
                         event.target.parentNode.removeChild(event.target);
                     }
                 }
-                if (selectedContainer.querySelector('.portfolio__project') === null) {
-                    changeState(selectedContainer, 'hidden');
+                if (deselectContainer.querySelector('.portfolio__project') === null) {
+                    changeState(deselectContainer, 'hidden');
                 }
             }
         }
