@@ -95,10 +95,9 @@ export function projectsAddEventListeners(document) {
         const project = getProjectContent(button);
         selectedContainer.appendChild(project);
         void project.offsetWidth;
-        project.classList.add('enter');
-        project.querySelector('.project__content__selected').classList.add('enter');
-        selectedContainer.classList.remove('exit');
-        selectedContainer.classList.add('enter');
+        changeState(project, 'enter');
+        changeState(project.querySelector('.project__content__selected'), 'enter');
+        changeState(selectedContainer, 'enter');
     }
 
     function changeState(element, state, instant = false) {
@@ -128,18 +127,6 @@ export function projectsAddEventListeners(document) {
     function showSelectedProject(button) {
         const selectedProject = getProjectInstance(button, selectedContainer);
         const hoveredProject = getProjectInstance(button, hoveredContainer);
-
-
-        // PSEUDO CODE
-        // Check if the click is supposed to select or deselect
-        // if select then deselect current selection
-        // move project from hovered to selected
-        // apply animations
-        // if deselect then move project from selected to hovered
-        // apply animations
-
-        // Add deselect__project__container to make the animation nicer when switching selection
-        // Experiment if z-index can be used to blur the child elements of the deselected project
 
         if (selectedProject !== null) {
             // Deselect the project
@@ -193,6 +180,7 @@ export function projectsAddEventListeners(document) {
             changeState(deselectContainer, 'enter', true);
             changeState(deselectContainer, 'exit');
             changeState(project, 'exit');
+            changeState(project.querySelector('.project__content__selected'), 'exit');
             void project.offsetWidth;
             project.addEventListener('transitionend', onTransitionEnd);
 
