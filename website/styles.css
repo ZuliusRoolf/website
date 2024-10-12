@@ -43,20 +43,51 @@ body {
     background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
     backdrop-filter: blur(10px); /* Applies the blur effect */
     opacity: 0;
-    top: -100vh;
     transition: opacity 0.5s ease-in;
+    z-index: 1;
+    top: -100vh;
 }
 
-.project__container--show {
+.project__container.enter {
     opacity: 1;
     top: 0;
     transition: opacity 0.5s ease-in;
 }
 
-.project__container--hide {
+.project__container.exit {
     opacity: 0;
     top: 0;
     transition: opacity 0.5s ease-out;
+}
+
+.portfolio__project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #000;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.portfolio__project.enter {
+    opacity: 1;
+}
+.portfolio__project.exit {
+    opacity: 0;
+}
+
+.project__content__selected {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+}
+.project__content__selected.enter {
+    opacity: 1;
+    max-height: 100%;
+}
+.project__content__selected.exit {
+    opacity: 0;
+    max-height: 0;
 }
 
 #close__project__button {
@@ -104,6 +135,15 @@ body {
         min-width: 40%;
         flex-direction: column;
         justify-content: center;
+    }
+
+    .project__container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
     }
 
     .project__container {
@@ -165,7 +205,6 @@ body {
     }
     
     #if__biography__about {
-        transition: transform 0.5s ease;
         display: inline-block;
     }
 }

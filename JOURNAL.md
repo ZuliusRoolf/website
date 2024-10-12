@@ -67,6 +67,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Layout Positioning](#layout-positioning)
   - [September 10](#september-10)
     - [Portfolio Column Width Issue](#portfolio-column-width-issue)
+  - [September 30](#september-30)
 
 ## July 13
 
@@ -702,3 +703,21 @@ The CSS is now good for the animation and content within the columns. There were
 Made good progress on stacking project information. Right now however the project details are in an absolute position, but I think it would benefit if it "replaced" the biography column instead. It would save me the hassle of adding javascript to fix a minor issue. The issue is when a title of a project is too long and becomes "larger" than 40% of viewport width, it will prevent the portfolio column to schrink any further. Right now it is changed to `width: 40%` instead of the prior `min-width: 40%`. This enables the column to shrink further and stacking is better aligned.
 
 I really don't like two text lines in a button. My solution for the long title was to have a descriptive title within the project description. So if possible, I would like to revert it back to single line again.
+
+## September 30
+
+I have skipped writing some logs for a while now. Felt a bit unnecessary considering I have less time now and there really isn't anything new I'm learning. However, I have experimented with the new GPT o1-preview (strawberry) to see how it can code for me. I gave it two seperate tasks, one is to handle events of click, mouseover and mouseout on the project buttons. The other task was to display an element on top of another element using the same dimensions when clicking a button. Both was a success in their respective isolated tasks. I tried to sew them together and bug squashed to the best of my ability until there was one bug where clicking the project button would restart the video showcase. This is because through the advise from GPT, a good way of displaying a thing ontop of another is to have a sibling element with the absolute position CSS on it. Then we load this sibling element with a project template using HTML identifying attributes. This meant that everytime we switched project, the "preview element" got unloaded and loaded with a new project, which created problems with CSS animations.
+
+Asking the GPT o1-preview to solve this issue worked to some extent, but some other animations got broken instead. Going back to it now, I realize that there is a much simpler way of doing it. Just have three siblings with different z-index, background (biography), selected and hover. Creating a simple state machine where hover is a "middle man" between background and selection state. Mobile will ignore the hover making it easier. Tablet will become an edgecase, but we'll see if that will become a problem or if it just works.
+
+```txt
+Layers:
+z-index: 2 - Hover project (video preview)
+z-index: 1 - Selected project (video + description)
+z-index: 0 - Background biography (text)
+
+States:
+0 <-> 1 (For mobile only)
+0 <-> 2 <-> 1 (For PC)
+0 <-------> 1 (edgecase on tablets)
+```
