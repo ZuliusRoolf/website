@@ -68,6 +68,7 @@ This is a quick journal on how I develop this website. It will be used for docum
   - [September 10](#september-10)
     - [Portfolio Column Width Issue](#portfolio-column-width-issue)
   - [September 30](#september-30)
+  - [October 28](#october-28)
 
 ## July 13
 
@@ -721,3 +722,16 @@ States:
 0 <-> 2 <-> 1 (For PC)
 0 <-------> 1 (edgecase on tablets)
 ```
+
+## October 28
+
+It's been a while sincle last time. Got preoccupied with studies but I'm here now to finish this project. The remainder is mainly CSS styling for how all elements should look. The behaviour is correct for the most part, maybe a tiny addition is needed for CSS animations. What I've identified is left is the following:
+
+- [x] Correct Project Stacking on Hover
+- [ ] Background
+- [ ] Text and Fonts
+- [ ] Island
+- [ ] Button
+- [ ] "Last Edited" Date (Copyright)
+- [ ] Cleanup
+- [ ] Fill with content!
