@@ -1,3 +1,4 @@
+/* GLOBAL */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,16 +9,16 @@ body {
     box-sizing: border-box;
 }
 
+/* COLUMN LAYOUT MOBILE */
+
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
 
 .main__column {
     display: flex;
     height: 100%;
-    border: 2px solid #ccc;
 }
 
 #portfolio {
@@ -27,9 +28,81 @@ body {
 
 .portfolio {
     width: 100%; 
+    margin-top: 5em;
+    margin-bottom: 5em; /* Same height as a project button */
 }
 
-/* PC Viewport */
+.project__container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 10vmin;
+    background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Applies the blur effect */
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    z-index: 1;
+    top: -100vh;
+}
+
+.project__container.enter {
+    opacity: 1;
+    top: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.project__container.exit {
+    opacity: 0;
+    top: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.portfolio__project {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.portfolio__project.enter {
+    opacity: 1;
+}
+.portfolio__project.exit {
+    opacity: 0;
+}
+
+.project__content__selected {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+}
+.project__content__selected.enter {
+    opacity: 1;
+    max-height: 100%;
+}
+.project__content__selected.exit {
+    opacity: 0;
+    max-height: 0;
+}
+
+#close__project__button {
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    left: auto;
+    z-index: 100;
+    display: block;
+    margin: 5vmin;
+    height: 10vmin;
+    min-height: 48px;
+}
+
+/* COLUMN LAYOUT PC */
 @media (min-width: 768px) {
     .main {
         flex-direction: row;
@@ -64,29 +137,34 @@ body {
         justify-content: center;
     }
 
-    #experience {
-        order: 2;
+    .project__container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    .project__container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    #close__project__button {
+        display: none;
+    }
+
+    .portfolio__project {
+        position: fixed;
     }
 }
 
-.project__button {
-    border: 2px solid #000;
-    padding: 1em;
-    margin: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 1em;
-}
-
-
-/* Information that is not displayed on main page */
-
-.--null {
-    display: none;
-}
-
-/* Biography About Button */
+/* BIOGRAPHY MOBILE */
 #if__biography__about {
     display: none;
 }
@@ -96,16 +174,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px; /* Adjust as needed */
+    margin-bottom: 10px;
     height: 18em;
 }
 
 .biography__about {
     opacity: 1;
-    margin-top: 10px; /* Adjust as needed */
+    margin-top: 10px;
 }
 
-
+/* BIOGRAPHY PC */
 @media (min-width: 768px) {
     .biography__about {
         opacity: 0;
@@ -131,7 +209,34 @@ body {
     }
     
     #if__biography__about {
-        transition: transform 0.5s ease;
         display: inline-block;
     }
+}
+
+/* PROJECT MOBILE */
+
+.project__button {
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.detail__video {
+    display: flex;
+    justify-content: center;
+}
+
+.video {
+    object-fit: contain;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+
+/* TEMPORARY, REMOVE BEFORE PRODUCTION */
+.main__column, .portfolio__project, .project__button {
+    border: 2px solid #ccc;
 }
