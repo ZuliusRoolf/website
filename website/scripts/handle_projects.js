@@ -43,7 +43,6 @@ export function projectsAddEventListeners(document) {
     portfolioContainer.addEventListener('pointerdown', function (event) {
         var button = event.target.closest('.project__button');
         if (button && window.innerWidth < 768) {
-            showTouchSelectedProject(button);
             return;
         }
         if (button && !isTouch) {
