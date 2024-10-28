@@ -32,23 +32,22 @@ export function projectsAddEventListeners(document) {
     }, true);
 
     let isTouch = false;
-    portfolioContainer.addEventListener('touchstart', function (event) {
-        isTouch = true;
-        var button = event.target.closest('.project__button');
-        if (button) {
-            showTouchSelectedProject(button);
-        }
-    }, { passive: true });
-
     portfolioContainer.addEventListener('pointerdown', function (event) {
         var button = event.target.closest('.project__button');
-        if (button && window.innerWidth < 768) {
+        if (!button) {
             return;
         }
-        if (button && !isTouch) {
-            showSelectedProject(button);
+        if (event.pointerType === 'touch') {
+            isTouch = true;
+            showTouchSelectedProject(button);
+            return;
         }
         isTouch = false;
+        if (window.innerWidth < 768) {
+            showTouchSelectedProject(button);
+            return;
+        }
+            showSelectedProject(button);
     }, true);
 
     // Function to get the template content of a button

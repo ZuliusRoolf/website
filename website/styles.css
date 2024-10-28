@@ -168,6 +168,9 @@ body {
 #if__biography__about {
     display: none;
 }
+.biography {
+    padding: 15px;
+}
 
 .biography__picture {
     opacity: 1;
