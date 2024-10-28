@@ -230,6 +230,31 @@ body {
     width: 100%;
     height: auto;
 }
+.project__content__hover {
+    display: flex;
+    flex-direction: column;
+}
+
+.project__contribution {
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    background-color: white;          /* White background color */
+    border-radius: 1em;              /* Rounded corners with a radius of 15px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: .5em;                    /* Padding inside the container */
+    margin: 20px auto;                /* Optional: center the container and add some spacing */
+}
+.project__contribution img {
+    width: 1em;
+    height: 1em;
+    margin-right: .5em;
+}
+
+.project__contribution__collaborators__seperator {
+    margin: 0 .3em;
+}
+
 
 /* TEMPORARY, REMOVE BEFORE PRODUCTION */
 .main__column, .portfolio__project, .project__button {
