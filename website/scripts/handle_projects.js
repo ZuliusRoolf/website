@@ -32,22 +32,55 @@ export function projectsAddEventListeners(document) {
     }, true);
 
     let isTouch = false;
+    let isScrolling = false;
+    let startX = 0;
+    let startY = 0;
+    let startTime = 0;
+
+    // Listen for pointer down event
     portfolioContainer.addEventListener('pointerdown', function (event) {
-        var button = event.target.closest('.project__button');
-        if (!button) {
-            return;
+        // Track the start position of the pointer
+        startX = event.clientX;
+        startY = event.clientY;
+        startTime = Date.now();
+        isScrolling = false;
+    });
+
+    // Listen for pointer move event
+    portfolioContainer.addEventListener('pointermove', function (event) {
+        // Determine how far the pointer has moved
+        const diffX = Math.abs(event.clientX - startX);
+        const diffY = Math.abs(event.clientY - startY);
+
+        // If the movement exceeds a small threshold, consider it a scroll
+        if (diffX > 10 || diffY > 10) {
+            isScrolling = true;
         }
-        if (event.pointerType === 'touch') {
-            isTouch = true;
-            showTouchSelectedProject(button);
-            return;
-        }
-        isTouch = false;
-        if (window.innerWidth < 768) {
-            showTouchSelectedProject(button);
-            return;
-        }
+    });
+
+    // Listen for pointer up event
+    portfolioContainer.addEventListener('pointerup', function (event) {
+        // Calculate the duration of the interaction
+        const duration = Date.now() - startTime;
+
+        // If it's not scrolling and the duration is short, consider it a tap
+        if (!isScrolling && duration < 500) {
+            var button = event.target.closest('.project__button');
+            if (!button) {
+                return;
+            }
+            if (event.pointerType === 'touch') {
+                isTouch = true;
+                showTouchSelectedProject(button);
+                return;
+            }
+            isTouch = false;
+            if (window.innerWidth < 768) {
+                showTouchSelectedProject(button);
+                return;
+            }
             showSelectedProject(button);
+        }
     }, true);
 
     // Function to get the template content of a button
