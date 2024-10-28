@@ -146,21 +146,13 @@ body {
         padding: 0;
     }
 
-    .project__container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        padding: 0;
-    }
-
     #close__project__button {
         display: none;
     }
 
     .portfolio__project {
         position: fixed;
+        padding: 15px;
     }
 }
 
