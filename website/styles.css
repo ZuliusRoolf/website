@@ -46,6 +46,7 @@ body {
     transition: opacity 0.5s ease-in;
     z-index: 1;
     top: -100vh;
+    pointer-events: none;
 }
 
 .project__container.enter {

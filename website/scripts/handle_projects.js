@@ -5,8 +5,9 @@ export function projectsAddEventListeners(document) {
     const selectedContainer = document.getElementById('select__project__container');
     const hoveredContainer = document.getElementById('hover__project__container');
 
+    let isTouch = false;
     portfolioContainer.addEventListener('mouseover', function (event) {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 768 || isTouch) {
             return;
         }
         var button = event.target.closest('.project__button');
@@ -19,7 +20,7 @@ export function projectsAddEventListeners(document) {
     }, true);
 
     portfolioContainer.addEventListener('mouseout', function (event) {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 768 || isTouch) {
             return;
         }
         var button = event.target.closest('.project__button');
@@ -31,7 +32,6 @@ export function projectsAddEventListeners(document) {
         }
     }, true);
 
-    let isTouch = false;
     let isScrolling = false;
     let startX = 0;
     let startY = 0;
@@ -129,6 +129,19 @@ export function projectsAddEventListeners(document) {
         changeState(project, 'enter');
         changeState(project.querySelector('.project__content__selected'), 'enter');
         changeState(selectedContainer, 'enter');
+        const transitionDuration = window.getComputedStyle(selectedContainer).transitionDuration;
+        var duration = 0;
+        if (transitionDuration.includes('ms')) {
+            duration = parseFloat(transitionDuration);
+        } else if (transitionDuration.includes('s')) {
+            duration = parseFloat(transitionDuration) * 1000;
+        }
+        selectedContainer.style.pointerEvents = 'none';
+        console.log(duration);
+        setTimeout(() => {
+            selectedContainer.style.pointerEvents = 'auto';
+          }, duration);
+        
     }
 
     function changeState(element, state, instant = false) {
@@ -201,6 +214,7 @@ export function projectsAddEventListeners(document) {
 
             projectList.forEach(project => {
                 changeState(project, 'exit');
+                project.parentNode.style.pointerEvents = 'none';
                 project.addEventListener('transitionend', onTransitionEnd);
             });
             changeState(selectedContainer, 'exit');
