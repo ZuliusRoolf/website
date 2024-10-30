@@ -43,22 +43,21 @@ body {
     background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
     backdrop-filter: blur(10px); /* Applies the blur effect */
     opacity: 0;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
     z-index: 1;
     top: -100vh;
-    pointer-events: none;
 }
 
 .project__container.enter {
     opacity: 1;
     top: 0;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
 }
 
 .project__container.exit {
     opacity: 0;
     top: 0;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.3s ease-out;
 }
 
 .portfolio__project {
@@ -68,7 +67,7 @@ body {
     align-items: center;
     width: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
 }
 .portfolio__project.enter {
     opacity: 1;
@@ -80,11 +79,13 @@ body {
 .project__content__selected {
     opacity: 0;
     max-height: 0;
-    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+    overflow: hidden;
+    transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
 }
 .project__content__selected.enter {
     opacity: 1;
     max-height: 100%;
+    transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
 }
 .project__content__selected.exit {
     opacity: 0;
@@ -245,6 +246,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
     padding: .5em;                    /* Padding inside the container */
     margin: 20px auto;                /* Optional: center the container and add some spacing */
+    height: 2em;
+    white-space: nowrap;
 }
 .project__contribution img {
     width: 1em;

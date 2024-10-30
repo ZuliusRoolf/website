@@ -137,9 +137,10 @@ export function projectsAddEventListeners(document) {
             duration = parseFloat(transitionDuration) * 1000;
         }
         selectedContainer.style.pointerEvents = 'none';
-        console.log(duration);
         setTimeout(() => {
+            if (selectedContainer.classList.contains('enter')) {
             selectedContainer.style.pointerEvents = 'auto';
+            }
           }, duration);
         
     }
@@ -178,7 +179,9 @@ export function projectsAddEventListeners(document) {
             changeState(selectedContainer, 'hidden', true);
             hoveredContainer.appendChild(selectedProject);
             void selectedProject.offsetWidth;
-            changeState(selectedProject.querySelector('.project__content__selected'), 'exit');
+            const descriptionText = selectedProject.querySelector('.project__content__selected');
+            descriptionText.style.maxHeight = null;
+            changeState(descriptionText, 'exit');
             return;
         }
 
@@ -201,7 +204,9 @@ export function projectsAddEventListeners(document) {
             if (hoveredContainer.querySelector('.portfolio__project') === null) {
                 changeState(hoveredContainer, 'hidden');
             }
-            changeState(hoveredProject.querySelector('.project__content__selected'), 'enter');
+            const descriptionText = hoveredProject.querySelector('.project__content__selected');
+            descriptionText.style.maxHeight = descriptionText.scrollHeight + "px";
+            changeState(descriptionText, 'enter');
             void hoveredProject.offsetWidth;
 
             return;
