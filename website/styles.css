@@ -155,6 +155,8 @@ body {
     .portfolio__project {
         position: fixed;
         padding: 15px;
+        overflow-y: scroll;
+        max-height: 100vh;
     }
 }
 
@@ -221,20 +223,28 @@ body {
     column-gap: 1em;
 }
 
-.detail__video {
+.project__content__hover {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+.project__content__selected {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+}
+
+.portfolio__project {
+    overflow: scroll;
+    scrollbar-width: none;
+
 }
 
 .video {
     object-fit: contain;
-    overflow: hidden;
     width: 100%;
     height: auto;
-}
-.project__content__hover {
-    display: flex;
-    flex-direction: column;
+    max-height: 80vh;
 }
 
 .project__contribution {
