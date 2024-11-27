@@ -9,13 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getWidestIntroductionElement() {
-  const name = document.querySelector('.introduction__name');
-  const profession = document.querySelector('.introduction__profession');
-  const workplace = document.querySelector('#if__introduction__workplace');
-  const nameWidth = name.getBoundingClientRect().width;
-  const professionWidth = profession.getBoundingClientRect().width;
-  const workplaceWidth = workplace !== null ? workplace.getBoundingClientRect().width : 0;
-  return nameWidth > professionWidth + workplaceWidth ? nameWidth : professionWidth + workplaceWidth;
+  const introduction = document.querySelector('.biography__introduction');
+  const introductionWidth = introduction.getBoundingClientRect().width;
+  return introductionWidth;
 }
 
 document.getElementById('if__biography__about').addEventListener('click', function (event) {
@@ -23,7 +19,7 @@ document.getElementById('if__biography__about').addEventListener('click', functi
   const hiddenText = document.querySelector('.biography__about');
   const hiddenPicture = document.querySelector('.biography__picture');
   const imgElement = document.querySelector('.biography__picture img');
-  const imgHeight = getWidestIntroductionElement() + "px";
+  const imgHeight = Math.floor(getWidestIntroductionElement()*0.7) + "px";
   imgElement.style.height = imgHeight;
   imgElement.style.width = imgHeight;
 
