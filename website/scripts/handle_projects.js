@@ -79,6 +79,7 @@ export function projectsAddEventListeners(document) {
                 showTouchSelectedProject(button);
                 return;
             }
+            selectedContainer.style.pointerEvents = 'auto';
             showSelectedProject(button);
         }
     }, true);
