@@ -154,7 +154,7 @@ body {
 
     .portfolio__project {
         position: fixed;
-        padding: 15px;
+        padding: 25px;
         overflow-y: scroll;
         max-height: 100vh;
     }
@@ -263,6 +263,11 @@ body {
     max-height: 80vh;
     border-radius: max(5vmin, 48px);
     box-shadow: 0 0 80px 2px rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 768px) {
+    .video {
+        box-shadow: 0 0 30px 2px rgba(0, 0, 0, 0.2);
+    }
 }
 
 .project__contribution {
