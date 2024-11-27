@@ -63,6 +63,8 @@ export function populatePortfolio(document) {
                 const template = projects.querySelector('#project0').cloneNode(true);
                 template.setAttribute('id', 'project' + index);
                 template.querySelector('.project__video video source').src = project.video;
+                if (project.image !== '')
+                    template.querySelector('.project__video video').poster = project.image;
                 template.querySelector('.project__contribution__company__logo').src = project.companyLogo;
                 template.querySelector('.project__contribution__company').textContent = project.companyName;
                 if (project.collaborators !== '')
@@ -71,7 +73,8 @@ export function populatePortfolio(document) {
                 template.querySelector('.project__description__title').textContent = project.descriptiveTitle;
                 template.querySelector('.project__description__text').textContent = project.reason;
                 template.querySelector('.project__redirect').href = project.sourceLink;
-                template.querySelector('.project__source').textContent = project.sourceName;
+                template.querySelector('.project__redirect').setAttribute('data', project.sourceName);
+                console.log(template.querySelector('.project__redirect').data);
                 projects.appendChild(template);
             });
             portfolioContainer.querySelector('#project__button__template').style.display = 'none';
