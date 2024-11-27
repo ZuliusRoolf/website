@@ -729,7 +729,7 @@ It's been a while sincle last time. Got preoccupied with studies but I'm here no
 
 - [x] Correct Project Stacking on Hover
 - [ ] Background
-- [ ] Text and Fonts
+- [x] Text and Fonts
 - [x] Island
 - [ ] Button
 - [ ] "Last Edited" Date (Copyright)
