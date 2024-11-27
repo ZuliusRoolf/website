@@ -80,6 +80,7 @@ export function projectsAddEventListeners(document) {
                 return;
             }
             selectedContainer.style.pointerEvents = 'auto';
+            updateButtonStyleOnSelection(button);
             showSelectedProject(button);
         }
     }, true);
@@ -108,8 +109,20 @@ export function projectsAddEventListeners(document) {
             return;
         }
         // Deselect the project in mobile view
+        updateButtonStyleOnSelection(null);
         hideAllSelectedProjects();
     });
+
+    function updateButtonStyleOnSelection(button) {
+        let buttons = portfolioContainer.querySelectorAll('.project__button');
+        for (let i = 0; i < buttons.length; i++) {
+            if (buttons[i] === button) {
+                buttons[i].classList.toggle('selected');
+            } else {
+                buttons[i].classList.remove('selected');
+            }
+        }
+    }
 
     function getProjectInstance(button, container) {
         const selector = '.portfolio__project[data-template-id="' + button.getAttribute('data-template-id') + '"]';
