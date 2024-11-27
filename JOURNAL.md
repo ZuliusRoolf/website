@@ -731,8 +731,9 @@ It's been a while sincle last time. Got preoccupied with studies but I'm here no
 - [ ] Background
 - [x] Text and Fonts
 - [x] Island
-- [ ] Button
+- [ ] Button (selected)
 - [ ] "Last Edited" Date (Copyright)
+- [ ] "Template by Zulius, inspired by Seyit" Watermark together with the copyright
 - [ ] Cleanup
 - [ ] Add README.md
 - [ ] Fill with content!
