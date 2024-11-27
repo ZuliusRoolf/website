@@ -232,7 +232,7 @@ body {
 
 .project__button {
     padding: 1em;
-    margin: 1em;
+    margin: 0.5em 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -340,6 +340,35 @@ a {
     opacity: 0.9;
 }
 
+.project__button__title {
+    font-size: 16px;
+    font-weight: 400;
+    cursor: default;
+}
+.project__button__year {
+    font-size: 16px;
+    font-weight: 400;
+    cursor: default;
+    opacity: 0.5;
+}
+
+.project__button {
+    border-radius: 1.4em;
+    transition: 200ms
+}
+.project__button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 16px 2px rgba(0, 0, 0, 0.1);
+    transition: 200ms
+}
+.project__button.selected {
+    background: rgb(255, 255, 255);
+    box-shadow: 
+        4px -2px 16px 2px rgba(72, 180, 244, 0.2),
+        -4px 4px 16px 2px rgba(37, 203, 118, 0.2);
+    transition: 200ms;
+}
+
 .project__description__title {
     margin-bottom: 1em;
     margin-top: 1em;
@@ -353,8 +382,8 @@ a {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: #333;
-    opacity: 0.9;
+    color: #000;
+    opacity: 0.7;
 }
 
 .project__redirect__container {
@@ -362,7 +391,6 @@ a {
     justify-content: center;
     align-items: center;
     margin-top: 1em;
-    background-color: white;
 }
 
 .project__redirect{
@@ -413,6 +441,6 @@ a {
 
 
 /* TEMPORARY, REMOVE BEFORE PRODUCTION */
-.main__column, .portfolio__project, .project__button {
+/* .main__column, .portfolio__project, .project__button {
     border: 2px solid #ccc;
-}
+} */
