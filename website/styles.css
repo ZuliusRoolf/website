@@ -29,7 +29,10 @@ body {
 .portfolio {
     width: 100%; 
     margin-top: 5em;
-    margin-bottom: 5em; /* Same height as a project button */
+    margin-bottom: 2em; /* Same height as a project button */
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
 }
 
 .project__container {
@@ -249,11 +252,12 @@ body {
 
 .project__button {
     padding: 1em;
-    margin: 0.5em 1em;
+    margin: 0em 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     column-gap: 1em;
+    order: 1;
 }
 
 .project__content__hover {
@@ -498,9 +502,22 @@ a {
     }
   }
 
+  .timestamp {
+    position: sticky;
+    order: 999;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
 
-
-/* TEMPORARY, REMOVE BEFORE PRODUCTION */
-/* .main__column, .portfolio__project, .project__button {
-    border: 2px solid #ccc;
-} */
+  @media (min-width: 768px) {
+    .timestamp {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 1em;
+        z-index: 100;
+    }
+}

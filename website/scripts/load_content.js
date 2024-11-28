@@ -74,10 +74,24 @@ export function populatePortfolio(document) {
                 template.querySelector('.project__description__text').textContent = project.reason;
                 template.querySelector('.project__redirect').href = project.sourceLink;
                 template.querySelector('.project__redirect').setAttribute('data', project.sourceName);
-                console.log(template.querySelector('.project__redirect').data);
                 projects.appendChild(template);
             });
-            portfolioContainer.querySelector('#project__button__template').style.display = 'none';
+            const originalTemplate = portfolioContainer.querySelector('#project__button__template');
+
+            const html = new Date(document.lastModified);
+            const json = new Date(data.lastModified);
+            console.log(html, json);
+
+            const dateObj = html > json ? html : json;
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            const month = monthNames[dateObj.getMonth()];
+            const year = dateObj.getFullYear().toString().slice(-2); // Get last two digits of the year
+
+            const formattedDate = `${month} '${year}`;
+            originalTemplate.querySelector('.project__button__year').textContent = formattedDate;
+            originalTemplate.querySelector('.project__button__title').style.display = 'none';
+            originalTemplate.classList.add('timestamp');
         });
 };
 
