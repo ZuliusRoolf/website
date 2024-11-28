@@ -78,11 +78,10 @@ export function populatePortfolio(document) {
             });
             const originalTemplate = portfolioContainer.querySelector('#project__button__template');
 
-            const html = new Date(document.lastModified);
-            const json = new Date(data.lastModified);
-            console.log(html, json);
+            const htmlDateEdit = new Date(document.lastModified);
+            const jsonDateEdit = new Date(data.lastModified);
 
-            const dateObj = html > json ? html : json;
+            const dateObj = htmlDateEdit > jsonDateEdit ? htmlDateEdit : jsonDateEdit;
             const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
             const month = monthNames[dateObj.getMonth()];
