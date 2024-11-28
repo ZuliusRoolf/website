@@ -40,6 +40,8 @@ body {
     width: 100%;
     height: 100%;
     padding: 10vmin;
+    padding-top: 0;
+    padding-bottom: 0;
     background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
     backdrop-filter: blur(15px); /* Applies the blur effect */
     opacity: 0;
@@ -268,7 +270,6 @@ body {
 .portfolio__project {
     overflow: scroll;
     scrollbar-width: none;
-    overflow: visible;
 }
 
 .video {
@@ -277,11 +278,22 @@ body {
     height: auto;
     max-height: 80vh;
     border-radius: max(5vmin, 48px);
-    box-shadow: 0 0 80px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+}
+.project__video {
+    padding: 30px;
+    padding-bottom: 0px;
 }
 @media (min-width: 768px) {
     .video {
         box-shadow: 0 0 30px 2px rgba(0, 0, 0, 0.2);
+    }
+    .project__video {
+        padding: 0px;
+    }
+    .portfolio__project {
+        overflow: visible;
+        scrollbar-width: none;
     }
 }
 
@@ -377,12 +389,12 @@ a {
     transition: 200ms
 }
 .project__button:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
     box-shadow: 0 4px 16px 2px rgba(0, 0, 0, 0.1);
     transition: 200ms
 }
 .project__button.selected {
-    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.8);
     box-shadow: 
         4px -2px 16px 2px rgba(72, 180, 244, 0.2),
         -4px 4px 16px 2px rgba(37, 203, 118, 0.2);
@@ -392,15 +404,15 @@ a {
 .project__description__title {
     margin-bottom: 1em;
     margin-top: 1em;
-    font-size: 22px;
+    font-size: 28px;
     line-height: 1.4em;
     font-weight: 700;
     display: inline-block;
 }
 
 .project__description__text {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 28px;
     font-weight: 400;
     color: #000;
     opacity: 0.7;
@@ -410,14 +422,15 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1em;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
 }
 
 .project__redirect{
-    font-size: 16px;
+    font-size: 20px;
     line-height: 24px;
     font-weight: 600;
-    padding: 10px 20px;
+    padding: 20px 30px;
     border: none;
     outline: none;
     position: relative;
@@ -436,15 +449,15 @@ a {
     border-radius: 1000px;
     background-color: white;
     z-index: -1;
-    transition: 200ms
+    transition: 200ms;
   }
   .project__redirect::after{
     content: attr(data);
-    font-size: 16px;
+    font-size: 20px;
     background: linear-gradient(214deg, #48b4f4, #25cb76);
     background-clip: text;
     color: transparent;
-    transition: 200ms
+    transition: 200ms;
   }
   .project__redirect:hover::before {
     opacity: 0%;
@@ -456,6 +469,33 @@ a {
   }
   .project__redirect:hover::after{
     color: white;
+  }
+  @media (min-width: 768px) {
+    .project__description__title {
+        margin-bottom: 1em;
+        margin-top: 1em;
+        font-size: 22px;
+        line-height: 1.4em;
+        font-weight: 700;
+    }
+    .project__description__text {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+    }
+      .project__redirect {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      .project__redirect::after {
+        font-size: 16px;
+      }
+      .project__redirect__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1em;
+    }
   }
 
 
