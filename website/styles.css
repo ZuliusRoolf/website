@@ -256,7 +256,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 1em;
+    column-gap: 2em;
     order: 1;
 }
 
