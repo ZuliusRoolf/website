@@ -40,6 +40,9 @@ export function projectsAddEventListeners(document) {
 
     // Listen for pointer down event
     portfolioContainer.addEventListener('pointerdown', function (event) {
+        if (event.button > 0) {
+            return; // Ignore all clicks exept primary mouse button
+        }
         // Track the start position of the pointer
         startX = event.clientX;
         startY = event.clientY;
@@ -109,9 +112,24 @@ export function projectsAddEventListeners(document) {
         if (event.target.closest('.portfolio__project')) {
             return;
         }
+        if (event.button > 0) {
+            return; // Ignore all clicks exept primary mouse button
+        }
         // Deselect the project in mobile view
         updateButtonStyleOnSelection(null);
         hideAllSelectedProjects();
+        if (new URLSearchParams(window.location.search).get('view') === 'project') {
+            history.back();
+        }
+    });
+
+    window.addEventListener('popstate', function (event) {
+        if (selectedContainer.querySelector('.portfolio__project')) {
+            hideAllSelectedProjects();
+            if (new URLSearchParams(window.location.search).get('view') === 'project') {
+                history.back();
+            }
+        }
     });
 
     function updateButtonStyleOnSelection(button) {
@@ -144,6 +162,10 @@ export function projectsAddEventListeners(document) {
         changeState(project, 'enter');
         changeState(project.querySelector('.project__content__selected'), 'enter');
         changeState(selectedContainer, 'enter');
+        if (new URLSearchParams(window.location.search).get('view') !== 'project')
+        {
+            history.pushState({ page: 1 }, "project", "?view=project");
+        }
         const transitionDuration = window.getComputedStyle(selectedContainer).transitionDuration;
         var duration = 0;
         if (transitionDuration.includes('ms')) {
