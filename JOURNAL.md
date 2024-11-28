@@ -69,6 +69,7 @@ This is a quick journal on how I develop this website. It will be used for docum
     - [Portfolio Column Width Issue](#portfolio-column-width-issue)
   - [September 30](#september-30)
   - [October 28](#october-28)
+  - [November 28](#november-28)
 
 ## July 13
 
@@ -728,12 +729,18 @@ States:
 It's been a while sincle last time. Got preoccupied with studies but I'm here now to finish this project. The remainder is mainly CSS styling for how all elements should look. The behaviour is correct for the most part, maybe a tiny addition is needed for CSS animations. What I've identified is left is the following:
 
 - [x] Correct Project Stacking on Hover
-- [ ] Background
+- [x] Background
 - [x] Text and Fonts
 - [x] Island
-- [ ] Button (selected)
+- [x] Button (selected)
 - [ ] "Last Edited" Date (Copyright)
 - [ ] "Template by Zulius, inspired by Seyit" Watermark together with the copyright
 - [ ] Cleanup
 - [ ] Add README.md
 - [ ] Fill with content!
+
+## November 28
+
+Removed the transparency effect today. When adding a background the blur was contstrained to it's container, as well as slow to load evenly when applied. This was very noticible and ugly to the eye. The uneveness is most likely due to two layers of blurring and a moving video in the background (in this case a gif) which makes it a difficult task to render properly.
+There are solutions such as bluring the whole background instead of the container, but that would require an overhaul of how the project selection handled animations, which would take a lot more time. I'm 100 hours into this project, and that is what I initially gave myself so I will restrain myself from feature creep.
+My solution to the rendering bugs for now is to copy from [Seyit Yilmaz](https://www.seyityilmaz.com/) once again. Instead of blurring the background elements, just hide them instead. Hiding looks cleaner as the text is easier to read, but I really liked the blur effect and are a bit bummed about it not working as I wanted it to. All the original code for the effect is still there and I'm uncertain if I will clean it up considering it is a bit of a mess. On mobile view the background still blurs, so that's something I guess.

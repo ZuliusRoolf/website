@@ -41,7 +41,7 @@ body {
     height: 100%;
     padding: 10vmin;
     background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Applies the blur effect */
+    backdrop-filter: blur(15px); /* Applies the blur effect */
     opacity: 0;
     transition: opacity 0.3s ease-in;
     z-index: 1;
@@ -146,6 +146,21 @@ body {
         justify-content: center;
         width: 100%;
         padding: 0;
+        background: rgba(255, 255, 255, 0.0); /* Semi-transparent background */
+        backdrop-filter: blur(0px);
+    }
+
+    .biography {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+    .hide {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .project__container.hide {
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     #close__project__button {

@@ -4,6 +4,7 @@ export function projectsAddEventListeners(document) {
     const deselectContainer = document.getElementById('deselect__project__container');
     const selectedContainer = document.getElementById('select__project__container');
     const hoveredContainer = document.getElementById('hover__project__container');
+    const biographyContainer = document.getElementById('biography__template');
 
     let isTouch = false;
     portfolioContainer.addEventListener('mouseover', function (event) {
@@ -211,6 +212,7 @@ export function projectsAddEventListeners(document) {
             }
             // Move the hovered project to the selected container
             if (hoveredProject.classList.contains('enter')) {
+                selectedContainer.classList.remove('hide');
                 selectedContainer.appendChild(hoveredProject);
                 changeState(selectedContainer, 'enter', true);
                 changeState(hoveredContainer, 'hidden', true);
@@ -322,4 +324,21 @@ export function projectsAddEventListeners(document) {
             }
         }
     }
+
+    function checkClasses() {
+        if (hoveredContainer.classList.contains('enter') && selectedContainer.classList.contains('enter')) {
+            selectedContainer.classList.add('hide');
+        }
+        else {
+            selectedContainer.classList.remove('hide');
+        }
+        if (selectedContainer.classList.contains('enter') || hoveredContainer.classList.contains('enter')) {
+            biographyContainer.classList.add('hide');
+        }
+        else {
+            biographyContainer.classList.remove('hide');
+        }
+    }
+    setInterval(checkClasses, 50);
+
 }
