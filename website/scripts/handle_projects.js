@@ -4,9 +4,11 @@ export function projectsAddEventListeners(document) {
     const deselectContainer = document.getElementById('deselect__project__container');
     const selectedContainer = document.getElementById('select__project__container');
     const hoveredContainer = document.getElementById('hover__project__container');
+    const biographyContainer = document.getElementById('biography__template');
 
+    let isTouch = false;
     portfolioContainer.addEventListener('mouseover', function (event) {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 768 || isTouch) {
             return;
         }
         var button = event.target.closest('.project__button');
@@ -19,7 +21,7 @@ export function projectsAddEventListeners(document) {
     }, true);
 
     portfolioContainer.addEventListener('mouseout', function (event) {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 768 || isTouch) {
             return;
         }
         var button = event.target.closest('.project__button');
@@ -31,7 +33,6 @@ export function projectsAddEventListeners(document) {
         }
     }, true);
 
-    let isTouch = false;
     let isScrolling = false;
     let startX = 0;
     let startY = 0;
@@ -79,6 +80,8 @@ export function projectsAddEventListeners(document) {
                 showTouchSelectedProject(button);
                 return;
             }
+            selectedContainer.style.pointerEvents = 'auto';
+            updateButtonStyleOnSelection(button);
             showSelectedProject(button);
         }
     }, true);
@@ -107,8 +110,20 @@ export function projectsAddEventListeners(document) {
             return;
         }
         // Deselect the project in mobile view
+        updateButtonStyleOnSelection(null);
         hideAllSelectedProjects();
     });
+
+    function updateButtonStyleOnSelection(button) {
+        let buttons = portfolioContainer.querySelectorAll('.project__button');
+        for (let i = 0; i < buttons.length; i++) {
+            if (buttons[i] === button) {
+                buttons[i].classList.toggle('selected');
+            } else {
+                buttons[i].classList.remove('selected');
+            }
+        }
+    }
 
     function getProjectInstance(button, container) {
         const selector = '.portfolio__project[data-template-id="' + button.getAttribute('data-template-id') + '"]';
@@ -129,6 +144,20 @@ export function projectsAddEventListeners(document) {
         changeState(project, 'enter');
         changeState(project.querySelector('.project__content__selected'), 'enter');
         changeState(selectedContainer, 'enter');
+        const transitionDuration = window.getComputedStyle(selectedContainer).transitionDuration;
+        var duration = 0;
+        if (transitionDuration.includes('ms')) {
+            duration = parseFloat(transitionDuration);
+        } else if (transitionDuration.includes('s')) {
+            duration = parseFloat(transitionDuration) * 1000;
+        }
+        selectedContainer.style.pointerEvents = 'none';
+        setTimeout(() => {
+            if (selectedContainer.classList.contains('enter')) {
+            selectedContainer.style.pointerEvents = 'auto';
+            }
+          }, duration);
+        
     }
 
     function changeState(element, state, instant = false) {
@@ -165,7 +194,9 @@ export function projectsAddEventListeners(document) {
             changeState(selectedContainer, 'hidden', true);
             hoveredContainer.appendChild(selectedProject);
             void selectedProject.offsetWidth;
-            changeState(selectedProject.querySelector('.project__content__selected'), 'exit');
+            const descriptionText = selectedProject.querySelector('.project__content__selected');
+            descriptionText.style.maxHeight = null;
+            changeState(descriptionText, 'exit');
             return;
         }
 
@@ -181,6 +212,7 @@ export function projectsAddEventListeners(document) {
             }
             // Move the hovered project to the selected container
             if (hoveredProject.classList.contains('enter')) {
+                selectedContainer.classList.remove('hide');
                 selectedContainer.appendChild(hoveredProject);
                 changeState(selectedContainer, 'enter', true);
                 changeState(hoveredContainer, 'hidden', true);
@@ -188,7 +220,9 @@ export function projectsAddEventListeners(document) {
             if (hoveredContainer.querySelector('.portfolio__project') === null) {
                 changeState(hoveredContainer, 'hidden');
             }
-            changeState(hoveredProject.querySelector('.project__content__selected'), 'enter');
+            const descriptionText = hoveredProject.querySelector('.project__content__selected');
+            descriptionText.style.maxHeight = descriptionText.scrollHeight + "px";
+            changeState(descriptionText, 'enter');
             void hoveredProject.offsetWidth;
 
             return;
@@ -201,6 +235,7 @@ export function projectsAddEventListeners(document) {
 
             projectList.forEach(project => {
                 changeState(project, 'exit');
+                project.parentNode.style.pointerEvents = 'none';
                 project.addEventListener('transitionend', onTransitionEnd);
             });
             changeState(selectedContainer, 'exit');
@@ -289,4 +324,21 @@ export function projectsAddEventListeners(document) {
             }
         }
     }
+
+    function checkClasses() {
+        if (hoveredContainer.classList.contains('enter') && selectedContainer.classList.contains('enter')) {
+            selectedContainer.classList.add('hide');
+        }
+        else {
+            selectedContainer.classList.remove('hide');
+        }
+        if (selectedContainer.classList.contains('enter') || hoveredContainer.classList.contains('enter')) {
+            biographyContainer.classList.add('hide');
+        }
+        else {
+            biographyContainer.classList.remove('hide');
+        }
+    }
+    setInterval(checkClasses, 50);
+
 }
