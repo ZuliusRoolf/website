@@ -98,10 +98,10 @@ export function populatePortfolio(document) {
         });
 };
 
-export function populateExperience(document) {
-    fetch('content/experience.json')
-        .then(response => response.json())
-        .then(data => {
+// export function populateExperience(document) {
+//     fetch('content/experience.json')
+//         .then(response => response.json())
+//         .then(data => {
 
-        });
-};
+//         });
+// };
