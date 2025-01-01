@@ -70,6 +70,7 @@ This is a quick journal on how I develop this website. It will be used for docum
   - [September 30](#september-30)
   - [October 28](#october-28)
   - [November 28](#november-28)
+  - [January 01](#january-01)
 
 ## July 13
 
@@ -744,3 +745,15 @@ It's been a while sincle last time. Got preoccupied with studies but I'm here no
 Removed the transparency effect today. When adding a background the blur was contstrained to it's container, as well as slow to load evenly when applied. This was very noticible and ugly to the eye. The uneveness is most likely due to two layers of blurring and a moving video in the background (in this case a gif) which makes it a difficult task to render properly.
 There are solutions such as bluring the whole background instead of the container, but that would require an overhaul of how the project selection handled animations, which would take a lot more time. I'm 100 hours into this project, and that is what I initially gave myself so I will restrain myself from feature creep.
 My solution to the rendering bugs for now is to copy from [Seyit Yilmaz](https://www.seyityilmaz.com/) once again. Instead of blurring the background elements, just hide them instead. Hiding looks cleaner as the text is easier to read, but I really liked the blur effect and are a bit bummed about it not working as I wanted it to. All the original code for the effect is still there and I'm uncertain if I will clean it up considering it is a bit of a mess. On mobile view the background still blurs, so that's something I guess.
+
+## January 01
+
+**Happy New Years!** 🥳
+
+I thought I should convert this repository into a template and configured it to be two branches now. The main branch is now called template. Default for visitors who want to use this repository for their own portfolio or to learn. Then another branch named personal... I was unsure if I should name it "publish" or something else. Portfolio projects and biography is personal information, so "personal" is a suitable name.
+
+Updated the github workflows to reflect this change. No clue however if the settings of the GitHub environment is also copied over when users "use this template". Need to ask a friend to see what they need to do to get the project up and running.
+
+I will also move this journal to the personal branch. I predict that no one really needs to have access to this journal in the "template" branch itself. The journal is mostly for a personal documentation and verification that this project is indeed my work.
+
+Today's goal is to clean up the template branch and make it presentable.
