@@ -14,6 +14,7 @@ export function populateBiography(document) {
 
             //Workplace
             if (biography.workplace !== '') {
+                template.querySelector('.introduction__workplace__preface').textContent = biography.workplacePreface;
                 template.querySelector('.introduction__workplace').textContent = biography.workplace;
                 template.querySelector('.introduction__workplace').href = biography.workplaceLink;
             }
@@ -51,7 +52,7 @@ export function populatePortfolio(document) {
 
             if (data.defaultPreloadImage !== '')
                 projects.querySelector('#project0 .project__video video').poster = data.defaultPreloadImage;
-            
+
             //Portfolio Projects
             data.portfolio.forEach(project => {
                 var index = projects.childElementCount;
