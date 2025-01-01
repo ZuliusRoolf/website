@@ -4,9 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: 
-      - "personal"
-      - "template"
+    branches: ["personal"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,24 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        id: checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-
-      - name: Determine branch to publish
-        id: branch-check
-        run: |
-          if git ls-remote --heads origin personal | grep personal; then
-            echo "branch=personal" >> $GITHUB_ENV
-          else
-            echo "branch=template" >> $GITHUB_ENV
-          fi
-
-      - name: Checkout selected branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.branch }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
