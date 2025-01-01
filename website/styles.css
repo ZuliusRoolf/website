@@ -290,13 +290,13 @@ body {
 }
 @media (min-width: 768px) {
     .video {
-        box-shadow: 0 0 30px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.2);
     }
     .project__video {
         padding: 0px;
     }
     .portfolio__project {
-        overflow: visible;
+        overflow: scroll;
         scrollbar-width: none;
     }
 }
