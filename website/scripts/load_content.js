@@ -49,6 +49,9 @@ export function populatePortfolio(document) {
             const portfolioContainer = document.getElementById('portfolio__container');
             const projects = document.getElementById('projects');
 
+            if (data.defaultPreloadImage !== '')
+                projects.querySelector('#project0 .project__video video').poster = data.defaultPreloadImage;
+            
             //Portfolio Projects
             data.portfolio.forEach(project => {
                 var index = projects.childElementCount;
@@ -59,7 +62,7 @@ export function populatePortfolio(document) {
                 button.querySelector('.project__button__title').textContent = project.title;
                 button.querySelector('.project__button__year').textContent = project.year;
                 portfolioContainer.appendChild(button);
-
+                
                 const template = projects.querySelector('#project0').cloneNode(true);
                 template.setAttribute('id', 'project' + index);
                 template.querySelector('.project__video video source').src = project.video;
