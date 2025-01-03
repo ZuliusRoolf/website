@@ -1,23 +1,9 @@
 {
-  "lastModified": "Dec 2024",
+  "lastModified": "Jan 2025",
   "defaultPreloadImage": "content/graphic_assets/fetching_video.gif",
   "portfolio": [
     {
-      "title": "Website",
-      "year": "2024",
-      "month": "November",
-      "video": "",
-      "image": "",
-      "companyLogo": "content/icons/github.svg",
-      "companyName": "GitHub",
-      "collaborators": "Mr. Ranedeer",
-      "descriptiveTitle": "A project that does something",
-      "reason": "This project was created to solve a problem. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "sourceName": "View Project on GitHub",
-      "sourceLink": "http://github.com"
-    },
-    {
-      "title": "Robots",
+      "title": "Portfolio Template",
       "year": "2024",
       "month": "November",
       "video": "",
@@ -31,16 +17,30 @@
       "sourceLink": "http://github.com"
     },
     {
-      "title": "Stage Fright",
-      "year": "2023",
+      "title": "Big Buck Bunny",
+      "year": "2008",
+      "month": "",
+      "video": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "image": "",
+      "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg",
+      "companyName": "Blender",
+      "collaborators": "",
+      "descriptiveTitle": "Peach open movie project",
+      "reason": "Blender Foundation initiated this open movie project. A small team (7) of the best 3D artists and developers in the Blender community have been invited to come together to work in Amsterdam from October 2007 until April 2008 on completing a short 3D animation movie. ",
+      "sourceName": "bigbuckbunny.org",
+      "sourceLink": "http://www.bigbuckbunny.org"
+    },
+    {
+      "title": "Video Fail Loading",
+      "year": "2024",
       "month": "December",
       "video": "",
       "image": "",
       "companyLogo": "content/icons/github.svg",
       "companyName": "GitHub",
-      "collaborators": "Mr. Ranedeer",
-      "descriptiveTitle": "A project that does something",
-      "reason": "This project was created to solve a problem.",
+      "collaborators": "",
+      "descriptiveTitle": "Preview of a video that failed to load",
+      "reason": "Sometimes the video is not available or the link is broken. The website has no timeout and will simply wait for the video to load indefinitely.",
       "sourceName": "GitHub",
       "sourceLink": "http://github.com"
     },
